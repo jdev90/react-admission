@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+@font-face { font-family: 'SCoreDream'; font-weight: 100; font-style: normal; src: url('../fonts/SCDream1.otf') format('woff'); font-display: swap; } 
+@font-face { font-family: 'SCoreDream'; font-weight: 200; font-style: normal; src: url('../fonts/SCDream2.otf') format('woff'); font-display: swap; } 
+@font-face { font-family: 'SCoreDream'; font-weight: 300; font-style: normal; src: url('../fonts/SCDream3.otf') format('woff'); font-display: swap; } 
+@font-face { font-family: 'SCoreDream'; font-weight: 400; font-style: normal; src: url('../fonts/SCDream4.otf') format('woff'); font-display: swap; } 
+@font-face { font-family: 'SCoreDream'; font-weight: 500; font-style: normal; src: url('../fonts/SCDream5.otf') format('woff'); font-display: swap; } 
+@font-face { font-family: 'SCoreDream'; font-weight: 600; font-style: normal; src: url('../fonts/SCDream6.otf') format('woff'); font-display: swap; } 
+@font-face { font-family: 'SCoreDream'; font-weight: 700; font-style: normal; src: url('../fonts/SCDream7.otf') format('woff'); font-display: swap; } 
+@font-face { font-family: 'SCoreDream'; font-weight: 800; font-style: normal; src: url('../fonts/SCDream8.otf') format('woff'); font-display: swap; } 
+@font-face { font-family: 'SCoreDream'; font-weight: 900; font-style: normal; src: url('../fonts/SCDream9.otf') format('woff'); font-display: swap; } 
+
+@font-face { font-family: 'GSans'; font-weight: 100; font-style: normal; src: url('../fonts/GmarketSansLight.otf') format('woff'); font-display: swap; } 
+@font-face { font-family: 'GSans'; font-weight: 200; font-style: normal; src: url('../fonts/GmarketSansMedium.otf') format('woff'); font-display: swap; } 
+@font-face { font-family: 'GSans'; font-weight: 300; font-style: normal; src: url('../fonts/GmarketSansBold.otf') format('woff'); font-display: swap; } 
+
+@font-face { font-family: 'SBAggro'; font-weight: 300; font-style: normal; src: url('../fonts/SBAggroL.ttf') format('woff'); font-display: swap; } 
+@font-face { font-family: 'SBAggro'; font-weight: 400; font-style: normal; src: url('../fonts/SBAggroM.ttf') format('woff'); font-display: swap; } 
+@font-face { font-family: 'SBAggro'; font-weight: 500; font-style: normal; src: url('../fonts/SBAggroB.ttf') format('woff'); font-display: swap; } 
+
+body { font-family: 'SCoreDream' }
+.contents_area .li_title > .li, .contents_area .li_title > .title{font-family: 'GSans'}
+.Main h1, .Main .MainTitle .Maintxt{font-family: 'SBAggro';}
+.banner .subBannertxt{font-family: 'SBAggro';}
+/* .subBannerMenu_area{font-family: 'SBAggro';font-weight: 300;} */

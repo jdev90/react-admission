@@ -1,0 +1,53 @@
+{
+  "name": "react-admission",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@ckeditor/ckeditor5-react": "^9.3.1",
+    "axios": "^1.8.4",
+    "babel-polyfill": "^6.26.0",
+    "ckeditor5": "^43.3.1",
+    "core-js": "^3.40.0",
+    "cra-template": "1.2.0",
+    "env-cmd": "^10.1.0",
+    "jquery": "^3.7.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-google-recaptcha": "^3.1.0",
+    "react-kakao-maps-sdk": "^1.1.27",
+    "react-router-dom": "^7.0.2",
+    "react-scripts": "5.0.1",
+    "regenerator-runtime": "^0.14.1",
+    "swiper": "^8.2.4"
+  },
+  "scripts": {
+    "start": "env-cmd -f .env.local react-scripts start",
+    "build": "env-cmd -f .env.production react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      "ie <= 11",
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ],
+    "development": [
+      "ie <= 11",
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "web-vitals": "^4.2.4"
+  }
+}
