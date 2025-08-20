@@ -53,46 +53,37 @@ const MainNoticeComp = (props) => {
 
 
     return(                 
-        <div className='Main mainNotice'>
-            <div className='MainTitle notiTitle'>
-                <h1>공지사항</h1>  
+        <div className='Maincontain MainNotice'>
+            <div className='MainTitle'>
+                <p>창신대학교 입시 소식을 확인할 수 있습니다.</p>
+                <h1>CSU<span>공지사항</span></h1>  
                 <ul className='tab'>
-                    <li  onClick={e => tabClick(174)} className={ 174 == menucd  ? "on" : "" }><img src='/images/main/noti1.png'/>일반공지</li>
-                    <li onClick={e => tabClick(163)} className={ 163 == menucd  ? "on" : "" }><img src='/images/main/noti2.png'/>입학공지사항</li>
+                    <li  onClick={e => tabClick(174)} className={ 174 == menucd  ? "on" : "" }>일반공지</li>
+                    <li onClick={e => tabClick(163)} className={ 163 == menucd  ? "on" : "" }>입학공지사항</li>
                 </ul>              
             </div>
 
-            <div className='notiContent'>
-                <div className='notiCont notiTab'>
-                    <ul className='hd_tab'>
-                        <li  onClick={e => tabClick(174)} className={ 174 == menucd  ? "on" : "" }>일반공지</li>
-                        <li onClick={e => tabClick(163)} className={ 163 == menucd  ? "on" : "" }>입학공지사항</li>
-                    </ul>  
-                    <Link to={"/board/"+menucd+"/list"} className='tab more'><img  src='/images/more.png' alt='공지사항 더보기'/></Link>
-                </div> 
-
-                <ul className='notiCont notiInfo'>
-                {postList.map((data, index)=> {                                                      
-                        if(index < 6){
-                            const isnew = newFunc(data.CREATE_DT);                          
-                            return(
-                                <li>
-                                    <Link to={"/board/"+data.MENU_CD+"/view?boardId="+data.BOARD_ID}>
-                                        <div className='title'>
-                                            {data.MENU_CD == 174 && <span className={'cata cate'+data.CATE}>{data.CATE_NM}</span>}
-                                            {data.NOTICE && <span className='noti'>공지</span>}
-                                            {data.TITLE}
-                                            {isnew && <div className='new'>N</div>}
-                                        </div>
-                                        <span className='date'>{data.CREATE_DT.slice(0,10)}</span>
-                                    </Link>
-                                </li>
-                            )
-                        }
-                    })}
-                    {postList.length === 0 && <li className="nopost">등록된 게시물이 없습니다.</li>} 
-                </ul>
-            </div>  
+            <ul className='notiContent'>
+            {postList.map((data, index)=> {                                                      
+                    if(index < 6){
+                        const isnew = newFunc(data.CREATE_DT);                          
+                        return(
+                            <li>
+                                <Link to={"/board/"+data.MENU_CD+"/view?boardId="+data.BOARD_ID}>
+                                    <div className='title'>
+                                        {data.MENU_CD == 174 && <span className={'cata cate'+data.CATE}>{data.CATE_NM}</span>}
+                                        {data.NOTICE && <span className='noti'>공지</span>}
+                                        {data.TITLE}
+                                        {isnew && <div className='new'>N</div>}
+                                    </div>
+                                    <span className='date'>{data.CREATE_DT.slice(0,10)}</span>
+                                </Link>
+                            </li>
+                        )
+                    }
+                })}
+                {postList.length === 0 && <li className="nopost">등록된 게시물이 없습니다.</li>} 
+            </ul>
         </div>
         
         

@@ -15,55 +15,45 @@ ul{list-style: none; padding: 0;margin: 0;overflow: hidden;}
 a{text-decoration: none; color: black;}
 p, h1{margin: 0;}
 body{overflow-x: auto;overflow: scroll;overflow-x: hidden;}
-header{height: 120px;background-color: rgb(255, 255, 255, 0.1); background-color: rgb(0,0,0,0.05);}
 header
 h5{display: unset;font-size: unset;margin-block-start: 0em;margin-block-end: 0em;margin-inline-start: 0px;margin-inline-end: 0px;font-weight: unset;unicode-bidi: unset;}
 
-.Top{display: inline-block; height: 100%;width:95%; margin: 0;}
-.Top .loginTab {display: inline-block; width:100%; width: 1370px;font-size: 12px;margin-top: 18px;}
-.Top .loginTab .tab{float: left;margin-bottom: 6px;color: #ffffff;}
-.Top .loginTab .leftT a{margin-right: 20px;}
-.Top .loginTab .rightT{float:right}
-.Top .loginTab .rightT li{ float:left;padding:0 20px 0 20px;}
-.Top .loginTab .rightT li.rightLine{padding:0;}
-.Top .loginTab .rightT li a{cursor: pointer;}
-.Top .loginTab .tab a{color: #ffffff;}
-.Top .loginTab .rightT li.line:before{display: inline-block;content: "";background: #9e9e9e;height: 11px;width: 2px;margin-right: 20px;} 
-.Top .loginTab .rightT li.noline{padding: 0;margin-left: 20px;}
-.Top .logoTab{display: inline-block; width: 1370px;margin: auto;margin-top: 18px;}
-.Top .logoTab .tab{float: left;}
-.Top .logoTab .topLogo{width: 24%;}/*대학원*/
-.Top .logoTab .topLogo img{margin-left: 18px;display: block;width: 240px;}/*대학원*/
-.Top .logoTab .topmenu{float: right;width: 75%;font-size: 18px;word-break: keep-all;}
-.Top .logoTab .topmenu li.dep1{float: left;width: 14.3%;text-align: left;} /*대학원17.2*/
-.Top .logoTab .topmenu li.dep1:last-child{width: 14%;}
-.Top .logoTab .topmenu li a{color: #ffffff;}
-.Top .logoTab .topmenu .depth2{visibility: hidden;}
-.Top .logoTab .topmenu .depth2 li{font-size: 0px;  margin:0;}
-.Top .logoTab .topLogo div.dep2logo{visibility: hidden;}
-.Top .logoTab .topLogo div.dep2logo{height: 0px;}
-.Top .logoTab .topLogo div.dep2logo .dep1N{padding: 0px 0;font-size: 0px;}
+header{height: 120px;border-bottom: 1px solid #e0e0e0bb;}
+.Top{display: inline-block; height: 100%;width: 1416px; margin: 0;}
+.Top .loginTab {height: 50px;position: relative; vertical-align: top;font-size: 14px;}
+.Top .loginTab .tab{position: absolute;transform: translateY(-50%);top:60%}
+.Top .loginTab .tab a{color: #fff;}
+.Top .loginTab .rightT{right:0;overflow: visible;}
+.Top .loginTab .rightT li{display: inline-block;margin-left: 20px;}
+.Top .logoTab .tab{display: inline-block;margin-top: 16px;}
+.Top .logoTab .logo{position: relative;font-size: 23px;font-weight: 400;float: left;}
+.Top .logoTab .logo a{padding-left: 180px;}
+.Top .logoTab .logo img{position: absolute;width: 150px;transform: translateY(-50%);top: 45%;left: 10px;}
+.Top .logoTab .logo .home_p_name{position:relative;color: #fff;}
+.Top .logoTab .logo .home_p_name::before{position: absolute;content: "";height: 20px;width: 1px;background-color: #dddddd67;transform: translateY(-50%);top:40%; left: -9px;}
+.Top .logoTab .topmenu{position: relative;display: inline-block;width: 74%;font-size: 18px;word-break: keep-all;float:right;overflow: visible;padding-right: 40px;margin-top: 18px;}
+.Top .logoTab .topmenu .dep1{display: inline-block;vertical-align: top;width: 14.8%;text-align: center;}
+.Top .logoTab .topmenu .dep1 a{color: #fff;}
+.Top .logoTab .topmenu .sitem{position: absolute;top:-8px;right: 0;width: 35px;vertical-align: top;}
+.Top .logoTab .topmenu .sitem img{width: 35px;}
+.Top .logoTab .topmenu .dep1 .dep2{font-size: 0;}
+.Top .logoTab .topmenu .dep1.ex_link{width: 13%;font-size: 15px;}
+.Top .logoTab .topmenu .dep1.ex_link div{display: inline-block;background-color: #034EA2;width: 120px;padding: 8px 0; border-radius: 50px; transform: translateY(-8px);}
+.Top .logoTab .topmenu .dep1.ex_link div.vdo{background-color: #9852A9;}
+.Top .logoTab .topmenu .dep1.ex_link div img{transform: translateY(2px);margin-left: 8px;}
 header:hover{background-color: #ffffff;}
-header:hover .Top .loginTab .tab a{color: #231815; font-weight: 500;}
-header:hover .Top .loginTab .tab{color: #231815; font-weight: 500;}
-header:hover .Top .logoTab .topmenu a{color: #231815;}
-header:hover .Top .logoTab .topmenu li a{font-weight: 600;}
-header:hover .Top .logoTab .topmenu li ul a{color: #5f5f5f;font-weight: 400;}
-header.active{box-shadow: 0 3px 10px #11111149;}
-header.active .Top .logoTab .topLogo div.dep2logo{visibility: visible;margin-top: 20px; background-color: #001C58;background-image:url("../images/main/dep2logo.png");background-size: 230px;background-position:110% 120%; background-repeat: no-repeat;}
-.Top .logoTab .topLogo div.dep2logo .dep1N{color: #fff; text-align: right; padding: 50px 0;font-size: 24px;font-weight: 500;}
-.Top .logoTab .topLogo div.dep2logo .dep1N::after{display: inline-block;content: "";background: #fff;height: 4px;width: 30px;margin-left: 20px;vertical-align: middle;}
-header.active .Top .logoTab .topmenu .depth2{visibility: visible;}
-header.active .Top .logoTab .topmenu .depth2{margin-top: 26px;padding-top:10px;}
-header.active .Top .logoTab .topmenu .depth2 li{font-size: 16px;margin: 14px 0;letter-spacing:-2px}
-header.active .Top .logoTab .topmenu .depth2{border-top: 1px solid #dadadace;}
-header.active .Top .logoTab .topmenu .depth2 li a{color: #111;}/*대학원*/
-header.active .Top .logoTab .topmenu .depth2 .depth3 li{margin: 0;padding-left: 4%;margin-top:8px;letter-spacing:-1px}/*대학원*/
-header.active .Top .logoTab .topmenu .depth2 .depth3 li:last-child{margin-bottom: 14px;}/*대학원*/
-header.active .Top .logoTab .topmenu .depth2 .depth3 li a{color: #686868;font-size: 15px;}/*대학원*/
-header.active .Top .logoTab .topmenu .depth2 .depth3 li::before{display: inline-block;content: "";width: 2px;height: 2px;background-color: #838383;transform: translateY(-5px);margin-right: 4px;}/*대학원*/
-.Top .logoTab .topmenu li a:hover{color: #014DA1;} 
-.Top .logoTab .topmenu li ul li a:hover{color: #014DA1;font-weight: 500;}
+header:hover .Top .loginTab .tab a{color: #231815; }
+header:hover .Top .loginTab .tab{color: #231815; }
+header:hover .Top .logoTab .logo .home_p_name{color: #231815;}
+header:hover .Top .logoTab .topmenu .dep1:not(.dep1.ex_link) a{color: #231815;}
+header:hover .Top .logoTab .topmenu .dep1 .dep2 a{color: #5f5f5f;}
+header.active{box-shadow: 0 3px 10px #11111149;position: relative;}
+header.active .Top .logoTab::before{content: "";position: absolute;width: 100%; height: 1px; border-top: 1px solid #e0e0e0bb;top:120px;left: 0;}
+header.active .Top .logoTab .topmenu .dep2{visibility: visible;margin-top: 26px;padding-top:10px;}
+header.active .Top .logoTab .topmenu .dep2 li{font-size: 16px;margin: 14px 0;letter-spacing:-2px}
+header.active .Top .logoTab .topmenu .dep2 li a{color: #111;}/*대학원*/
+header:hover .Top .logoTab .topmenu .dep1:not(.dep1.ex_link):hover a{color: #014DA1;} 
+header:hover .Top .logoTab .topmenu .dep1 .dep2 a:hover{color: #014DA1;}
 .hidden_top_menu{display: none;}
 
 /*TOP BUTTON(맨위로)*/

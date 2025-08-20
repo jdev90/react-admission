@@ -83,26 +83,23 @@ const MainBannerComp = (props) => {
                       }}>
                    
                         <SwiperSlide tag="li">
-                            <div className='imgafter'><img src="/images/main/banner100.png" alt='메인페이지 배너1'/></div>
+                            <div className='imgafter'><img src="/images/main/banner1.png" alt='메인페이지 배너1'/></div>
                         </SwiperSlide>    
                                                                    
-                        <SwiperSlide tag="li">
+                        {/* <SwiperSlide tag="li">
                             <div className='imgafter'><img src="/images/main/banner6.png" alt='메인페이지 배너2'/></div>
-                        </SwiperSlide>    
+                        </SwiperSlide>     */}
                 </Swiper>
                 
-                <div className="ss visual20_ctrl">           
+                {/* <div className="ss visual20_ctrl">           
                     <div className='namebox'>
                         <div className='bannertxt'>
                             <p className='txt_m'>사회가 필요로 하는 전문인력 양성</p>                            
-                            {/* <div className='line'> */}
                             <p className='txt'>창신대학교 대학원</p>
-                                {/* <p className='txt_s'>CHANGSHIN UNIVERSITY GRADUATE SCHOOL</p>  */}
-                            {/* </div> */}
                         </div>
                     </div>                    
-                </div>
-                <div className="navgroup">
+                </div> */}
+                {/* <div className="navgroup">
                     <div className="btngroup">
                         <div className="nav_number visual20_count"><span>{mainBannerCurrentIndex}</span> · {mainBannerCount}</div> 
                          
@@ -111,7 +108,7 @@ const MainBannerComp = (props) => {
                         <div type="button" className="pp pause visual_btn" title="슬라이드 재생 버튼" onClick={()=>mainBannerPlayAndPause()}></div>      
                     </div>
                     
-                </div>
+                </div> */}
                 
 
         </div>

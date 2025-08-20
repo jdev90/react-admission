@@ -94,7 +94,7 @@ function App() {
 
   return (
     <div className="App">
-      <title>창신대학교 대학원</title>
+      <title>창신대학교 입학안내 홈페이지</title>
       <BrowserRouter>
         <Top />        
           <div id='CONTAINER'>   
@@ -115,7 +115,7 @@ function App() {
               <Route path={URL.LOGIN} element={<Login/>} />
               <Route path="/*" element={<Error/>} />
             </Routes>
-            <QuickMenu/>
+            {/* <QuickMenu/> */}
             <STTop/>
             <Footer/>
           </div>

@@ -31,26 +31,14 @@ const MainGalleryComp = (props) => {
     }
 
     return(                 
-        <div className='Main mainGallery'>
-            <div className='gallTitle'>
-                <div className='title'>
-                    <h1>행사갤러리</h1>
-                    <p>창신대학교 대학원의 행사 사진을 지금 구경해보세요.</p>
-                </div>
-                <Link to={"/board/178/list"}><img className='morebtn' src='/images/more.png' alt='행사갤러리 더보기'/></Link>
+        <div className='Maincontain mainGallery'>
+            <div className='MainTitle'>
+                <p>창신대학교 소식을 생생한 유튜브로</p>
+                <h1>CSU<span>홍보영상</span></h1>
+                {/* <Link to={"/board/178/list"}><img className='morebtn' src='/images/more.png' alt='행사갤러리 더보기'/></Link> */}
             </div> 
             <div className='gallshow'>                 
                 <ul className='gallLi'>
-                                        
-                    
-                    {/* <li style={{transform: `translateX(-${456 * stack}px)` ,transition: 'all 0.4s ease-in-out',}}><Link>                                        
-                        <div className='galleryBox'>                                                                                                        
-                            <div className='img'><img src="/images/main/galleryTemp.png" alt='행사사진'/><div className='cate cate1'>부동산</div></div>
-                            <div className='txt'><p>아아아아ㅏ아아아아아</p></div>
-                        </div></Link>
-                    </li>  */}
-                   
-                    
                     {postList.map((data, index)=> {            
                         let imgContents = data.CONTENT;  
                         let imgSrcPath = "";
@@ -88,20 +76,7 @@ const MainGalleryComp = (props) => {
                                 </div></Link> 
                             </li>       
                         )
-                        
-                        // const parser = new DOMParser();
-                        // const doc = parser.parseFromString(data.CONTENT, 'text/html');
-                        // const imgElement = doc.querySelector('img');
-                        // const imgSrc = imgElement ? imgElement.src : ''; // 기본 이미지 경로    설정
-                                                                       
-                        // return(                            
-                        //     <li key={index} style={{transform: `translateX(-${456 * stack}px)` ,transition: 'all 0.4s ease-in-out',}}>
-                        //         <div className='galleryBox'> 
-                        //             <div className='img'><img src={'https://cfile.cs.ac.kr/upload/fileserver/grad'+imgSrc.replaceAll("/wt_board/upload", "")} alt='행사사진'/></div>
-                        //             <div className='txt'><p dangerouslySetInnerHTML={{ __html:  data.TITLE }}></p></div>
-                        //         </div>
-                        //     </li>                     
-                        // )
+                    
                     })}                                       
                 </ul>
             </div>

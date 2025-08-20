@@ -43,7 +43,7 @@ const Top = (props) => {
         if(token == null){
             const fullUrl = window.location.href;
             // URL을 파싱하여 pathname과 search 가져오기
-            setLoginHTML(<Link to={URL.LOGIN+'?url='+`${location.pathname}${location.search}`}>홈페이지 로그인</Link>); //  로그인 이전 페이지 기억 하기위한
+            setLoginHTML(<Link to={URL.LOGIN+'?url='+`${location.pathname}${location.search}`}>로그인</Link>); //  로그인 이전 페이지 기억 하기위한
         }else{
             // setLoginHTML(<span onClick={()=>handleLogOut()}   style={{cursor : 'pointer'}}>로그아웃</span>);
             setLoginHTML(<Link onClick={()=>handleLogOut()} to={"/"}  style={{cursor : 'pointer'}}>로그아웃</Link>);
@@ -117,29 +117,56 @@ const Top = (props) => {
         <header id="header" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className={isMenuHovered ? 'active' : ""}>
             <div className='Top'>
                 <div className='loginTab'>
-                    <div className='tab leftT'>
-                        <Link to="https://www.cs.ac.kr/" target="_blank">대표홈페이지</Link>
-                        <Link to="https://tisc.cs.ac.kr/tisc/index.html" target="_blank">종합정보시스템</Link>                    
-                    </div>
+                    <div className='tab leftT'><Link to="https://www.cs.ac.kr/" target="_blank">창신대학교</Link></div>
                     <ul className='tab rightT'> 
-                        {roles.includes("ADMIN") && <li className='rightLine'><a onClick={openPostInNewWindow}>관리자</a></li> }               
+                        {roles.includes("ADMIN") && <li className='cms'><a onClick={openPostInNewWindow}>관리자</a></li> }               
                         <form id="adminFrm" method="POST" action={URL.ADMIN} style={{display:'none'}}>
                             <input type="hidden" name="accessToken" value={token}/>
                         </form>
-                        <li className='noline'>{loginHTML}</li>  {/*로그인*/}
-                        <li className='noline'><Link to={'/contents/182/view'}>사이트맵</Link></li>
+                        <li>{loginHTML}</li>  {/*로그인*/}
                     </ul>
                 </div>
                 <div className='logoTab'>
-                    <div className='tab topLogo' onMouseEnter={() => setIsHovered(true)} >
-                        <Link to={"/"}><img onMouseEnter={() => setIsHovered(true)}
-                        src={isHovered ? "/images/topLogoB.png" : "/images/topLogoW.png"} 
-                        alt="창신대학교 대학원 홈페이지"/></Link>
-                        <div className='dep2logo'>
-                            <div className='dep1N'>{menuName}</div>
-                        </div>
+                    <div className='tab logo' onMouseEnter={() => setIsHovered(true)} >
+                        <Link to={"/"}>
+                            <img className='pcLogo' src={isHovered ? "/images/top_logoB.png" : "/images/top_logoW.png"}  alt="창신대학교 입학안내 홈페이지"/>
+                            <span className='home_p_name'>입학안내</span>
+                        </Link>
                     </div>
-                    <ul className='tab topmenu depth1' onMouseEnter={() => setIsMenuHovered(true)} onMouseLeave={() => setIsMenuHovered(false)} onClick={() => setIsMenuHovered(false)}>
+                    {/*하드코딩 */}
+                    <ul className='tab topmenu' onMouseEnter={() => setIsMenuHovered(true)} onMouseLeave={() => setIsMenuHovered(false)} onClick={() => setIsMenuHovered(false)}>
+                       <li  className='dep1'><Link>수시모집</Link>
+                            <ul className='dep2'>
+                                <li ><Link>모집요강</Link></li>
+                            </ul>
+                        </li>
+                        <li  className='dep1'><Link>정시모집</Link>
+                            <ul className='dep2'>
+                                <li ><Link >모집요강</Link></li>
+                            </ul>
+                        </li>
+                        <li  className='dep1'><Link >재외국민 외국인</Link>
+                            <ul className='dep2'>
+                                <li ><Link >모집요강</Link></li>
+                            </ul>
+                        </li>
+                        <li  className='dep1'><Link>편입학</Link>
+                            <ul className='dep2'>
+                                <li ><Link>모집요강</Link></li>
+                            </ul>
+                        </li>
+                        <li  className='dep1'><Link>입학도우미</Link>
+                            <ul className='dep2'>
+                                <li ><Link>모집요강</Link></li>
+                            </ul>
+                        </li>
+                        <li className='dep1 ex_link'><div><Link>학과안내<img src='/images/top_exlink.png'/></Link></div></li>
+                        <li className='dep1 ex_link'><div className='vdo'><Link>홍보영상<img src='/images/top_exlink.png'/></Link></div></li>
+                        <li className='sitem'><Link to={'/contents/182/view'}><img src={isHovered ? '/images/top_sitemB.png' : '/images/top_sitemW.png'}/></Link></li>
+
+                        
+                    </ul>
+                    {/* <ul className='tab topmenu depth1' onMouseEnter={() => setIsMenuHovered(true)} onMouseLeave={() => setIsMenuHovered(false)} onClick={() => setIsMenuHovered(false)}>
                         {menuList?.map((data1, index)=> {
                             if(data1.DEPTH == 1 && data1.MENU_CD != 179){                                
                                 return (
@@ -164,7 +191,7 @@ const Top = (props) => {
                                     </li>
                             ) }
                         })}
-                    </ul>
+                    </ul> */}
 
 
                     <div onClick={() =>{isOpen ? handleOpenMenu(false): handleOpenMenu(true)}} className='tab topmenu hidden_menu'></div> 

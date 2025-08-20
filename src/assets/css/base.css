@@ -18,8 +18,8 @@
 @font-face { font-family: 'SBAggro'; font-weight: 400; font-style: normal; src: url('../fonts/SBAggroM.ttf') format('woff'); font-display: swap; } 
 @font-face { font-family: 'SBAggro'; font-weight: 500; font-style: normal; src: url('../fonts/SBAggroB.ttf') format('woff'); font-display: swap; } 
 
-body { font-family: 'SCoreDream' }
-.contents_area .li_title > .li, .contents_area .li_title > .title{font-family: 'GSans'}
+body { font-family: 'SBAggro';font-weight: 300;}
+/* .contents_area .li_title > .li, .contents_area .li_title > .title{font-family: 'GSans'}
 .Main h1, .Main .MainTitle .Maintxt{font-family: 'SBAggro';}
-.banner .subBannertxt{font-family: 'SBAggro';}
+.banner .subBannertxt{font-family: 'SBAggro';} */
 /* .subBannerMenu_area{font-family: 'SBAggro';font-weight: 300;} */
