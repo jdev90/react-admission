@@ -31,11 +31,16 @@ const MainGalleryComp = (props) => {
     }
 
     return(                 
-        <div className='Maincontain mainGallery'>
+        <div className='Maincontain MainGallery'>
             <div className='MainTitle'>
                 <p>창신대학교 소식을 생생한 유튜브로</p>
                 <h1>CSU<span>홍보영상</span></h1>
-                {/* <Link to={"/board/178/list"}><img className='morebtn' src='/images/more.png' alt='행사갤러리 더보기'/></Link> */}
+                <ul className='Tab'>
+                    <li className='vdo'><Link title='창신대학교 홍보영상 유튜브'><div><p>창신대학교</p>2025 홍보영상</div></Link></li>
+                    <li className='btn sns2'><div><Link title='창신대학교 입학 페이스북'></Link></div></li>
+                    <li className='btn sns3'><div><Link title='창신대학교 입학 인스타그램 '></Link></div></li>
+                    <li className='btn more'><div><Link title='창신대학교 홍보영상 더보기'></Link></div></li>
+                </ul>
             </div> 
             <div className='gallshow'>                 
                 <ul className='gallLi'>
@@ -57,7 +62,6 @@ const MainGalleryComp = (props) => {
                                         <div className='galleryBox'>                                                                                                        
                                             <div className='img'>
                                                 <img src={imgSrcPath} alt='행사사진'/>
-                                                <div className={'cate cate'+data.CATE}>{data.CATE_NM}</div>
                                             </div>
                                             <div className='txt'><p dangerouslySetInnerHTML={{ __html:  data.TITLE }}></p></div>
                                         </div>
@@ -70,7 +74,6 @@ const MainGalleryComp = (props) => {
                                 <div className='galleryBox'> 
                                     <div className='img'>
                                         <img src={'https://cfile.cs.ac.kr/upload/fileserver/grad/'+data.MENU_CD+'/'+data.FILE_NAME} alt='행사사진'/>
-                                        <div className={'cate cate'+data.CATE}>{data.CATE_NM}</div>
                                     </div>
                                     <div className='txt'><p dangerouslySetInnerHTML={{ __html:  data.TITLE }}></p></div>
                                 </div></Link> 

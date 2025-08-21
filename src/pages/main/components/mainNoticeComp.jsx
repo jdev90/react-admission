@@ -57,22 +57,26 @@ const MainNoticeComp = (props) => {
             <div className='MainTitle'>
                 <p>창신대학교 입시 소식을 확인할 수 있습니다.</p>
                 <h1>CSU<span>공지사항</span></h1>  
-                <ul className='tab'>
-                    <li  onClick={e => tabClick(174)} className={ 174 == menucd  ? "on" : "" }>일반공지</li>
-                    <li onClick={e => tabClick(163)} className={ 163 == menucd  ? "on" : "" }>입학공지사항</li>
+                <ul className='Tab'>
+                    <li onClick={e => tabClick(174)} className={ 174 == menucd  ? "on" : "" }>전체</li>
+                    <li onClick={e => tabClick(163)} className={ 163 == menucd  ? "on" : "" }>수시</li>
+                    <li onClick={e => tabClick(174)} className={ 172 == menucd  ? "on" : "" }>정시</li>
+                    <li onClick={e => tabClick(174)} className={ 173 == menucd  ? "on" : "" }>편입학</li>
+                    <li onClick={e => tabClick(174)} className={ 171 == menucd  ? "on" : "" }>외국인</li>
+                    <li className='more'><Link><img src='/images/main/comm_more.png'/></Link></li>
                 </ul>              
             </div>
 
             <ul className='notiContent'>
             {postList.map((data, index)=> {                                                      
-                    if(index < 6){
+                    if(index < 5){
                         const isnew = newFunc(data.CREATE_DT);                          
                         return(
                             <li>
                                 <Link to={"/board/"+data.MENU_CD+"/view?boardId="+data.BOARD_ID}>
                                     <div className='title'>
                                         {data.MENU_CD == 174 && <span className={'cata cate'+data.CATE}>{data.CATE_NM}</span>}
-                                        {data.NOTICE && <span className='noti'>공지</span>}
+                                        {/* {data.NOTICE && <span className='noti'>공지</span>} */}
                                         {data.TITLE}
                                         {isnew && <div className='new'>N</div>}
                                     </div>

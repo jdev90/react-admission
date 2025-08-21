@@ -109,7 +109,7 @@ const MainIntroComp = (props) => {
                 <div className='Maincontain MainIntro'>                        
                     <div className='MainTitle'>
                         <p>창신대학교의 입시 관련 주요 서비스입니다.</p>
-                        <h1>CSU<span>입학도우미</span></h1>
+                        <h1>CSU<span>안내책자</span></h1>
                     </div>                                
                     
                     
