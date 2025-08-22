@@ -47,6 +47,16 @@ const Main = (props) => {
     {title: "면접고사"},
     {title: "(최초)합격자발표"},
   ];
+  function showTab(index) {
+        // 모든 탭 버튼과 콘텐츠를 숨기기
+        var buttons = document.querySelectorAll('.tab_btn');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove('active');
+        }
+        
+        // 선택한 탭 버튼과 콘텐츠 활성화
+        buttons[index].classList.add('active');
+    }
     
 
     return(
@@ -102,24 +112,52 @@ const Main = (props) => {
                     ))}</ul>
                     {/*입시일정*/} 
                     <div className='schedule'>
-                        <ul className='tab'>
-                            <li><div>수시모집</div></li>
-                            <li><div>정시모집</div></li>
-                            <li><div>재외국민 외국인</div></li>
-                            <li><div>평입학</div></li>
-                        </ul>
-                        <ul className='date'>
-                            {imsi.map((data, index) => (
-                            <li>
-                                {data.title}
-                            </li>
-                            ))}
-                        </ul>
+                      <div className='title'>입시일정</div>
+                      <ul className='tab'>
+                          <li><div className='tab_btn active' onClick={() => showTab(0)}>수시모집</div></li>
+                          <li><div className='tab_btn' onClick={() => showTab(1)}>정시모집</div></li>
+                          <li><div className='tab_btn' onClick={() => showTab(2)}>재외국민 외국인</div></li>
+                          <li><div className='tab_btn' onClick={() => showTab(3)}>평입학</div></li>
+                      </ul>
+                      <div className='bar'></div>
+                      <ul className='date'>
+                          {imsi.map((data, index) => (
+                          <li className='date_item active'>
+                              <p className='nm'>{data.title}</p>
+                              <p>2025.09.08(월) ~ 09.12(금)</p>
+                          </li>
+                          ))}
+                      </ul>
                     </div>
 
                 </div> 
-                
-                                
+            </div>
+            {/*5. WhyCSU*/}
+            <div className='wcBgc'>
+              <div className='Maincontain MainWhycsu'>  
+                <div className='wcTitle'>
+                    <p><span>NO.1 </span>CSU</p>
+                    <h1>왜! 창신대학교인가?</h1>
+                </div>
+                <ul>
+                  <li className='wc1'>
+                    <p className='pcent'>82.1%</p>
+                    <p className='titl'>유지 취업률</p>
+                    <p className='txt'>부울경 사립대학 중 1위<br/>(2021.12.31.기준, 2022 대학정보공시)</p>
+                  </li>
+                  <li className='wc2'>
+                    <p className='pcent'>71.8%</p>
+                    <p className='titl'>졸업생 취업률</p>
+                    <p className='txt'>경남 62.3%, 전국 66.3%<br/>(2022.12.31.기준, 2023 대학정보공시)</p>
+                  </li>
+                  <li className='wc3'>
+                    <p className='pcent'>100%</p>
+                    <p className='titl'>부영그룹 우정장학생 특별장학금</p>
+                    <p className='txt'>2024년 신입생(수시, 정시모집) 전원<br/> 등록금 전액(입학금 포함) 장학금 지급<br/> (간호학과 50% 지급)</p>
+                  </li>
+                </ul>
+
+              </div>
             </div>
             
 

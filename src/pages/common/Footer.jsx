@@ -4,26 +4,24 @@ import URL from '../../context/url';
 const Footer = (props) => {
     return(
         <footer>       
-            <div className='Bottom'>
-                <div className='BSap BSap2'>
-                    <ul className='col linkTab'>
-                        <li className='documentSite'><Link to={"https://www.cs.ac.kr/document/site3"} target="_blank">개인정보처리방침</Link></li>
-                        <li><Link to={"https://www.cs.ac.kr/document/site4"} target="_blank">영상정보처리기기운영</Link></li>
-                        {/* <li><Link to={"/contents/57"}>저작권보호정책</Link></li>
-                        <li><Link to={"/contents/57"}>이메일무단수집거부</Link></li> */}
-                    </ul>
-                    <ul className='col sns'>
-                        <li><Link to={"https://www.facebook.com/changshinuniversity"} target='_blank' title='창신대학교 대학원 페이스북'><img src='/images/sns1.png' alt='페이스북'/></Link></li>
-                        <li><Link to={"https://www.instagram.com/changshin_university"} target='_blank' title='창신대학교 대학원 인스타그램'><img src='/images/sns2.png' alt='인스타그램'/></Link></li>
-                    </ul>
+            <div className='link'>
+                <div className='logo'>
+                    <Link><img src='/images/top_logoW.png'/><span className='.home_p_name'>입학안내</span></Link>
                 </div>
-                <div className='BSap'>
-                    <div className='col address'>
-                        <p>51352 경상남도 창원시 마산회원구 팔용로 262 9호관 5층</p>
-                        <p>Tel. 055) 250 - 3152~3, 3159 <span>Fax. 055) 250 - 3154</span></p>
-                        <p className="copyright">Copyright (c) Changshin University. All Rights Reserved. </p>
-                    </div>
-                </div>
+                <ul>
+                    <li><Link>개인정보처리방침</Link></li>
+                    <li><Link>찾아오시는 길</Link></li>
+                    <li><Link>사이트맵</Link></li>
+                </ul>
+            </div>
+            <div className='m_line'></div>
+            <div className='info'>
+                <ul>
+                    <li><p className='titl'>전화</p><p>055) 250-1111</p></li>
+                    <li><p className='titl'>팩스</p><p>055) 297-5181</p></li>
+                    <li><p className='titl'>주소</p><p>경상남도 창원시 마산회원구 팔용로 262, 1호관 1층 입학홍보처</p></li>
+                </ul>
+                <p>COPYRIGHT (c) 2012 CHANGSHIN UNIVERSITY. ALL RIGHTS RESERVED.</p>
             </div>
         </footer>
 

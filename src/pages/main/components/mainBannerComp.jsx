@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import {Link} from 'react-router-dom';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -17,6 +17,7 @@ const MainBannerComp = (props) => {
     
     const [mainBannerCount, setMainBannerCount] = useState(1);
     const [isPlaying, setIsPlaying] = useState(true);
+    const [issueOpen, setIssueOpen] = useState(false);
     
     const mainBannerPlayAndPause = (e) =>{
         if (isPlaying) {
@@ -89,6 +90,32 @@ const MainBannerComp = (props) => {
                 </div>
                 
             </div> */}
+            <div className="fixed_board">
+                <div className='static'>
+                    <div className='line'><Link>
+                        <p>2026학년도</p>
+                        <p>대학입학전형 시행계획 주요사항</p>
+                    </Link></div>
+                    <div><Link>
+                        <p>2025학년도</p>
+                        <p>대학입학전형 시행계획 주요사항</p>
+                    </Link></div>
+                </div>
+                <div className='dynamic'>
+                    <div className='area'>
+                        <div className='issue'  onClick={() => !issueOpen && setIssueOpen(true)}>
+                            <p>CSU ISSUE <span>3</span></p>
+                            <div className='cancle' onClick={() => setIssueOpen(false)}><img src="/images/main/comm_more.png"/></div>
+                        </div>
+                        {issueOpen && <ul>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                            <li></li>
+                        </ul>}
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

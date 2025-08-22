@@ -27,7 +27,6 @@ const Top = (props) => {
 
     const { pathname } = useLocation();
     useEffect(() => {
-
         if(token != null){
             setIsLogin(true);
         }else{
@@ -63,6 +62,7 @@ const Top = (props) => {
             const data = await res.json();   
             setMenuList(data.getMenuList);
             sessionStorage.setItem("menuList", JSON.stringify(data.getMenuList));
+            console.log(data.getMenuList);
         }catch(e){
             console.log(e);
         }
