@@ -90,7 +90,7 @@ const MainBannerComp = (props) => {
                 </div>
                 
             </div> */}
-            <div className="fixed_board">
+            <div className="banner_board">
                 <div className='static'>
                     <div className='line'><Link>
                         <p>2026학년도</p>

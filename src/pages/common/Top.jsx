@@ -160,12 +160,49 @@ const Top = (props) => {
                                 <li ><Link>모집요강</Link></li>
                             </ul>
                         </li>
+
                         <li className='dep1 ex_link'><div><Link>학과안내<img src='/images/top_exlink.png'/></Link></div></li>
                         <li className='dep1 ex_link'><div className='vdo'><Link>홍보영상<img src='/images/top_exlink.png'/></Link></div></li>
                         <li className='sitem'><Link to={'/contents/182/view'}><img src={isHovered ? '/images/top_sitemB.png' : '/images/top_sitemW.png'}/></Link></li>
+                        {/* <li className='mob_menu'><img src={isHovered ? '/images/top_sitemB.png' : '/images/top_sitemW.png'}/></li> */}
 
-                        
                     </ul>
+                        <div className='mob_menubtn' onClick={() =>{isOpen ? handleOpenMenu(false): handleOpenMenu(true)}}><img src={isHovered ? '/images/top_sitemB.png' : '/images/top_sitemW.png'}/></div>
+
+                    {isOpen &&
+                    <div className="mob_menu">
+                        <div className="menu">
+                            <div className='top_area'>
+                                <div className='x_area'><p>입학안내</p><div className='x' onClick={() => {handleOpenMenu(false);}}><img src='/images/close.png' alt='메뉴닫기'/></div></div>
+                                <ul onClick={() => {handleOpenMenu(false);}}>
+                                    <li><Link to="https://www.cs.ac.kr/" target="_blank">창신대학교</Link></li>
+                                    <li>{loginHTML}</li>
+                                    <li>ENG</li>
+                                </ul>
+                            </div>
+                            <ul>
+                                {menuList?.map((data1, index)=> {
+                                    if(data1.DEPTH == 1 && data1.MENU_CD != 54){                                
+                                        return (
+                                            <li key={index} className='dep1' onClick={() => handleClickMenu(index)}>
+                                                <div className={ isClick == index ? 'dep1a curt' :'dep1a'}>{data1.MENU_NM} <img className={ isClick == index ? 'nodeg' :'imgdeg'} src='/images/hd.png' alt='상위메뉴'/></div>
+                                                {isClick == index && 
+                                                <div className='dep2'>
+                                                <ul className="submenu">
+                                                    {menuList?.map((data2, index)=> {
+                                                        if(data2.DEPTH == 2 && data2.PARENT_MENU_CD == data1.MENU_CD){
+                                                            return(
+                                                                <li key={index}><Link to={data2.LINK}  onClick={() => {handleOpenMenu(false);}}>{data2.MENU_NM}</Link></li>
+                                                        )}
+                                                    })}
+                                                </ul>
+                                                </div>}
+                                            </li>
+                                    ) }
+                                })}
+                            </ul>
+                        </div>
+                    </div>}
                     {/* <ul className='tab topmenu depth1' onMouseEnter={() => setIsMenuHovered(true)} onMouseLeave={() => setIsMenuHovered(false)} onClick={() => setIsMenuHovered(false)}>
                         {menuList?.map((data1, index)=> {
                             if(data1.DEPTH == 1 && data1.MENU_CD != 179){                                
@@ -194,8 +231,8 @@ const Top = (props) => {
                     </ul> */}
 
 
-                    <div onClick={() =>{isOpen ? handleOpenMenu(false): handleOpenMenu(true)}} className='tab topmenu hidden_menu'></div> 
-                    {isOpen ? 
+                    {/*<div onClick={() =>{isOpen ? handleOpenMenu(false): handleOpenMenu(true)}} className='tab topmenu hidden_menu'></div> 
+                     {isOpen ? 
                         <div className="hidden_top_menu">
                             <div className="menu">
                                 <div className='x_area'><div className='x' onClick={() => {handleOpenMenu(false);setIsHovered(false)}}><img src='/images/close.png' alt='메뉴닫기'/></div></div>
@@ -230,7 +267,8 @@ const Top = (props) => {
                                     })}
                                 </ul>
                             </div>
-                        </div> : null}
+                        </div> : null} */}
+                        
                 </div>
                 
             </div>
