@@ -52,15 +52,12 @@ header.active .Top .logoTab .topmenu .depth2 li{text-align: left;}
 
 /*서브배너*/
 .banner{position: relative;}
-.banner .subBannerImgbox{position: relative;width: 100%; height: 450px; overflow: hidden;clip-path: inset(0px);background-color: #001C58;}
+.banner .subBannerImgbox{position: relative;width: 100%; height: 400px; overflow: hidden;clip-path: inset(0px);background-color: #001C58;}
 .banner .subBannerImgbox img{display: block;width: 100%;height: 100%;object-fit: cover;object-position: center; }
-.banner .subBannerImgbox:after{position: absolute;content: '';top: 0;left: 0;width: 100%;height: 100%;background:linear-gradient(90deg, rgb(0, 0, 0, 0.5), rgb(0, 0, 0, 0.2))}
-.banner .subBannertxt{position: absolute;transform: translateX(-50%) translateY(-50%);top: 60%;left: 50%;width: 100%;width: 1370px;text-align: left;}
-.banner .subBannertxt{font-weight: 400; color:#fff; letter-spacing : 2px;text-shadow: 1px 2px 1px #11111121;}
-.banner .subBannertxt span{color: yellow;}
-.banner .subBannertxt div{display: inline-block;}
-.banner .subBannertxt .dep1{font-size: 40px;margin-right: 10px;}
-.banner .subBannertxt .slo{text-align: left;font-size: 16px;line-height: 17px;font-weight: 300;}
+.banner .subBannerImgbox:after{position: absolute;content: '';top: 0;left: 0;width: 100%;height: 100%;background: rgb(0, 0, 0, 0.5)}
+.banner .subBannertxt{position: absolute;transform: translateX(-50%) translateY(-50%);top: 64%;left: 50%;width: 100%;text-align: center;color: #fff;font-size: 18px;}
+.banner .subBannertxt .dep1{font-size: 34px;font-weight: 400;margin-bottom: 8px;}
+
 
 
 
@@ -127,7 +124,7 @@ header.active .Top .logoTab .topmenu .depth2 li{text-align: left;}
 .MainNotice .notiContent .notiTab img:hover{transform: rotate(360deg);transition-property: all;transition-duration: 0.4s;}
 
 
-/*학사일정*/
+/*학사일정
 .mainSchedule{height: 500px;}
 .mainSchedule .MainTitle{width: 100%;}
 .mainSchedule .MainTitle .ob{display: inline-block;}
@@ -154,8 +151,8 @@ header.active .Top .logoTab .topmenu .depth2 li{text-align: left;}
 .mainSchedule .calendar_area .calendar_txt ul li{overflow: hidden;display: inline-block;white-space: nowrap;text-overflow: ellipsis;width: 90%;}
 .mainSchedule .calendar_area .calendar_box ul li div.mark{background-color: #6698ee;display: inline-block;width: 24px; border-radius: 10px;}
 .mainSchedule .calendar_area .calendar_box ul li.isnt div.mark{background-color: unset;}
-
-/*학사일정*/
+*/
+/*학사일정
 .table_area.calender{margin: 0;display: block;margin-left: auto;width: 95%;}
 .table_area.calender table.listTable tbody td{padding: 10px 0;}
 .table_area.calender table.listTable tbody td.schedule_contents div{display: inline-block;}
@@ -187,7 +184,7 @@ header.active .Top .logoTab .topmenu .depth2 li{text-align: left;}
 .schedule_area .cancle{cursor: pointer;float: right;border: 1px solid #9b9b9b;width: 16px;height: 16px;transform: translateY(12%);margin-left: 10px;}
 .schedule_area .cancle:hover{border: 1px solid #e05a50;}
 .schedule_area .cancle img{width: 8px; transform: translateY(-48%);} 
-
+*/
 
 /*안내책자*/
 .bkBgc{background-color: #D5E2F600;height: 870px;width: 100%; background-image: url("../images/main/book_back.png");background-position: 50% 50%;background-repeat: no-repeat;background-size: cover;}
@@ -231,8 +228,8 @@ header.active .Top .logoTab .topmenu .depth2 li{text-align: left;}
 .MainGallery .MainTitle .Tab li div:hover{box-shadow: 4px 4px 8px #00000059;}
 .MainGallery .gallshow{height: 290px;width: 1416px;margin-top: 130px;overflow: hidden;}
 .MainGallery .gallshow .gallLi{display: inline-block; height: 286px;width: 40000px; }
-.MainGallery .gallshow .gallLi li{height: 100%;width: 424px;margin: 0 16px;float:left}
-.MainGallery .gallshow .gallLi li .galleryBox{cursor: pointer;position: relative;height: 100%;width: 100%;object-fit: hidden;clip-path: inset(0px round 30px 0 30px 0);}
+.MainGallery .gallshow .gallLi li{height: 100%;width: 440px;margin: 0 16px;float:left}
+.MainGallery .gallshow .gallLi li .galleryBox{cursor: pointer;position: relative;height: 100%;width: 100%;object-fit: hidden;clip-path: inset(0px round 30px);}
 .MainGallery .gallshow .gallLi li .galleryBox .img img{position:absolute;top: 50%;left: 50%;transform: translateX(-50%) translateY(-50%);z-index: -1;width: 100%;height: 100%;object-fit: cover;}
 .MainGallery .gallshow .gallLi li .galleryBox .txt{visibility: hidden;}
 .MainGallery .gallshow .gallLi li .galleryBox:hover .txt{visibility: visible;width:100%;position:absolute;bottom: 0%;background-color: #003168;color: #fff;height: 90px;}
@@ -241,9 +238,9 @@ header.active .Top .logoTab .topmenu .depth2 li{text-align: left;}
 .MainGallery .slideBtn div{cursor: pointer;background-color: #ffffff;width: 58px;height: 58px;border-radius: 50%;}
 .MainGallery .slideBtn div{box-shadow: 0 4px 5px #2b2b2b60;background-image:url("../images/main/slidebtnB.png");background-position: 45% 50%;background-repeat: no-repeat;}
 .MainGallery .slideBtn div.next{transform: scaleX(-1);}
-.MainGallery .slideBtn div{position: absolute;transform: translateX(-50%) translateY(-50%);}
-.MainGallery .slideBtn div.prev{top: 62%;left: 2%;}
-.MainGallery .slideBtn div.next{top: 55%;right: 0%;}
+.MainGallery .slideBtn{position: absolute;transform: translateY(-50%);top:70%;width: 100%;}
+.MainGallery .slideBtn div.prev{float: left;}
+.MainGallery .slideBtn div.next{float: right;}
 .MainGallery .slideBtn div:hover{background-image:url("../images/main/slidebtnW.png");background-color: #014DA1;}
 .MainGallery .gallTitle img:hover{transform: rotate(360deg);transition-property: all;transition-duration: 0.4s;}
 
@@ -266,7 +263,7 @@ header.active .Top .logoTab .topmenu .depth2 li{text-align: left;}
 .MainQuickService .quickbtn li:nth-child(-n+2)::after{position: absolute;content: "";width: 95%;border-top:1px solid #cad8e2;top: 100%;left: 50%;transform: translateX(-50%);}
 .MainQuickService .call{margin-top: 80px;background-color: #fff;box-shadow: 4px 4px 10px #00000027;border-radius: 70px 30px;}
 .MainQuickService .call li{display: inline-block;width: 50%;font-size: 24px; font-weight: 400;padding: 50px 0;}
-.MainQuickService .call li:first-child{background-color: #034EA2;border-radius: 70px 30px;}
+.MainQuickService .call li:first-child{background-color: #034EA2;border-radius: 70px 30px;color: #fff;}
 .MainQuickService .call li:first-child a{color: #fff;}
 .MainQuickService .call li .col{display: inline-block;text-align: left;vertical-align: top;width:70%}
 .MainQuickService .call li .col1{width:20%; margin-left: 10%;}
@@ -274,6 +271,12 @@ header.active .Top .logoTab .topmenu .depth2 li{text-align: left;}
 .MainQuickService .call li .col2 div::before{position: absolute;content: "";width: 22px;height: 22px;}
 .MainQuickService .call li .col2 span{font-weight: 300;margin-left: 10px;}
 .MainQuickService .call li .col2 .link{margin-top: 10px;}
+.MainQuickService .call li .col2 .link span{position: absolute;border: 1px solid #000;padding: 2px 10px;padding-top: 4px;border-radius: 20px;font-size: 14px;}
+.MainQuickService .call li .col2 .link0 span{border: 1px solid #ffffff;}
+.MainQuickService .call li .col2 .link0 span:hover{background-color: #fff;}
+.MainQuickService .call li .col2 .link0 span:hover a{color: #002958;}
+.MainQuickService .call li .col2 .link1 span:hover{background-color: #034EA2;border: 1px solid #034EA2;}
+.MainQuickService .call li .col2 .link1 span:hover a{color: #fff;}
 .MainQuickService .schedule .title{font-size: 38px;font-weight: 400;margin-top: 130px;margin-bottom: 30px;color:#003571}
 .MainQuickService .schedule ul{overflow: visible;}
 .MainQuickService .schedule .tab li{display: inline-block;}
@@ -298,7 +301,7 @@ header.active .Top .logoTab .topmenu .depth2 li{text-align: left;}
 .MainWhycsu .wcTitle p span{color:#D7EBFF}
 .MainWhycsu ul{margin-top: 80px;overflow: visible;}
 .MainWhycsu ul li{position: relative;display: inline-block;vertical-align: top;width: 33.3%;text-align: left;color: #fff;word-break: keep-all;}
-.MainWhycsu ul li p{margin:0 50px;}
+.MainWhycsu ul li p{margin-left: 50px;}
 .MainWhycsu ul li .pcent{font-size: 34px;font-weight: 500;}
 .MainWhycsu ul li.wc1 .pcent{color: #FF8474;}
 .MainWhycsu ul li.wc2 .pcent{color: #FFBB33;}
@@ -307,9 +310,6 @@ header.active .Top .logoTab .topmenu .depth2 li{text-align: left;}
 .MainWhycsu ul li .txt{font-size: 18px;line-height: 23px;color: #ffffffc9;}
 .MainWhycsu ul li:not(:first-child)::before{position: absolute;content: "";width: 1px;height: 188px;top: 50%;left: 0px;transform: translateY(-50%);background-color: #ffffff4b;}
 
-/*서브페이지 --------------*/
-.subcontain{background-color: #0077ff00; width: 1370px;margin: auto;min-height: 730px;display: inline-block;margin-bottom: 200px;}
-.contents_area{margin: 80px auto 100px auto;width: 100%;display: inline-block;}
 
 
 /*게시물비밀번호*/
@@ -349,7 +349,7 @@ input:focus {outline: none;}
 .subBannerMenu_area .pathbar li.path.active .hd_dep4 {color: #636363;left: 0px;width: 100%;width: 180px;background-color: #fafafa;z-index: 100;margin-top: 12px;box-shadow: 4px 4px 4px #0a0a0a1f;font-size: 14px;font-weight: 400;}
 .subBannerMenu_area .pathbar li.path.active .hd_dep4 p {display: block;padding: 12px 0;border-top: 1px solid #ddd;padding-left: 14px;}
 .subBannerMenu_area .pathbar li.path.active .hd_dep4 p:hover{text-decoration: underline;color: #001A51;}
-
+.subBannerMenu_area{visibility: hidden;}
 
 /* login */
 .logintitle{margin:70px auto 50px auto;font-size: 36px;font-weight: 500;}
@@ -533,13 +533,15 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     .banner .banner_board {width: 95%;}
     .subBannerMenu_area {width: 95%;}
     .Maincontain{ width: 95%;}
-    .subcontain {width: 100%;}       
     .MainGallery .gallshow {width: 100%;}
 }
 
 @media (max-width: 1155px){ 
     /* .faculty .faculty_box .img {width: 20%;}
     .faculty .faculty_box .con .txt div {margin-left: 15px;} */
+    .MainWhycsu ul li {width: 28%;}
+    .MainWhycsu ul li.wc3 {width: 44%;}
+    .MainWhycsu ul li p {margin: 0 20px;}
     #serv_more {width: 90%;}
 }
 @media (max-width: 1085px){ 
@@ -560,6 +562,8 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     .MainQuickService .call li {font-size: 20px;padding: 40px 0;}
     .MainQuickService .call li .col2 div {padding-left: 0px;font-size: 18px;}
     .MainQuickService .call li .col1 {margin-left: 4%;}
+    .MainQuickService .call li .col2 .link span{font-size: 12px;top: -2px;}
+
     .loginbox { width: 70%;}
     
 }
@@ -643,9 +647,27 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     
 }
 @media (max-width: 780px){
+    .MainGallery .MainTitle::before{content: none;}
+    .MainGallery .MainTitle .Tab {top:auto;transform: none;bottom: -64px;left: 42px;bottom: -85px;}
+    .MainGallery .gallshow {margin-top: 110px;}
+    .MainQuickService .call {border-radius: 20px;}
+    .MainQuickService .call li {display: block;width: 100%;padding: 25px 0}
+    .MainQuickService .call li:first-child {border-radius: 20px;}
+
+    /* .MainQuickService .call {border-radius: 20px;background-color: #ffffff;color: #000;}
+    .MainQuickService .call a{color: #000;}
+    .MainQuickService .call li:first-child  a{color: #000;background-color:initial;}
+    .MainQuickService .call li {display: block;width: 100%;padding: 25px 0}
+    .MainQuickService .call li:first-child {border-radius: 0px;}
+    .MainQuickService .call li .col2 .link span {border: 1px solid #000;} */
 }
 @media (max-width: 755px){
-    .MainTitle .Tab {top:auto;transform: none;bottom: -64px;}
+    .MainQuickService .quickbtn li .btn {position: static;}
+    .MainQuickService .quickbtn li .btn div.book {background-color:#ffffff77;color: initial;}
+    .MainQuickService .quickbtn li .btn div {display: inline-block;width: 40%;margin: 4px;background-color:#ffffff6e;border: 1px solid #cecece57;}
+    .MainQuickService .quickbtn li .btn div:hover {background-color: #034EA2;color:#fff}
+    /* .MainQuickService .quickbtn li .btn div:hover a{color:#fff} */
+
 }
 @media (max-width: 700px){
     .MainNotice .Tab {font-size: 18px;}
@@ -671,6 +693,16 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     .subBannerMenu_area .pathbar li.path.active {box-shadow: inset 1px 1px 0px 0 #ddd;}
     .subBannerMenu_area .pathbar li.path.active .hd_dep4 {font-size: 12px;width: 100%;}
 }
+@media (max-width: 680px){
+    .MainQuickService .schedule .bar {height: 0;}
+    .MainQuickService .schedule .tab li .tab_btn {font-size: 16px;padding: 8px 15px;margin: 0 4px;}
+    .MainQuickService .schedule .date{border: 1px solid #bdbdbd;padding: 10px 0;border-radius: 10px;}
+    .MainQuickService .schedule .date .date_item{display: block;width: auto;padding: 14px 0;text-align: left;padding-left: 100px;}
+    .MainQuickService .schedule .date .date_item p{display: inline-block;text-align: left;}
+    .MainQuickService .schedule .date .date_item .nm {margin-bottom: 0px;margin-right: 10px;}
+    .MainQuickService .schedule .date .date_item::before {content: 'step ' counter(number);transform:translateY(-50%);top: 50%;left: 22px;font-size: 12px;line-height: 25px;width: 60px;height: 25px;text-align: center;color: #000;}
+    .MainQuickService .schedule .date .date_item:first-child::before {color:#fff}
+}
 
 @media (max-width: 670px){ 
     .galleryTable li {height: 221px}
@@ -687,7 +719,17 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     #serv_more .top div img.back {width: 18px;}
 }
 
-@media (max-width: 610px){     
+@media (max-width: 610px){
+    .MainWhycsu ul {margin-top: 16px;}
+    .MainWhycsu ul li {position: relative; display:block; width: auto;padding-bottom: 12px;}
+    .MainWhycsu ul li.wc3 {width: auto;}
+    .MainWhycsu ul li .pcent {position: absolute;font-size: 26px;}
+    .MainWhycsu ul li p:not(.pcent) {padding-left: 100px;}
+    .MainWhycsu ul li .titl {font-size: 20px; margin-bottom: 5px;}
+    .MainWhycsu ul li .txt {font-size: 16px;}
+    .MainWhycsu ul li:not(:first-child)::before {width: 100%;height: 1px;}
+    .MainWhycsu ul li:not(:first-child)::before {content: unset;}
+
     /* .subBannerMenu_area .pathbar li.path {font-size: 10px;padding-left: 4px;}
     .subBannerMenu_area .pathbar li.path.active .hd_dep4 p{font-size: 10px;}
     .subBannerMenu_area .pathbar li {width: 2.5%;}
@@ -708,7 +750,7 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
 
 @media (max-width: 587px){
     .siteBox .dep{width: 80%;}
-    .subcontain{min-height: 500px;}
+    /* .subcontain{min-height: 500px;} */
 }
 @media (max-width: 540px){
     /* .banner .ss .namebox .bannertxt p.txt {word-break: keep-all;} */
@@ -757,32 +799,52 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     .MainGallery .MainTitle .Tab li.vdo div::after {content: unset;}
     .MainGallery .MainTitle .Tab li.vdo div p{padding-top:9px}
     .mainSchedule .MainTitle .right {margin-top: 0;}
-    /* .mainGallery .gallTitle{position: relative;}
-    .mainGallery .gallTitle .title{text-align: left;width: 100%;padding-left: 10px;}
-    .mainGallery .gallTitle img.morebtn{position: absolute;margin: 0;top: 4px;right: 0;} */
+    .MainQuickService .quickbtn {margin-top: 20px;}
+    .MainQuickService .quickbtn li .index::before {width: 50px;height: 50px;background-size: 26px;}
+    .MainQuickService .quickbtn li .index .title {font-size: 20px;}
+    .MainQuickService .quickbtn li .index {font-size: 10px;padding-top: 15px;padding-left: 74px;margin-bottom: 30px;}
+    .MainQuickService .quickbtn li .btn {transform: translateY(-30%);}
+    .MainQuickService .quickbtn li .btn div {display: block;width: 80%;margin: 4px auto;font-size: 12px;}
+    .MainQuickService .schedule .title {font-size: 30px;margin-bottom: 20px;}
+    .MainQuickService .schedule .tab li .tab_btn {font-size: 14px;padding: 8px 12px;}
+    .MainQuickService .schedule .date .date_item {padding-left: 80px;}
+    .MainQuickService .schedule .date .date_item .nm {font-size: 14px;}
+    .MainQuickService .schedule .date .date_item p{font-size: 14px;}
+    .MainQuickService .schedule .date .date_item::before{font-size: 10px;width: 48px;top: 24px;}
+
+
+
+    .wcBgc .Maincontain {padding-top: 46px;}
+    .MainWhycsu .wcTitle p {font-size: 24px;}
+    .MainWhycsu .wcTitle h1 {font-size: 32px;margin-top: 2px;}
+    .MainWhycsu ul li .pcent {font-size: 22px;}
+    .MainWhycsu ul li .titl {font-size: 16px;}
+    .MainWhycsu ul li .txt {font-size: 12px;}
     .contentBox .dep4_m_box .page_menu {margin-bottom: 60px;}
     .contentBox .dep4_m_box .page_menu ul li{font-size: 14px;}
     .contentBox .dep4_m_box .page_menu ul li a p {padding: 10px 0;}
- } 
+}
+
 @media (max-width: 500px){
     .MainTitle h1 {font-size: 40px;margin-top: 5px;}
     .MainTitle p{font-size: 14px;}
-    .MainTitle .Tab {bottom: -112px;left: 40px;}
-    #sideQuickM {right: 0;}
+    
+
+    /* #sideQuickM {right: 0;}
     #sideQuickM .quick {width: 70px;height: 260px;border-radius: 7px 0 0 7px;background-color: #1f1f1f67; margin-bottom: 15px;}
     #sideQuickM .menu{width: 70px;height: 70px;box-shadow:0px 0px 0px 0px;background-color: #1f1f1f67;}
     #sideQuickM .menu::after{content: unset;}
     #sideQuickM .menu p {padding: 19px 0;line-height: 16px;font-size: 14px;}
     #sideQuickM .quick ul li img {display: none;}
-    #sideQuickM .quick ul li p {font-size: 12px;}
+    #sideQuickM .quick ul li p {font-size: 12px;} */
     #serv_more .menuList ul li img {width: 34px;}
     #serv_more .menuList ul li p {font-size: 12px;}
     #serv_more .menuList ul li {width: 33.3%;height: 60px;}
 }
  
 @media (max-width: 480px){
-    .mainGallery .gallTitle .title p{font-size: 14px;}
-    .mainGallery .slideBtn div {width: 50px;height: 50px;}
+    /* .mainGallery .gallTitle .title p{font-size: 14px;} */
+    .MainGallery .slideBtn div {width: 50px;height: 50px;}
     .schedule_area{padding-top: 30px;}
     .schedule_area .ob {width: 95%;}
     .schedule_area .calendar_box {width: 70%;}
@@ -836,7 +898,7 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     .banner .subBannerImgbox {height: 380px;}
     .banner .subBannertxt {letter-spacing: 0px;word-break: keep-all; width: 90%;font-size: 24px;} 
     .banner .subBannerImgbox:after{background-color: rgba(0, 0, 0, 0.3);}   
-    .mainGallery .gallshow .gallLi li .galleryBox {width: 95%;} 
+    .MainGallery .gallshow .gallLi li .galleryBox {width: 95%;} 
     .siteBox {padding: 4px 0;}
     .siteBox .dep1{font-size:16px;padding: 6px 0 0 10px;}
     .siteBox .dep2{padding: 8px 0 0 16px;width: 78%;}
@@ -847,27 +909,25 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     .contentBox .dep4_m_box .page_title p {font-size: 12px;margin: 2px;}
 }
 @media (max-width: 420px){ 
-    .mainGallery .gallshow .gallLi li .galleryBox { height: 90%;width: 86%;}
-    .mainGallery .slideBtn div.prev {left: 8%;}     
+    .MainGallery .gallshow .gallLi li .galleryBox { height: 90%;width: 86%;}
+    /* .mainGallery .slideBtn div.prev {left: 8%;}   */
+    .MainQuickService .schedule .tab li {width: 50%;margin: 4px 0;}
+    .MainQuickService .schedule .tab li .tab_btn.active::after {content: unset;}
+    .MainQuickService .schedule .bar {margin-top: 20px;}
 }
 @media (max-width: 414px){ 
     .MainNotice .Tab {font-size: 16px;}
     .MainNotice .Tab li:not(.more) {margin: 0 2px;padding: 0 6px;}
     .MainNotice .notiContent li .title {font-size: 16px;line-height: 42px;}
-    .MainNotice .notiContent li .cata {
-        font-size: 12px;
-        margin-right: 6px;
-        width: 43px;
-        height: 24px;
-        line-height: 28px;
-    }
+    .MainNotice .notiContent li .cata {font-size: 12px;margin-right: 6px;width: 43px;height: 24px;line-height: 28px;}
     .MainNotice .notiContent li .date {font-size: 12px;}
 
-    .mainGallery .gallshow .gallLi li .galleryBox {width: 91%;} 
+    .MainGallery .gallshow .gallLi li .galleryBox {width: 91%;} 
     .mainQuickServ ul li .btn{padding: 12px 0;height: 55px;}  
     .mainQuickServ ul li .btn img{margin: 2px 0px;}
     .mainQuickServ ul li .btn p {font-size: 12px;}
-    
+    .MainQuickService .quickbtn li .index {padding-left: 60px;}
+    .MainQuickService .quickbtn li .index::before {left: 16px;}
 }
 @media (max-width: 390px){     
     /* .banner .ss {top: 65%;transform: translateX(-50%) translateY(-48%);} 
@@ -876,7 +936,13 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     /* .MainNotice .notiContent .notiTab ul.tab li {padding: 6px 5px;} */
     /* .Main {margin-top: 50px;}
     .Main.MainNotice {margin-top: 50px;} */
-    .mainGallery .gallshow .gallLi li .galleryBox {width: 85%;}
+    .MainQuickService .call li {font-size: 14px;}
+    .MainQuickService .call li .col2 div {font-size: 14px;}
+    .MainQuickService .call li .col2 .link span {font-size: 10px;}
+    .MainGallery .gallshow .gallLi li .galleryBox {width: 85%;}
+    .MainWhycsu ul li {padding-bottom: 2px;}
+    .MainWhycsu ul li .pcent {font-size: 20px;margin-right: 0;}
+    .MainWhycsu ul li p:not(.pcent) {padding-left: 74px;margin-right: 0;}
     .logintitle {margin: 40px auto 30px auto;font-size: 28px;}
 }
 
@@ -887,7 +953,7 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     .banner .subBannerImgbox {height: 342px;}
     .banner .subBannertxt {font-size: 22px;}
     /* .MainNotice .notiContent .notiTab .tab li span a { font-size: 13px;}  */  
-    .mainGallery .gallshow .gallLi li .galleryBox{width: 80%;}
+    .MainGallery .gallshow .gallLi li .galleryBox{width: 80%;}
     /* .infocontain .cateBox ul li {padding: 6px 4px;font-size: 12px;} */
     .mainSchedule .calendar_area .calendar_txt ul{height: 250px;}
     .schedule_area .calendar_box ul li {font-size: 10px;}
@@ -906,8 +972,8 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     .banner .ss .nav_number {transform: translateX(-50%) translateY(-72%);top: 80%;}
     .banner .ss .namebox .bannertxt p.txt {font-size: 28px;}
     .banner .ss .namebox .bannertxt p:not(.txt) {font-size: 18px;} */
-    .mainGallery .slideBtn div.prev {left: 8%;}    
-    .mainGallery .gallshow .gallLi li .galleryBox {width: 78%;}   
+    /* .mainGallery .slideBtn div.prev {left: 8%;}     */
+    .MainGallery .gallshow .gallLi li .galleryBox {width: 78%;}   
     .siteBox .dep1 {font-size: 14px;padding: 3px 0 0 10px;}
     .siteBox .dep2 {padding: 2px 0 0 10px;}
     .siteBox .dep2 a {font-size: 12px;}
@@ -940,10 +1006,10 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     .MainNotice {height: 390px;} */
     /* .MainNotice .notiContent .notiTab {padding: 0 6px;} */
     /* .MainNotice .notiContent .notiTab ul.tab li {padding: 6px 3px;}    */
-    .mainGallery .gallTitle .title p {font-size: 12px;}    
+    /* .mainGallery .gallTitle .title p {font-size: 12px;}     */
     .mainGallery .slideBtn div {width: 48px;height: 48px;}
-    .mainGallery .slideBtn div.prev {left: 12%;top: 55%;}    
-    .mainGallery .slideBtn div.next {top: 49%;}    
+    /* .mainGallery .slideBtn div.prev {left: 12%;top: 55%;}    
+    .mainGallery .slideBtn div.next {top: 49%;}     */
     .mainGallery .gallshow .gallLi li .galleryBox {width: 72%;height: 77%;}
     .mainSchedule .calendar_area {width: 97%;}
     .loginbox .cslogo img { width: 110px; margin-top: 38px;}

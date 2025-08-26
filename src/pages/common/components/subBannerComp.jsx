@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {  Link, useParams } from 'react-router-dom';
-import PathbarComp from 'pages/common/components/pathbarComp';
+import SubBannerMenuComp from 'pages/common/components/subBannerMenuComp';
 import {SERVER_URL} from '../../../context/config';
 
 const SubBannerComp = (props) => {
@@ -53,10 +53,10 @@ const SubBannerComp = (props) => {
     return(
         <div className='banner'>
             <div className='subBannerImgbox'>
-                <img src="/images/main/banner6.png" alt='서브페이지 배너'/>
+                <img src="/images/sub/sub_banner.png" alt='서브페이지 배너'/>
             </div> 
             <div className='subBannertxt'>
-                {menuList?.map((data, index)=> {
+                {/*{menuList?.map((data, index)=> {
                     menu(menuCd)  
                     
                     if(data.DEPTH == 1 && data.MENU_CD == dep1_MC ){
@@ -67,17 +67,16 @@ const SubBannerComp = (props) => {
                         )
                     }
                 })}
-                {dep1_MC == undefined &&
+                 {dep1_MC == undefined &&
                     <div className='dep1'>
                         <p>창신대학교 대학원</p>
                     </div> 
-                }
-                <div className='slo'>
-                    <p>사회가 필요로 하는 <span>전문인력 양성</span>하는</p>
-                    <p>창신대학교 대학원</p>
-                </div>
+                } */}
+                <p className='dep1'>수시모집</p>
+                <p>ALL NEW CSU, 새로운 CSU! 시작은 NEW! 주인공은 YOU!</p>
+                
             </div>  
-            <PathbarComp menuCd={menuCd} />
+            <SubBannerMenuComp menuCd={menuCd} />
 
         </div>
         

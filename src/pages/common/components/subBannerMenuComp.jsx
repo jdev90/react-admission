@@ -3,7 +3,7 @@ import {  Link, useLocation  } from 'react-router-dom';
 // import qs from 'qs';
 import {SERVER_URL} from '../../../context/config';
 
-const PathbarComp = (props) => {
+const SubBannerMenuComp = (props) => {
     const [menuList, setMenuList] = useState([]);    
     const [loading, setLoading] = useState(false);
     const location = useLocation();
@@ -130,38 +130,38 @@ const PathbarComp = (props) => {
                                 </li>  
                            )
                         }
-                        if(data.DEPTH == 3 && data.MENU_CD == dep3_MC){// data2.DEPTH == 2  && data2.PARENT_MENU_CD == data1.MENU_CD
-                           return(
-                                <li className='path active' onClick={()=>showTab(2)}>
-                                    <span>{data.MENU_NM}</span>
-                                    <div className='hd_dep4'>
-                                    {menuList?.map((data3, index)=> {
-                                        if(data3.DEPTH == 3 && data3.PARENT_MENU_CD == dep2_MC){
-                                            return(
-                                                <Link to={data3.LINK}><p>{data3.MENU_NM}</p></Link>
-                                            )
-                                        }
-                                    })}
-                                    </div>
-                                </li>  
-                           )
-                        }
-                        if(data.DEPTH == 4 && data.MENU_CD == dep4_MC){// data2.DEPTH == 2  && data2.PARENT_MENU_CD == data1.MENU_CD
-                           return(
-                                <li className='path active' onClick={()=>showTab(3)}>
-                                    <span>{data.MENU_NM}</span>
-                                    <div className='hd_dep4'>
-                                    {menuList?.map((data4, index)=> {
-                                        if(data4.DEPTH == 4 && data4.PARENT_MENU_CD == dep3_MC){
-                                            return(
-                                                <Link to={data4.LINK}><p>{data4.MENU_NM}</p></Link>
-                                            )
-                                        }
-                                    })}
-                                    </div>
-                                </li>  
-                           )
-                        }
+                        // if(data.DEPTH == 3 && data.MENU_CD == dep3_MC){// data2.DEPTH == 2  && data2.PARENT_MENU_CD == data1.MENU_CD
+                        //    return(
+                        //         <li className='path active' onClick={()=>showTab(2)}>
+                        //             <span>{data.MENU_NM}</span>
+                        //             <div className='hd_dep4'>
+                        //             {menuList?.map((data3, index)=> {
+                        //                 if(data3.DEPTH == 3 && data3.PARENT_MENU_CD == dep2_MC){
+                        //                     return(
+                        //                         <Link to={data3.LINK}><p>{data3.MENU_NM}</p></Link>
+                        //                     )
+                        //                 }
+                        //             })}
+                        //             </div>
+                        //         </li>  
+                        //    )
+                        // }
+                        // if(data.DEPTH == 4 && data.MENU_CD == dep4_MC){// data2.DEPTH == 2  && data2.PARENT_MENU_CD == data1.MENU_CD
+                        //    return(
+                        //         <li className='path active' onClick={()=>showTab(3)}>
+                        //             <span>{data.MENU_NM}</span>
+                        //             <div className='hd_dep4'>
+                        //             {menuList?.map((data4, index)=> {
+                        //                 if(data4.DEPTH == 4 && data4.PARENT_MENU_CD == dep3_MC){
+                        //                     return(
+                        //                         <Link to={data4.LINK}><p>{data4.MENU_NM}</p></Link>
+                        //                     )
+                        //                 }
+                        //             })}
+                        //             </div>
+                        //         </li>  
+                        //    )
+                        // }
                         
                         
                     })}
@@ -171,5 +171,5 @@ const PathbarComp = (props) => {
     )
 }
 
-export default PathbarComp;
+export default SubBannerMenuComp;
 

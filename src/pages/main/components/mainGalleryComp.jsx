@@ -58,7 +58,7 @@ const MainGalleryComp = (props) => {
                             imgCnt++;
                             if (imgCnt === 1) {
                                 return(
-                                    <li key={index} style={{transform: `translateX(-${456 * stack}px)` ,transition: 'all 0.4s ease-in-out',}}>  <Link to={"/board/"+data.MENU_CD+"/view?boardId="+data.BOARD_ID}>                                    
+                                    <li key={index} style={{transform: `translateX(-${472 * stack}px)` ,transition: 'all 0.4s ease-in-out',}}>  <Link to={"/board/"+data.MENU_CD+"/view?boardId="+data.BOARD_ID}>                                    
                                         <div className='galleryBox'>                                                                                                        
                                             <div className='img'>
                                                 <img src={imgSrcPath} alt='행사사진'/>
@@ -70,7 +70,7 @@ const MainGalleryComp = (props) => {
                             }
                         }
                         return(
-                            <li key={index} style={{transform: `translateX(-${456 * stack}px)` ,transition: 'all 0.4s ease-in-out',}}><Link to={"/board/"+data.MENU_CD+"/view?boardId="+data.BOARD_ID}>                                        
+                            <li key={index} style={{transform: `translateX(-${472 * stack}px)` ,transition: 'all 0.4s ease-in-out',}}><Link to={"/board/"+data.MENU_CD+"/view?boardId="+data.BOARD_ID}>                                        
                                 <div className='galleryBox'> 
                                     <div className='img'>
                                         <img src={'https://cfile.cs.ac.kr/upload/fileserver/grad/'+data.MENU_CD+'/'+data.FILE_NAME} alt='행사사진'/>

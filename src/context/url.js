@@ -18,7 +18,6 @@ const URL = {
     SUBJECT: "/subject/:menuCd/list",
     SUBJECTMODI: "/subject/:menuCd/write",
 
-
     LOGIN: "/login",
     ADMIN: "https://cms.cs.ac.kr",
     // ADMIN: "http://100.100.91.41:3001",

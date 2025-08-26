@@ -4,7 +4,7 @@ import { SERVER_URL } from "context/config";
 // import URL from 'context/url';
 
 import SubBannerComp from 'pages/common/components/subBannerComp';
-import SubMenuComp from 'pages/sub/content/common/subMenuComp';
+import SubMenuComp from 'pages/common/components/contentMenuComp';
 //**권한**//
 import { writePermissionCheck, deletePermissionCheck, getTokenData, getUserRoles } from 'assets/js/jwt';
 //**권한**//

@@ -45,18 +45,18 @@ const Main = (props) => {
     {title: "원서접수"},
     {title: "서류제출"},
     {title: "면접고사"},
+    {title: "면접고사"},
     {title: "(최초)합격자발표"},
   ];
   function showTab(index) {
-        // 모든 탭 버튼과 콘텐츠를 숨기기
-        var buttons = document.querySelectorAll('.tab_btn');
-        for (var i = 0; i < buttons.length; i++) {
-            buttons[i].classList.remove('active');
-        }
-        
-        // 선택한 탭 버튼과 콘텐츠 활성화
-        buttons[index].classList.add('active');
+    // 모든 탭 버튼과 콘텐츠를 숨기기
+    var buttons = document.querySelectorAll('.tab_btn');
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove('active');
     }
+    // 선택한 탭 버튼과 콘텐츠 활성화
+    buttons[index].classList.add('active');
+  }
     
 
     return(
@@ -72,8 +72,8 @@ const Main = (props) => {
                 
 
 
-            {/*4. 학과소개*/}
-            <MainIntroComp/>
+            {/*4. 학과소개
+            <MainIntroComp/>*/}
             
             {/*5. 행사갤러리*/}
             <MainGalleryComp/>
@@ -87,28 +87,28 @@ const Main = (props) => {
                     </div> 
                     {/*퀵메뉴*/} 
                     <ul className='quickbtn'>{quickmenulist.map((data, index) => (
-                        <li><Link>
+                        <li>
                             <div className={'index index'+index}>
                                 <p>{data.date}학년도</p>
                                 <p className='title'>{data.title}</p>
                             </div>
                             <div className='btn'>
-                                <div className='book'>모집요강</div>
-                                <div>경쟁률</div>
+                                <Link><div className='book'>모집요강</div></Link>
+                                <Link><div>경쟁률</div></Link>
                             </div>
-                        </Link></li>
+                        </li>
                     ))}</ul> 
                     {/*전화*/} 
                     <ul className='call'>{callList.map((data, index) => (
-                        <li><Link>
+                        <li>
                             <div className="col col1">
                                 {data.title}
                             </div>
                             <div className='col col2'>
                                 <div className='num'>전화 상담<span>{data.phone}</span></div>
-                                <div className='link'>온라인 상담<span>바로가기</span></div>
+                                <div className={'link link'+index}>온라인 상담<span><Link>바로가기</Link></span></div>
                             </div>
-                        </Link></li>
+                        </li>
                     ))}</ul>
                     {/*입시일정*/} 
                     <div className='schedule'>
@@ -124,7 +124,7 @@ const Main = (props) => {
                           {imsi.map((data, index) => (
                           <li className='date_item active'>
                               <p className='nm'>{data.title}</p>
-                              <p>2025.09.08(월) ~ 09.12(금)</p>
+                              <p>2025.09.08(월) ~09.12(금)</p>
                           </li>
                           ))}
                       </ul>
