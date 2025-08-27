@@ -17,15 +17,18 @@ import QuickMenu from "./pages/common/QuickMenu";
 import Main from "./pages/main/Main";
 import Contents from "./pages/sub/content/Contents";
 import List from "./pages/sub/board/List";
+import List1 from "./pages/sub/board/List";
+import List2 from "./pages/sub/board/List";
+
 import Grid from "./pages/sub/board/Grid";
 import View from "./pages/sub/board/View";
 import Write from "./pages/sub/board/Write";
-import Schedule from "./pages/sub/schedule/Schedule";
-import ScheduleModi from "./pages/sub/schedule/ScheduleModi";
-import Prof from "./pages/sub/profile/Profile";
-import ProfModi from "./pages/sub/profile/ProfileModi";
-import Subject from "./pages/sub/subject/Subject";
-import SubjectModi from "./pages/sub/subject/SubjectModi";
+// import Schedule from "./pages/sub/schedule/Schedule";
+// import ScheduleModi from "./pages/sub/schedule/ScheduleModi";
+// import Prof from "./pages/sub/profile/Profile";
+// import ProfModi from "./pages/sub/profile/ProfileModi";
+// import Subject from "./pages/sub/subject/Subject";
+// import SubjectModi from "./pages/sub/subject/SubjectModi";
 
 
 import Login from "./pages/sub/Login";
@@ -36,7 +39,6 @@ import { isTokenValid, getUserRoles } from './assets/js/jwt';
 import SubBannerComp from 'pages/common/components/subBannerComp';
 function App() {
 
-
   //권한이 필요한 라우터에 토큰 체크
   const ProtectedRoute = ({ element, requiredRoles, ...rest }) => {
     const location = useLocation();
@@ -45,20 +47,17 @@ function App() {
     const [hasRequiredRole, setHasRequiredRole] = useState(null);
 
     useEffect(() => {
-      
       const checkToken = async () => {
         const token = window.sessionStorage.getItem("accessToken");
         if (token == null) {
           setIsValid(false);
           return;
         }
-
         const valid = await isTokenValid(token);
         if (!valid) {
           setIsValid(false);
           return;
         }
-
         const roles = getUserRoles(token);
         const hasRole = requiredRoles.some(role => roles.includes(role));
         setIsValid(true);
@@ -101,17 +100,20 @@ function App() {
             <Routes>
               <Route path={URL.MAIN} element={<Main/>} />
               <Route path={URL.CONTENTS} element={<Contents/>} /> 
-              <Route path={URL.LIST} element={<List/>} />
+              <Route path={URL.LIST1} element={<List/>} />
+              <Route path={URL.LIST2} element={<List/>} />
+              <Route path={URL.LIST3} element={<List/>} />
+
               <Route path={URL.GRID} element={<Grid/>} />
               <Route path={URL.VIEW} element={<View/>} /> 
               {/* <Route path={URL.WRITE} element={<ProtectedRoute element={<Write />} requiredRoles={['ADMIN', 'MANAGER']} />} />  */}
               <Route path={URL.WRITE} element={<Write/>} /> 
-              <Route path={URL.SCHEDULE} element={<Schedule/>} />
+              {/* <Route path={URL.SCHEDULE} element={<Schedule/>} />
               <Route path={URL.SCHEDULEMODI} element={<ProtectedRoute element={<ScheduleModi/>} requiredRoles={['ADMIN', 'MANAGER']} />} />
               <Route path={URL.PROF} element={<Prof/>} />
               <Route path={URL.PROFMODI} element={<ProtectedRoute element={<ProfModi/>} requiredRoles={['ADMIN', 'MANAGER']} />} />
               <Route path={URL.SUBJECT} element={<Subject/>} />
-              <Route path={URL.SUBJECTMODI} element={<ProtectedRoute element={<SubjectModi/>} requiredRoles={['ADMIN', 'MANAGER']} />} />
+              <Route path={URL.SUBJECTMODI} element={<ProtectedRoute element={<SubjectModi/>} requiredRoles={['ADMIN', 'MANAGER']} />} /> */}
               <Route path={URL.LOGIN} element={<Login/>} />
               <Route path="/*" element={<Error/>} />
             </Routes>

@@ -1,8 +1,7 @@
 @charset "utf-8";
 #CONTAINER{position: absolute;top: 0;left: 0;width: 100%;height: auto;z-index: -10;}
-header.active{height: 595px;}
-header.active .Top .logoTab .topLogo div.dep2logo{height: 485px;}
-header.active .Top .logoTab .topmenu .depth2 li{text-align: left;}
+
+
 
 .banner{position: relative;}
 .banner .imgafter{position: relative;width: 100%; height: 100vh; overflow: hidden;clip-path: inset(0px);} 
@@ -57,8 +56,6 @@ header.active .Top .logoTab .topmenu .depth2 li{text-align: left;}
 .banner .subBannerImgbox:after{position: absolute;content: '';top: 0;left: 0;width: 100%;height: 100%;background: rgb(0, 0, 0, 0.5)}
 .banner .subBannertxt{position: absolute;transform: translateX(-50%) translateY(-50%);top: 64%;left: 50%;width: 100%;text-align: center;color: #fff;font-size: 18px;}
 .banner .subBannertxt .dep1{font-size: 34px;font-weight: 400;margin-bottom: 8px;}
-
-
 
 
 /*퀵
@@ -189,26 +186,18 @@ header.active .Top .logoTab .topmenu .depth2 li{text-align: left;}
 /*안내책자*/
 .bkBgc{background-color: #D5E2F600;height: 870px;width: 100%; background-image: url("../images/main/book_back.png");background-position: 50% 50%;background-repeat: no-repeat;background-size: cover;}
 .bkBgc .Maincontain{padding: 80px;}
-.MainBook .MainTitle{text-align: center;}
-.MainBook .book_list{width: 100%;background-color: #ddd;overflow: hidden;text-align: center;}
-.MainBook .book_list ul{ display: block;width: 3000px;  margin: 0 auto; }
-.MainBook .book_list ul li{display: inline-block;}
-.MainBook .book_list ul li.bk0,
-.MainBook .book_list ul li.bk1,
-.MainBook .book_list ul li.bk2{}
+.MainGuideBook .MainTitle{text-align: center;}
+.MainGuideBook .guide_swiper{position: relative;margin: 50px 0;}
+.MainGuideBook .guide_swiper::before{position: absolute;content: "";width: 80%;height: 1px;border-top: 1px solid #B8DAFF;top:50%;left:50%;transform: translateX(-50%) translateY(-50%);}
+.MainGuideBook .guide_swiper::after{position: absolute;content: "";width: 550px;height: 560px;border-radius: 50%;border: 1px solid #B8DAFF;background-color: #F4F5F9;top:50%;left:50%;transform: translateX(-50%) translateY(-50%);}
+.MainGuideBook .guide_swiper .swiper-slide {width: 472px !important;padding-bottom: 15px;padding-top: 15px;}
+.MainGuideBook .guide_swiper .swiper-slide img.slide-bk{transform: scale(0.8);box-shadow: 10px 10px 10px #0000001e;}
+.MainGuideBook .guide_swiper .swiper-slide-active img.slide-bk{transform: scale(1);}
+/* .MainGuideBook .guide_swiper .swiper{overflow: visible;} */
+.MainGuideBook .guide_swiper .swiper-slide .guide_title{display: none;}
+.MainGuideBook .guide_swiper .swiper-slide-active .guide_title{display: block;position: absolute;left: 50%;transform: translateX(-50%);bottom: -100px;font-size: 32px;width: 1416px;}
+/* .MainGuideBook .guide_swiper .swiper-slide:not(.swiper-slide-active, .swiper-slide-next, .swiper-slide-prev){visibility: hidden;} */
 
-/* #popup-slide-box { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1000; color: #fff; }
-#popup-slide-box > .inner { height: 100%; display: flex; justify-content: center; align-items: center; position: relative; }
-#popup-slide-box .slide-wrap { width: 100%; max-width: 1300px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; padding: 0 20px; }
-#popup-slide-box .swiper-slide{overflow: hidden;}
-#popup-slide-box .slider a { display: block; }
-#popup-slide-box .slider img { width: 100%; height: auto; cursor: pointer;}
-#popup-slide-box .slider img:hover{transition: all 0.3s;  transform: scale(1.03);}
-#popup-slide-box .swiper-pagination { position: static; width: auto; display: flex; align-items: center; gap: 8px; margin-right: 10px; }
-#popup-slide-box .swiper-pagination .line { width: 30px; height: 1px; background-color: #fff; }
-#popup-slide-box .swiper-pagination-current { font-weight: 600; }
-#popup-slide-box .swiper-button-prev, #popup-slide-box .swiper-button-next { font-size: 19px; }
-#popup-slide-box .swiper-button-prev i, #popup-slide-box .swiper-button-next i { font-weight: 800; } */
 
 
 /*행사갤러리*/
@@ -245,51 +234,61 @@ header.active .Top .logoTab .topmenu .depth2 li{text-align: left;}
 .MainGallery .gallTitle img:hover{transform: rotate(360deg);transition-property: all;transition-duration: 0.4s;}
 
 /*입학도우미*/
-.qsBgc{background-color: #D5E2F600;width: 100%; background: linear-gradient(180deg, #D8F0FF, #fff);background-position: 50% 50%;background-repeat: no-repeat;background-size: cover;margin-top: 120px;padding-top: 80px;padding-bottom: 80px;}
-.qsBgc .Maincontain{padding: 0;}
-.MainQuickService .quickbtn{margin-top: 50px;}
-.MainQuickService .quickbtn li{position: relative;display: inline-block;width: 50%;}
-.MainQuickService .quickbtn li .index{position: relative;text-align: left;font-size: 18px;font-weight: 400;padding-top:55px;padding-left: 135px;margin-bottom:40px;margin-top: 30px;z-index: 0;}
-.MainQuickService .quickbtn li .index .title{font-size: 32px;margin-top: 6px;}
-.MainQuickService .quickbtn li .index::before{content: "";position: absolute;width: 130px;height: 130px;border-radius: 50%;background-color: #fff;top:0;left: 30px;z-index: -1;background-repeat: no-repeat;background-position: center;}
-.MainQuickService .quickbtn li .index0::before{background-image: url("../images/main/quick_icon1.png");}
-.MainQuickService .quickbtn li .index1::before{background-image: url("../images/main/quick_icon2.png");}
-.MainQuickService .quickbtn li .index2::before{background-image: url("../images/main/quick_icon3.png");}
-.MainQuickService .quickbtn li .index3::before{background-image: url("../images/main/quick_icon4.png");}
-.MainQuickService .quickbtn li .btn{position: absolute;top:60%;right: 50px;transform: translateY(-50%);}
-.MainQuickService .quickbtn li .btn div{width: 122px;border-radius: 50px;background-color: #fff;padding: 6px 0;margin: 6px 0;}
-.MainQuickService .quickbtn li .btn div.book{background-color: #034EA2;color: #fff;}
-.MainQuickService .quickbtn li:nth-child(2n)::before{position: absolute;content: "";height: 85%;border-left:1px solid #cad8e2;left: 0;top:50%;transform: translateY(-50%);}
-.MainQuickService .quickbtn li:nth-child(-n+2)::after{position: absolute;content: "";width: 95%;border-top:1px solid #cad8e2;top: 100%;left: 50%;transform: translateX(-50%);}
-.MainQuickService .call{margin-top: 80px;background-color: #fff;box-shadow: 4px 4px 10px #00000027;border-radius: 70px 30px;}
-.MainQuickService .call li{display: inline-block;width: 50%;font-size: 24px; font-weight: 400;padding: 50px 0;}
-.MainQuickService .call li:first-child{background-color: #034EA2;border-radius: 70px 30px;color: #fff;}
-.MainQuickService .call li:first-child a{color: #fff;}
-.MainQuickService .call li .col{display: inline-block;text-align: left;vertical-align: top;width:70%}
-.MainQuickService .call li .col1{width:20%; margin-left: 10%;}
-.MainQuickService .call li .col2 div{position: relative;padding-left: 10px;font-size: 22px;}
-.MainQuickService .call li .col2 div::before{position: absolute;content: "";width: 22px;height: 22px;}
-.MainQuickService .call li .col2 span{font-weight: 300;margin-left: 10px;}
-.MainQuickService .call li .col2 .link{margin-top: 10px;}
-.MainQuickService .call li .col2 .link span{position: absolute;border: 1px solid #000;padding: 2px 10px;padding-top: 4px;border-radius: 20px;font-size: 14px;}
-.MainQuickService .call li .col2 .link0 span{border: 1px solid #ffffff;}
-.MainQuickService .call li .col2 .link0 span:hover{background-color: #fff;}
-.MainQuickService .call li .col2 .link0 span:hover a{color: #002958;}
-.MainQuickService .call li .col2 .link1 span:hover{background-color: #034EA2;border: 1px solid #034EA2;}
-.MainQuickService .call li .col2 .link1 span:hover a{color: #fff;}
-.MainQuickService .schedule .title{font-size: 38px;font-weight: 400;margin-top: 130px;margin-bottom: 30px;color:#003571}
-.MainQuickService .schedule ul{overflow: visible;}
-.MainQuickService .schedule .tab li{display: inline-block;}
-.MainQuickService .schedule .tab li .tab_btn{cursor: pointer;background-color: #E2E2E2;font-size: 18px;padding: 10px 25px;margin: 0 15px;margin-bottom: 10px;border-radius: 50px; }
-.MainQuickService .schedule .tab li .tab_btn.active{position: relative;background-color: #484848;color:#fff}
-.MainQuickService .schedule .tab li .tab_btn.active::after{content: "";position: absolute;bottom: -12px;left: 50%;transform: translateX(-50%);width: 0px;height: 0px;border-left: 10px solid transparent;border-right: 10px solid transparent;border-top: 15px solid #484848;}
-.MainQuickService .schedule .bar{width: 100%;height: 10px;border-radius: 10px;background-color: #E2E2E2;margin-top: 40px;}
-.MainQuickService .schedule .date{width: 100%;display: table;counter-reset: number 0}
-.MainQuickService .schedule .date .date_item{position: relative;display: table-cell;width: 16.66%;padding-top: 60px;padding-bottom: 40px;}
-.MainQuickService .schedule .date .date_item .nm{font-size: 18px;font-weight: 400;margin-bottom: 10px;}
-.MainQuickService .schedule .date .date_item::before{position: absolute;counter-increment: number 1; content:'0' counter(number);color: #fff; font-size: 15px;line-height: 35px;font-weight: 400;width: 35px;height: 35px;border-radius: 50%;background-color: #E2E2E2;top:-22px;left: 50%;transform: translateX(-50%);}
-.MainQuickService .schedule .date .date_item:first-child::before{background-color: #034EA2;}
-/* .MainQuickService .schedule .date .date_item:first-child{background-color: #034EA2;} */
+.ipBgc{background-color: #D5E2F600;width: 100%; background: linear-gradient(180deg, #D8F0FF, #fff);background-position: 50% 50%;background-repeat: no-repeat;background-size: cover;margin-top: 120px;padding-top: 80px;padding-bottom: 80px;}
+.ipBgc .Maincontain{padding: 0;}
+.MainIphakService .quickbtn{margin-top: 50px;}
+.MainIphakService .quickbtn li{position: relative;display: inline-block;width: 50%;}
+.MainIphakService .quickbtn li .index{position: relative;text-align: left;font-size: 18px;font-weight: 400;padding-top:55px;padding-left: 135px;margin-bottom:40px;margin-top: 30px;z-index: 0;}
+.MainIphakService .quickbtn li .index .title{font-size: 32px;margin-top: 6px;}
+.MainIphakService .quickbtn li .index::before{content: "";position: absolute;width: 130px;height: 130px;border-radius: 50%;background-color: #fff;top:0;left: 30px;z-index: -1;background-repeat: no-repeat;background-position: center;}
+.MainIphakService .quickbtn li .index0::before{background-image: url("../images/main/quick_icon1.png");}
+.MainIphakService .quickbtn li .index1::before{background-image: url("../images/main/quick_icon2.png");}
+.MainIphakService .quickbtn li .index2::before{background-image: url("../images/main/quick_icon3.png");}
+.MainIphakService .quickbtn li .index3::before{background-image: url("../images/main/quick_icon4.png");}
+.MainIphakService .quickbtn li .btn{position: absolute;top:60%;right: 50px;transform: translateY(-50%);}
+.MainIphakService .quickbtn li .btn div{width: 122px;border-radius: 50px;background-color: #fff;padding: 6px 0;margin: 6px 0;}
+.MainIphakService .quickbtn li .btn div.book{background-color: #034EA2;color: #fff;}
+.MainIphakService .quickbtn li:nth-child(2n)::before{position: absolute;content: "";height: 85%;border-left:1px solid #cad8e2;left: 0;top:50%;transform: translateY(-50%);}
+.MainIphakService .quickbtn li:nth-child(-n+2)::after{position: absolute;content: "";width: 95%;border-top:1px solid #cad8e2;top: 100%;left: 50%;transform: translateX(-50%);}
+.MainIphakService .call{margin-top: 80px;background-color: #fff;box-shadow: 4px 4px 10px #00000027;border-radius: 70px 30px;}
+.MainIphakService .call li{display: inline-block;width: 50%;font-size: 24px; font-weight: 400;padding: 50px 0;}
+.MainIphakService .call li:first-child{background-color: #034EA2;border-radius: 70px 30px;color: #fff;}
+.MainIphakService .call li:first-child a{color: #fff;}
+.MainIphakService .call li .col{display: inline-block;text-align: left;vertical-align: top;width:70%}
+.MainIphakService .call li .col1{width:20%; margin-left: 10%;}
+.MainIphakService .call li .col2 div{position: relative;padding-left: 10px;font-size: 22px;}
+.MainIphakService .call li .col2 div::before{position: absolute;content: "";width: 22px;height: 22px;}
+.MainIphakService .call li .col2 span{font-weight: 300;margin-left: 10px;}
+.MainIphakService .call li .col2 .link{margin-top: 10px;}
+.MainIphakService .call li .col2 .link span{position: absolute;border: 1px solid #000;padding: 2px 10px;padding-top: 4px;border-radius: 20px;font-size: 14px;}
+.MainIphakService .call li .col2 .link0 span{border: 1px solid #ffffff;}
+.MainIphakService .call li .col2 .link0 span:hover{background-color: #fff;}
+.MainIphakService .call li .col2 .link0 span:hover a{color: #002958;}
+.MainIphakService .call li .col2 .link1 span:hover{background-color: #034EA2;border: 1px solid #034EA2;}
+.MainIphakService .call li .col2 .link1 span:hover a{color: #fff;}
+.MainIphakService .schedule .title{font-size: 38px;font-weight: 400;margin-top: 130px;margin-bottom: 30px;color:#003571}
+.MainIphakService .schedule ul{overflow: visible;}
+.MainIphakService .schedule .tab li{display: inline-block;}
+.MainIphakService .schedule .tab li .tab_btn{cursor: pointer;background-color: #E2E2E2;font-size: 18px;padding: 10px 25px;margin: 0 15px;margin-bottom: 10px;border-radius: 50px; }
+.MainIphakService .schedule .tab li .tab_btn.active{position: relative;background-color: #484848;color:#fff}
+.MainIphakService .schedule .tab li .tab_btn.active::after{content: "";position: absolute;bottom: -12px;left: 50%;transform: translateX(-50%);width: 0px;height: 0px;border-left: 10px solid transparent;border-right: 10px solid transparent;border-top: 15px solid #484848;}
+.MainIphakService .schedule .bar{position: relative;width: 100%;height: 10px;border-radius: 10px;background-color: #E2E2E2;margin-top: 40px;}
+.MainIphakService .schedule .date{width: 100%;display: table;counter-reset: number 0}
+.MainIphakService .schedule .date .date_item{position: relative;display: table-cell;width: 16.66%;padding-top: 60px;padding-bottom: 40px;}
+.MainIphakService .schedule .date .date_item .nm{font-size: 18px;font-weight: 400;margin-bottom: 10px;}
+.MainIphakService .schedule .date .date_item::before{position: absolute;counter-increment: number 1; content:'0' counter(number);color: #fff; font-size: 15px;line-height: 35px;font-weight: 400;width: 35px;height: 35px;border-radius: 50%;background-color: #E2E2E2;top:-22px;left: 50%;transform: translateX(-50%);}
+.MainIphakService .schedule .date .date_item.active::before{background-color: #034EA2;}
+.MainIphakService .schedule .date4{background-color: #580045;}
+.MainIphakService .schedule .bar::before{position: absolute;content: "";height: 10px;border-radius: 10px;background-color: #034EA2;left: 0;}
+.MainIphakService .schedule .bar51::before{width: 10%;}
+.MainIphakService .schedule .bar52::before{width: 30%;}
+.MainIphakService .schedule .bar53::before{width: 50%;}
+.MainIphakService .schedule .bar54::before{width: 70%;}
+.MainIphakService .schedule .bar55::before{width: 90%;}
+.MainIphakService .schedule .bar41::before{width: 12.5%;}
+.MainIphakService .schedule .bar42::before{width: 37.5%;}
+.MainIphakService .schedule .bar43::before{width: 62.5%;}
+.MainIphakService .schedule .bar44::before{width: 87.5%;}
 
 
 /* Why CSU */
@@ -448,7 +447,7 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
 
 
 /*.contents교수진소개background-color: #001C58;*/
-.faculty{width: 100%;padding-top: 55px;}
+/* .faculty{width: 100%;padding-top: 55px;}
 .faculty .faculty_box{border: 1px solid #c5c5c5;margin-bottom: 80px;padding-top: 30px;border-radius: 10px;}
 .faculty .faculty_box .img{width: 230px;position: absolute;}
 .faculty .faculty_box .img img{height: 180px;width: 135px;border-radius: 8px;display: block;margin-left: auto;position: relative;box-shadow: 4px 4px 4px #1d1d1d2a;}
@@ -495,10 +494,10 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
 .profile_table li .career{padding-top: 2px;}
 .profile_table li .career p{color: #3085e6;margin-bottom: 5px;font-weight: 400;font-size: 20px;}
 .profile_table li .career div pre{font-family:'SCoreDream';white-space: pre-wrap;word-break: break-word;margin: 0;margin-bottom: 30px;}
-.profile_table li div{font-size: 16px;}
+.profile_table li div{font-size: 16px;} */
 
 /*.contents_교과목소개*/
-.gaebyeol .btn{text-align: right;margin-top: 30px;}
+/* .gaebyeol .btn{text-align: right;margin-top: 30px;}
 .gaebyeol .btn div{display: inline-block;cursor: pointer;}
 .gaebyeol .btn .btn2{margin-left: 16px;position: relative;}
 .gaebyeol .btn .btn2::before{position: absolute;content: ""; width: 1px;height: 13px; background-color: #b1b1b1;left: -7px;top:5px}
@@ -524,7 +523,7 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
 .contentBox .dep4_m_box .page_menu ul li.back{background-color: #014DA1;}
 .contentBox .dep4_m_box .page_menu ul li.back a{color: #fff;}
 .contentBox .dep4_m_box .page_menu ul li.back:hover a{color: #fff;}
-.contentBox .dep4_m_box .page_menu ul li:hover a{color: #014DA1; font-weight: 400; text-decoration: none;}
+.contentBox .dep4_m_box .page_menu ul li:hover a{color: #014DA1; font-weight: 400; text-decoration: none;} */
 
 
 @media (max-width: 1420px){ 
@@ -553,16 +552,16 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     /* .faculty_more {width: 90%;} */
 }
 @media (max-width: 1000px){ 
-    .MainQuickService .quickbtn li .index::before {width: 80px;height: 80px;background-size: 40px;}
-    .MainQuickService .quickbtn li .index {padding-top: 20px;padding-left: 98px;font-size: 14px;}
-    .MainQuickService .quickbtn li .index .title {font-size: 28px;margin-top: 0px;}
-    .MainQuickService .quickbtn li .btn {top: 50%;}
-    .MainQuickService .quickbtn li .btn div {width: 84px;margin: 4px 0;font-size: 14px;}
-    .MainQuickService .call {margin-top: 40px;}
-    .MainQuickService .call li {font-size: 20px;padding: 40px 0;}
-    .MainQuickService .call li .col2 div {padding-left: 0px;font-size: 18px;}
-    .MainQuickService .call li .col1 {margin-left: 4%;}
-    .MainQuickService .call li .col2 .link span{font-size: 12px;top: -2px;}
+    .MainIphakService .quickbtn li .index::before {width: 80px;height: 80px;background-size: 40px;}
+    .MainIphakService .quickbtn li .index {padding-top: 20px;padding-left: 98px;font-size: 14px;}
+    .MainIphakService .quickbtn li .index .title {font-size: 28px;margin-top: 0px;}
+    .MainIphakService .quickbtn li .btn {top: 50%;}
+    .MainIphakService .quickbtn li .btn div {width: 84px;margin: 4px 0;font-size: 14px;}
+    .MainIphakService .call {margin-top: 40px;}
+    .MainIphakService .call li {font-size: 20px;padding: 40px 0;}
+    .MainIphakService .call li .col2 div {padding-left: 0px;font-size: 18px;}
+    .MainIphakService .call li .col1 {margin-left: 4%;}
+    .MainIphakService .call li .col2 .link span{font-size: 12px;top: -2px;}
 
     .loginbox { width: 70%;}
     
@@ -650,9 +649,9 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     .MainGallery .MainTitle::before{content: none;}
     .MainGallery .MainTitle .Tab {top:auto;transform: none;bottom: -64px;left: 42px;bottom: -85px;}
     .MainGallery .gallshow {margin-top: 110px;}
-    .MainQuickService .call {border-radius: 20px;}
-    .MainQuickService .call li {display: block;width: 100%;padding: 25px 0}
-    .MainQuickService .call li:first-child {border-radius: 20px;}
+    .MainIphakService .call {border-radius: 20px;}
+    .MainIphakService .call li {display: block;width: 100%;padding: 25px 0}
+    .MainIphakService .call li:first-child {border-radius: 20px;}
 
     /* .MainQuickService .call {border-radius: 20px;background-color: #ffffff;color: #000;}
     .MainQuickService .call a{color: #000;}
@@ -662,10 +661,10 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     .MainQuickService .call li .col2 .link span {border: 1px solid #000;} */
 }
 @media (max-width: 755px){
-    .MainQuickService .quickbtn li .btn {position: static;}
-    .MainQuickService .quickbtn li .btn div.book {background-color:#ffffff77;color: initial;}
-    .MainQuickService .quickbtn li .btn div {display: inline-block;width: 40%;margin: 4px;background-color:#ffffff6e;border: 1px solid #cecece57;}
-    .MainQuickService .quickbtn li .btn div:hover {background-color: #034EA2;color:#fff}
+    .MainIphakService .quickbtn li .btn {position: static;}
+    .MainIphakService .quickbtn li .btn div.book {background-color:#ffffff77;color: initial;}
+    .MainIphakService .quickbtn li .btn div {display: inline-block;width: 40%;margin: 4px;background-color:#ffffff6e;border: 1px solid #cecece57;}
+    .MainIphakService .quickbtn li .btn div:hover {background-color: #034EA2;color:#fff}
     /* .MainQuickService .quickbtn li .btn div:hover a{color:#fff} */
 
 }
@@ -694,14 +693,15 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     .subBannerMenu_area .pathbar li.path.active .hd_dep4 {font-size: 12px;width: 100%;}
 }
 @media (max-width: 680px){
-    .MainQuickService .schedule .bar {height: 0;}
-    .MainQuickService .schedule .tab li .tab_btn {font-size: 16px;padding: 8px 15px;margin: 0 4px;}
-    .MainQuickService .schedule .date{border: 1px solid #bdbdbd;padding: 10px 0;border-radius: 10px;}
-    .MainQuickService .schedule .date .date_item{display: block;width: auto;padding: 14px 0;text-align: left;padding-left: 100px;}
-    .MainQuickService .schedule .date .date_item p{display: inline-block;text-align: left;}
-    .MainQuickService .schedule .date .date_item .nm {margin-bottom: 0px;margin-right: 10px;}
-    .MainQuickService .schedule .date .date_item::before {content: 'step ' counter(number);transform:translateY(-50%);top: 50%;left: 22px;font-size: 12px;line-height: 25px;width: 60px;height: 25px;text-align: center;color: #000;}
-    .MainQuickService .schedule .date .date_item:first-child::before {color:#fff}
+    .MainIphakService .schedule .bar {height: 0;}
+    .MainIphakService .schedule .bar::before{content: unset;}
+    .MainIphakService .schedule .tab li .tab_btn {font-size: 16px;padding: 8px 15px;margin: 0 4px;}
+    .MainIphakService .schedule .date{border: 1px solid #bdbdbd;padding: 10px 0;border-radius: 10px;}
+    .MainIphakService .schedule .date .date_item{display: block;width: auto;padding: 14px 0;text-align: left;padding-left: 100px;}
+    .MainIphakService .schedule .date .date_item p{display: inline-block;text-align: left;}
+    .MainIphakService .schedule .date .date_item .nm {margin-bottom: 0px;margin-right: 10px;}
+    .MainIphakService .schedule .date .date_item::before {content: 'step ' counter(number);transform:translateY(-50%);top: 50%;left: 22px;font-size: 12px;line-height: 25px;width: 60px;height: 25px;text-align: center;color: #000;}
+    .MainIphakService .schedule .date .date_item.active::before {color:#fff}
 }
 
 @media (max-width: 670px){ 
@@ -799,18 +799,18 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     .MainGallery .MainTitle .Tab li.vdo div::after {content: unset;}
     .MainGallery .MainTitle .Tab li.vdo div p{padding-top:9px}
     .mainSchedule .MainTitle .right {margin-top: 0;}
-    .MainQuickService .quickbtn {margin-top: 20px;}
-    .MainQuickService .quickbtn li .index::before {width: 50px;height: 50px;background-size: 26px;}
-    .MainQuickService .quickbtn li .index .title {font-size: 20px;}
-    .MainQuickService .quickbtn li .index {font-size: 10px;padding-top: 15px;padding-left: 74px;margin-bottom: 30px;}
-    .MainQuickService .quickbtn li .btn {transform: translateY(-30%);}
-    .MainQuickService .quickbtn li .btn div {display: block;width: 80%;margin: 4px auto;font-size: 12px;}
-    .MainQuickService .schedule .title {font-size: 30px;margin-bottom: 20px;}
-    .MainQuickService .schedule .tab li .tab_btn {font-size: 14px;padding: 8px 12px;}
-    .MainQuickService .schedule .date .date_item {padding-left: 80px;}
-    .MainQuickService .schedule .date .date_item .nm {font-size: 14px;}
-    .MainQuickService .schedule .date .date_item p{font-size: 14px;}
-    .MainQuickService .schedule .date .date_item::before{font-size: 10px;width: 48px;top: 24px;}
+    .MainIphakService .quickbtn {margin-top: 20px;}
+    .MainIphakService .quickbtn li .index::before {width: 50px;height: 50px;background-size: 26px;}
+    .MainIphakService .quickbtn li .index .title {font-size: 20px;}
+    .MainIphakService .quickbtn li .index {font-size: 10px;padding-top: 15px;padding-left: 74px;margin-bottom: 30px;}
+    .MainIphakService .quickbtn li .btn {transform: translateY(-30%);}
+    .MainIphakService .quickbtn li .btn div {display: block;width: 80%;margin: 4px auto;font-size: 12px;}
+    .MainIphakService .schedule .title {font-size: 30px;margin-bottom: 20px;}
+    .MainIphakService .schedule .tab li .tab_btn {font-size: 14px;padding: 8px 12px;}
+    .MainIphakService .schedule .date .date_item {padding-left: 80px;}
+    .MainIphakService .schedule .date .date_item .nm {font-size: 14px;}
+    .MainIphakService .schedule .date .date_item p{font-size: 14px;}
+    .MainIphakService .schedule .date .date_item::before{font-size: 10px;width: 48px;top: 24px;}
 
 
 
@@ -911,9 +911,9 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
 @media (max-width: 420px){ 
     .MainGallery .gallshow .gallLi li .galleryBox { height: 90%;width: 86%;}
     /* .mainGallery .slideBtn div.prev {left: 8%;}   */
-    .MainQuickService .schedule .tab li {width: 50%;margin: 4px 0;}
-    .MainQuickService .schedule .tab li .tab_btn.active::after {content: unset;}
-    .MainQuickService .schedule .bar {margin-top: 20px;}
+    .MainIphakService .schedule .tab li {width: 50%;margin: 4px 0;}
+    .MainIphakService .schedule .tab li .tab_btn.active::after {content: unset;}
+    .MainIphakService .schedule .bar {margin-top: 20px;}
 }
 @media (max-width: 414px){ 
     .MainNotice .Tab {font-size: 16px;}
@@ -926,8 +926,8 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     .mainQuickServ ul li .btn{padding: 12px 0;height: 55px;}  
     .mainQuickServ ul li .btn img{margin: 2px 0px;}
     .mainQuickServ ul li .btn p {font-size: 12px;}
-    .MainQuickService .quickbtn li .index {padding-left: 60px;}
-    .MainQuickService .quickbtn li .index::before {left: 16px;}
+    .MainIphakService .quickbtn li .index {padding-left: 60px;}
+    .MainIphakService .quickbtn li .index::before {left: 16px;}
 }
 @media (max-width: 390px){     
     /* .banner .ss {top: 65%;transform: translateX(-50%) translateY(-48%);} 
@@ -936,9 +936,9 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     /* .MainNotice .notiContent .notiTab ul.tab li {padding: 6px 5px;} */
     /* .Main {margin-top: 50px;}
     .Main.MainNotice {margin-top: 50px;} */
-    .MainQuickService .call li {font-size: 14px;}
-    .MainQuickService .call li .col2 div {font-size: 14px;}
-    .MainQuickService .call li .col2 .link span {font-size: 10px;}
+    .MainIphakService .call li {font-size: 14px;}
+    .MainIphakService .call li .col2 div {font-size: 14px;}
+    .MainIphakService .call li .col2 .link span {font-size: 10px;}
     .MainGallery .gallshow .gallLi li .galleryBox {width: 85%;}
     .MainWhycsu ul li {padding-bottom: 2px;}
     .MainWhycsu ul li .pcent {font-size: 20px;margin-right: 0;}

@@ -3,6 +3,8 @@ import {  Link, useParams } from 'react-router-dom';
 import {SERVER_URL} from 'context/config'; //
 
 import SubBannerComp from 'pages/common/components/subBannerComp';
+import ContentMenuComp from 'pages/common/components/contentMenuComp';
+
 //**권한**//
 import { writePermissionCheck } from 'assets/js/jwt';
 //**권한**//
@@ -10,7 +12,7 @@ import { writePermissionCheck } from 'assets/js/jwt';
 const Grid = (props) => {    
     
     const params = useParams();    
-	const menuCd = '178'; //임의 menucd int X  string O 
+	const menuCd = '551'; //임의 menucd int X  string O 
    // const [boardList, setBoardList] = useState([]);
     const [menuList, setMenuList] = useState("");
     const [postList, setPostList] = useState([]);
@@ -57,7 +59,6 @@ const Grid = (props) => {
       
     const Init = async () =>{
         try{
-
             const res = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list',{method:"GET", headers:{'content-type':'application/json'}});
             const data = await res.json();
             setPostList(data?.getBoardList);
@@ -136,10 +137,9 @@ const Grid = (props) => {
     return(
         <>
             <SubBannerComp menuCd={menuCd}/>
-            <div className='subcontain'>
-                {/* <SideMenuComp menuCd={menuCd}/>                 */}
-                <div className='infocontain'>
-                    {/* <PathbarComp menuCd={menuCd}/> */}
+            <div className='Subcontain'>
+                <ContentMenuComp />                          
+                    <div className='contentBox'>
                     <div className='table_area'>
                         <div className='noticeTableSearch' style={{width:"96%"}}> 
                             <div className='count'>

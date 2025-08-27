@@ -5,6 +5,8 @@ import {SERVER_URL} from 'context/config'; //
 import URL from 'context/url';
 
 import SubBannerComp from 'pages/common/components/subBannerComp';
+import ContentMenuComp from 'pages/common/components/contentMenuComp';
+
 //**권한**//
 import { writePermissionCheck , getTokenData, getUserRoles } from 'assets/js/jwt';
 import {getMenuInfo} from "assets/js/utils";
@@ -16,8 +18,8 @@ const List= (props) => {
     const location = useLocation();
     const navigate = useNavigate(); 
     const params = useParams();
-	const menuCd = params.menuCd; 
-    // const menuCd = 175; 
+	// const menuCd = params.menuCd; 
+    const menuCd = 551; 
     const [menuList, setMenuList] = useState([]);
 
     const [menuListCnt, setMenuListCnt] = useState([]);
@@ -86,7 +88,9 @@ const List= (props) => {
       
     const Init = async () =>{
         try{
-            const res = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?PAGESTART='+pageSt+'&PAGEEND=10', {method: "POST", headers : {"Content-Type" : "application/json;charset=utf-8;"}});
+            // const res = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?PAGESTART='+pageSt+'&PAGEEND=10', {method: "POST", headers : {"Content-Type" : "application/json;charset=utf-8;"}});
+            const res = await fetch(SERVER_URL+'/api/board/551/list?PAGESTART='+pageSt+'&PAGEEND=10', {method: "POST", headers : {"Content-Type" : "application/json;charset=utf-8;"}});
+            
             const data = await res.json();
             setMenuList(data?.getBoardList); 
             setMenuListCnt(data?.totalCnt);
@@ -211,9 +215,9 @@ const List= (props) => {
     return(
         <>
             <SubBannerComp menuCd={menuCd} />
-            {/* <SubBannerComp menuCd={menuCd} onMessage={handleMessage}/> */}
-            <div className='subcontain'>
-                <div className='infocontain'>
+            <div className='Subcontain'>
+                <ContentMenuComp />                          
+                <div className='contentBox'>
                     <div className='table_area'>
                         <div className='noticeTableSearch'>  
                             <div className='count'>

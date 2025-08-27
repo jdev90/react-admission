@@ -4,50 +4,46 @@ import MainBannerComp from './components/mainBannerComp';
 import MainNoticeComp from './components/mainNoticeComp';
 import MainGalleryComp from './components/mainGalleryComp';
 import MainCalendarComp from './components/mainCalendarComp';
-import MainIntroComp from './components/mainIntroComp';
+import MainGuideBookComp from './components/mainGuideBookComp';
 import PopupComp from 'pages/main/components/PopupComp';
 
-const Main = (props) => {    
-    const quickmenulist = [
-    {
-      title: "수시모집",
-      date: "2026",
-    },
-    {
-      title: "정시모집",
-      date: "2026",
-    },
-    {
-      title: "외국인",
-      date: "2026",
-    },
-    {
-      title: "편입학",
-      date: "2026",
-    }
+const Main = (props) => {  
+  const [ipsiIndex, setIpsiIndex] = useState(""); //달별로 분리된 학사일정 리스트
+  
+  const quickmenulist = [
+    {title: "수시모집",date: "2026",},
+    {title: "정시모집",date: "2026",},
+    {title: "외국인",date: "2026",},
+    {title: "편입학",date: "2026",}
   ];
 
   const callList = [
-    {
-      title: "신입학",
-      phone: "055) 250-1200",
-      link: "",
-    },
-    {
-      title: "편입학",
-      phone: "055) 250-1304, 6",
-      link: "",
-    },
-    
+    {title: "신입학",phone: "055) 250-1200",link: "",},
+    {title: "편입학", phone: "055) 250-1304, 6",link: "",},
   ];
 
-  const imsi = [
-    {title: "원서접수"},
-    {title: "서류제출"},
-    {title: "면접고사"},
-    {title: "면접고사"},
-    {title: "(최초)합격자발표"},
+  const ipsi = [
+    {title: "원서접수",stdate: "2025.08.08",endate: "2025.09.12"},
+    {title: "서류제출",stdate: "2025.08.18",endate: "2025.09.22"},
+    {title: "면접고사",stdate: "2025.10.08",endate: "2025.10.12"},
+    {title: "면접고사",stdate: "2025.11.08",endate: "2025.11.12"},
+    {title: "(최초)합격자발표",stdate: "2025.12.08",endate: ""},
   ];
+
+  useEffect(() => {
+    Init();
+  },[]);
+  
+  const Init = async () =>{
+      try{
+        setIpsiIndex(getCurrentSchedule())
+      }catch(e){
+        console.log(e);
+      }
+  }
+
+
+
   function showTab(index) {
     // 모든 탭 버튼과 콘텐츠를 숨기기
     var buttons = document.querySelectorAll('.tab_btn');
@@ -57,6 +53,61 @@ const Main = (props) => {
     // 선택한 탭 버튼과 콘텐츠 활성화
     buttons[index].classList.add('active');
   }
+  
+
+  // function getCurrentSchedule() {
+  //   const today = new Date();
+
+  //   const parseDate = (str) => {
+  //     const [year, month, day] = str.split('.').map(Number);
+  //     return new Date(year, month - 1, day); // JS는 month가 0부터 시작
+  //   };
+
+  //   const filtered = ipsi.filter(item => {
+  //     const startDate = parseDate(item.stdate);
+  //     return today >= startDate;
+  //   });
+
+  //   if (filtered.length === 0) return null;
+
+  //   // 가장 최근 일정 (stdate가 가장 큰 것)
+  //   const latest = filtered.reduce((latestItem, currentItem) => {
+  //     return parseDate(currentItem.stdate) > parseDate(latestItem.stdate)? currentItem : latestItem;
+  //   });
+
+  //   console.log(latest)
+  //   return latest;
+  // }
+
+  function getCurrentSchedule() {
+    // 모든 탭 버튼과 콘텐츠를 숨기기
+    var li = document.querySelectorAll('.date_item');
+    
+    const today = new Date();
+    const parseDate = (str) => {
+      const [year, month, day] = str.split('.').map(Number);
+      return new Date(year, month - 1, day);
+    };
+    let latestIndex = 0;
+    let latestDate = new Date(0); // 과거 날짜로 초기화
+    for (let i = 0; i < ipsi.length; i++) {
+      const itemDate = parseDate(ipsi[i].stdate);
+      if (today >= itemDate && itemDate > latestDate) {
+        latestDate = itemDate;
+        latestIndex = i;
+      }
+    }
+
+    for (var i = 0; i < li.length; i++) {
+        li[i].classList.remove('active');
+    }
+    for (var i = 0; i <= latestIndex; i++) {
+        li[i].classList.add('active');
+    }
+    
+    // li[latestIndex].classList.add('active');
+    return latestIndex+1 ; 
+  }
     
 
     return(
@@ -65,27 +116,18 @@ const Main = (props) => {
             <MainBannerComp/>
             {/*1. 공지사항*/}
             <MainNoticeComp/>
-
-            {/*2. 학사일정
-            <MainCalendarComp/>*/}
-
-                
-
-
-            {/*4. 학과소개
-            <MainIntroComp/>*/}
-            
-            {/*5. 행사갤러리*/}
+            {/*2. 안내책자*/}
+            <MainGuideBookComp/>
+            {/*3. 행사갤러리*/}
             <MainGalleryComp/>
-            
             {/*4. 입학도우미*/}
-            <div className='qsBgc'>
-                <div className='Maincontain MainQuickService'>                        
+            <div className='ipBgc'>
+                <div className='Maincontain MainIphakService'>                        
                     <div className='MainTitle'>
                         <p>창신대학교의 입시 관련 주요 서비스입니다.</p>
                         <h1>CSU<span>입학도우미</span></h1>
                     </div> 
-                    {/*퀵메뉴*/} 
+                    {/*__퀵메뉴*/} 
                     <ul className='quickbtn'>{quickmenulist.map((data, index) => (
                         <li>
                             <div className={'index index'+index}>
@@ -98,7 +140,7 @@ const Main = (props) => {
                             </div>
                         </li>
                     ))}</ul> 
-                    {/*전화*/} 
+                    {/*__연락처*/} 
                     <ul className='call'>{callList.map((data, index) => (
                         <li>
                             <div className="col col1">
@@ -110,7 +152,7 @@ const Main = (props) => {
                             </div>
                         </li>
                     ))}</ul>
-                    {/*입시일정*/} 
+                    {/*__입시일정*/} 
                     <div className='schedule'>
                       <div className='title'>입시일정</div>
                       <ul className='tab'>
@@ -119,17 +161,18 @@ const Main = (props) => {
                           <li><div className='tab_btn' onClick={() => showTab(2)}>재외국민 외국인</div></li>
                           <li><div className='tab_btn' onClick={() => showTab(3)}>평입학</div></li>
                       </ul>
-                      <div className='bar'></div>
-                      <ul className='date'>
-                          {imsi.map((data, index) => (
-                          <li className='date_item active'>
-                              <p className='nm'>{data.title}</p>
-                              <p>2025.09.08(월) ~09.12(금)</p>
-                          </li>
-                          ))}
+                      <div className={'bar bar'+ipsi.length+ipsiIndex}></div>
+                      <ul className={'date'}>
+                          {ipsi?.map((data, index) => {
+                            return(
+                              <li className='date_item active' key={index}>
+                                <p className='nm'>{data.title}</p>
+                                <p>{data.stdate} {data.endate != '' ? `~${data.endate}` :''}</p>
+                              </li>
+                            )
+                          })}
                       </ul>
                     </div>
-
                 </div> 
             </div>
             {/*5. WhyCSU*/}
@@ -159,7 +202,8 @@ const Main = (props) => {
 
               </div>
             </div>
-            
+             {/*2. 학사일정
+            <MainCalendarComp/>*/}
 
            
         </>

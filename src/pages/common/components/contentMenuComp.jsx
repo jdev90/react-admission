@@ -54,11 +54,11 @@ const ContentMenuComp = (props) => {
         <div className='contentMenu'>
             <div className='dep1_nm'><p>수시모집</p></div>
             <ul className='dep2'>
-                <li><Link><p className='dep2_nm active' onClick={() => showTab(0) }>전형일정</p></Link></li>
-                <li><Link><p className='dep2_nm' onClick={() => showTab(1) }>모집요강</p></Link></li>
-                <li><Link><p className='dep2_nm' onClick={() => showTab(2) }>안내책자</p></Link></li>
-                <li><Link><p className='dep2_nm' onClick={() => showTab(3) }>원서접수</p></Link></li>
-                <li><Link><p className='dep2_nm' onClick={() => showTab(4) }>경쟁률조회</p></Link></li>
+                <li><Link><p className='dep2_nm active' onClick={() => showTab(0) }>전형일정</p><img src='/images/sub/content/comm_menu.png'/></Link></li>
+                <li><Link><p className='dep2_nm' onClick={() => showTab(1) }>모집요강</p><img src='/images/sub/content/comm_menu.png'/></Link></li>
+                <li><Link><p className='dep2_nm' onClick={() => showTab(2) }>안내책자</p><img src='/images/sub/content/comm_menu.png'/></Link></li>
+                <li><Link><p className='dep2_nm' onClick={() => showTab(3) }>원서접수</p><img src='/images/sub/content/comm_menu.png'/></Link></li>
+                <li><Link><p className='dep2_nm' onClick={() => showTab(4) }>경쟁률조회</p><img src='/images/sub/content/comm_menu.png'/></Link></li>
             </ul>
         </div>
         {/* {menuList?.map((data, index)=> {
