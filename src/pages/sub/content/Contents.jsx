@@ -16,6 +16,7 @@ const Sub = (props) => {
     const location = useLocation();
     const [result, setResult] = useState(false);
     let dep3_MC;let dep3_NM;
+    const [page, setPage] = useState(1);
 
     const navigate = useNavigate();
     //const token = window.sessionStorage.getItem('accessToken');
@@ -24,15 +25,16 @@ const Sub = (props) => {
         window.scrollTo(0, 0);
     },[menuCd]);
 
-    useEffect(() => {
-        const containerEl = containerRef.current;
-        if (containerEl) {
-          const scripts = containerEl.getElementsByTagName('script');
-          for (const script of scripts) {
-            window.eval(script.innerHTML);
-          }
-        }
-     },[contentList]);
+  const handlePageChange = (pageNumber) => {
+    setPage(pageNumber);
+    console.log(1)
+  };
+
+  useEffect(() => {
+        Init()
+    },[page]);
+
+   
       
     const Init = async () =>{
         try{
@@ -48,22 +50,10 @@ const Sub = (props) => {
             console.log(e);
         }
     }
-    // function menu(menuCd) {
-    //     let i
-    //     for(i=0; i < menuList.length; i++){
-    //         if(menuCd == menuList[i].MENU_CD){
-    //             if(menuList[i].DEPTH == 4){
-    //                 dep3_MC = menuList[i].PARENT_MENU_CD 
-    //                 menu(menuList[i].PARENT_MENU_CD)
-    //             }
-    //             if(menuList[i].DEPTH == 3){
-    //                 return dep3_NM = menuList[i].MENU_NM 
-    //             }
-    //             return  
-    //         }
-    //     }    
-    // }
-        
+    
+    const handleFileDown = (src) => window.open(src, "self");
+   
+    
     return(
         <>
             <SubBannerComp menuCd={menuCd}/>
@@ -76,21 +66,29 @@ const Sub = (props) => {
                         <img src="/images/sub/content/contents_none.png"/>
                         <p class="title">자료를 준비하고 있습니다.</p>
                         <p>더 많은 서비스와 정확한 정보를 전해드리기 위해 준비중입니다.</p>
-                        <p>이용에 불편을 드려 죄송합니다.</p>                            
+                        <p>이용에 불편을 드려 죄송합니다.</p>                       
                     </div>    */}
                     
-                    <div className='content_title'>2026학년도 수시 모집요강</div> 
+                    <div className='cont-h'>2026학년도 수시모집요강</div> 
                     <ul className='guideline_file'>
-                        <li>모집요강 다운로드</li>
-                        <li>확대보기</li>
+                        <li className='filedown' ><a href="/pdf/pdf_guideline.pdf" download>모집요강 다운로드<img src='/images/sub/content/guideline_down.png'/></a></li>
+                        <li className='filezoom' onClick={() => handleFileDown("/pdf/pdf_guideline.pdf")}>확대보기<img src='/images/sub/content/guideline_zoom.png'/></li>
                     </ul>
-                    <div className='guideline_pdf_box'>
-                        <div className='guideline_pdf'></div> 
-                        <div className='guideline_index'>
+                    <div className='guideline_pdfview'>
+                        <div className='pdfview'>
+                            <iframe key={page} src={`/pdf/pdf_guideline.pdf#page=${page}`} type="application/pdf" title="PDF Viewer" aria-label="example" width="100%" height="800"/>
+                        </div> 
+                        <div className='pdfindex'>
                             <p>Contents Index</p>
-                            <p>선택하면 각 페이지로 이동합니다.</p>
+                            <p className='paraphrase'>선택하면 각 페이지로 이동합니다.</p>
                             <ul>
-                                <li></li>
+                                <li onClick={() => handlePageChange(1)}>2026 대학 수시모집 주요 변경사항</li>
+                                <li onClick={() => handlePageChange(2)}>수시모집 요약</li>
+                                <li>전형일정</li>
+                                <li>모집단위 및 모집인원</li>
+                                <li>유의사항</li>
+                                <li>전형안내</li>
+                                <li>합격자생활기록부 반영방법</li>
                             </ul>
                         </div>                   
                     </div>

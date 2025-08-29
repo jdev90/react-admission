@@ -188,17 +188,17 @@
 .bkBgc .Maincontain{padding: 80px;}
 .MainGuideBook .MainTitle{text-align: center;}
 .MainGuideBook .guide_swiper{position: relative;margin: 50px 0;}
-.MainGuideBook .guide_swiper::before{position: absolute;content: "";width: 80%;height: 1px;border-top: 1px solid #B8DAFF;top:50%;left:50%;transform: translateX(-50%) translateY(-50%);}
-.MainGuideBook .guide_swiper::after{position: absolute;content: "";width: 550px;height: 560px;border-radius: 50%;border: 1px solid #B8DAFF;background-color: #F4F5F9;top:50%;left:50%;transform: translateX(-50%) translateY(-50%);}
-.MainGuideBook .guide_swiper .swiper-slide {width: 472px !important;padding-bottom: 15px;padding-top: 15px;}
+.MainGuideBook .guide_swiper::before{position: absolute;content: "";width: 80%;height: 1px;border-top: 1px solid #B8DAFF;top:40%;left:50%;transform: translateX(-50%) translateY(-50%);}
+.MainGuideBook .guide_swiper::after{position: absolute;content: "";width: 550px;height: 560px;border-radius: 50%;border: 1px solid #B8DAFF;background-color: #F4F5F9;top:40%;left:50%;transform: translateX(-50%) translateY(-50%);}
+.MainGuideBook .guide_swiper .swiper-slide {width: 472px !important;padding-bottom: 130px;padding-top: 15px;}
 .MainGuideBook .guide_swiper .swiper-slide img.slide-bk{transform: scale(0.8);box-shadow: 10px 10px 10px #0000001e;}
 .MainGuideBook .guide_swiper .swiper-slide-active img.slide-bk{transform: scale(1);}
 /* .MainGuideBook .guide_swiper .swiper{overflow: visible;} */
 .MainGuideBook .guide_swiper .swiper-slide .guide_title{display: none;}
-.MainGuideBook .guide_swiper .swiper-slide-active .guide_title{display: block;position: absolute;left: 50%;transform: translateX(-50%);bottom: -100px;font-size: 32px;width: 1416px;}
+.MainGuideBook .guide_swiper .swiper-slide-active .guide_title{display: block;position: absolute;left: 50%;transform: translateX(-50%);bottom: 40px;font-size: 30px;width: 1416px;}
 /* .MainGuideBook .guide_swiper .swiper-slide:not(.swiper-slide-active, .swiper-slide-next, .swiper-slide-prev){visibility: hidden;} */
 
-
+.MainGuideBook .guide_swiper .swiper-pagination{bottom: 137px;}
 
 /*행사갤러리*/
 .MainGallery{position: relative;}
@@ -328,7 +328,7 @@
 .pw_popup .back img{width: 14px;}
 input:focus {outline: none;}
 /*경로 및 메뉴*/
-.subBannerMenu_area{position: absolute;bottom: 10px; width: 1370px;margin: auto;left: 0;right: 0;}
+.subBannerMenu_area{position: absolute;bottom: 50px; width: 1370px;margin: auto;left: 0;right: 0;}
 .subBannerMenu_area .pathbar{text-align: left;margin: auto;overflow: visible;position: relative;padding-left: 16px;}
 .subBannerMenu_area .pathbar li {display: inline-block;font-size: 16px;color: #fff;padding: 14px 0;text-align: center;display: table-cell;}
 .subBannerMenu_area .pathbar li img{transform: translateY(50%);width: 20px;}
@@ -534,7 +534,9 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     .Maincontain{ width: 95%;}
     .MainGallery .gallshow {width: 100%;}
 }
-
+@media (max-width: 1185px){ 
+    .subBannerMenu_area{visibility: visible;}
+}
 @media (max-width: 1155px){ 
     /* .faculty .faculty_box .img {width: 20%;}
     .faculty .faculty_box .con .txt div {margin-left: 15px;} */

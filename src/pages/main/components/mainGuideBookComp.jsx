@@ -59,7 +59,7 @@ const MainGuideBookComp = (props) => {
           
     const Init = async () =>{
         try{
-           showBook(1)
+        //    showBook(1)
         }catch(e){
             console.log(e);
         }
@@ -70,16 +70,16 @@ const MainGuideBookComp = (props) => {
         {title: "2025 창신대학교 후기 폅입학 모집요강",img:"/images/main/book_img3.png"},
     ];
 
-    function showBook(index) {
-        // 모든 탭 버튼과 콘텐츠를 숨기기
-        var book = document.querySelectorAll('.slide-bk');
-        console.log(book)
-        for (var i = 0; i < book.length; i++) {
-            book[i].classList.remove('active');
-        }
-        // 선택한 탭 버튼과 콘텐츠 활성화
-        book[index].classList.add('active');
-    }
+    // function showBook(index) {
+    //     // 모든 탭 버튼과 콘텐츠를 숨기기
+    //     var book = document.querySelectorAll('.slide-bk');
+    //     console.log(book)
+    //     for (var i = 0; i < book.length; i++) {
+    //         book[i].classList.remove('active');
+    //     }
+    //     // 선택한 탭 버튼과 콘텐츠 활성화
+    //     book[index].classList.add('active');
+    // }
     return(
         <>
             <div className='bkBgc'>
@@ -100,12 +100,12 @@ const MainGuideBookComp = (props) => {
                             loop={true}
                             navigation={true}
                         >
-                            {bookList?.map((data, index) =>(<>
-                            <SwiperSlide><img className='slide-bk' src={data.img}/><div className='guide_title'>{data.title}</div></SwiperSlide>
-                            </>
+                            {bookList?.map((data, index) =>(
+                                <SwiperSlide><img className='slide-bk' src={data.img}/><div className='guide_title'>{data.title}</div></SwiperSlide>
                             ))}
                         </Swiper>
                     </div>
+                    <div></div>
 
                     {/* <div className='book_list'>
                         <div className='slider'>
@@ -122,13 +122,13 @@ const MainGuideBookComp = (props) => {
                         </div>                               
                     </div>                                */}
 
-                <div id="popup-slide-box" >
+                {/* <div id="popup-slide-box" >
                     <div className="inner">
                         <div className="slide-wrap">
                             <div className="img"/>
                         </div>
                     </div>
-                </div>
+                </div> */}
 
 
                 </div>    
