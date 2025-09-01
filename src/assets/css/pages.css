@@ -328,16 +328,16 @@
 .pw_popup .back img{width: 14px;}
 input:focus {outline: none;}
 /*경로 및 메뉴*/
-.subBannerMenu_area{position: absolute;bottom: 50px; width: 1370px;margin: auto;left: 0;right: 0;}
+.subBannerMenu_area{position: absolute;bottom: 10px; width: 1370px;margin: auto;left: 0;right: 0;}
 .subBannerMenu_area .pathbar{text-align: left;margin: auto;overflow: visible;position: relative;padding-left: 16px;}
 .subBannerMenu_area .pathbar li {display: inline-block;font-size: 16px;color: #fff;padding: 14px 0;text-align: center;display: table-cell;}
 .subBannerMenu_area .pathbar li img{transform: translateY(50%);width: 20px;}
-.subBannerMenu_area .pathbar li.path_R{position: absolute;top:-10px;left: 4px;}
+.subBannerMenu_area .pathbar li.path_R{position: absolute;top:-14px;left: 4px;}
 .subBannerMenu_area .pathbar li{position: relative;background-color: #ffffff00;text-align: left;padding: 10px 28px;font-size: 15px;border-radius: 0}
 .subBannerMenu_area .pathbar li:not(.path){padding-left: 0;}
 .subBannerMenu_area .pathbar li::after{position: absolute;content: "";width: 20px;height: 20px; background-size: 8px;opacity: 0.7;    background-position: 50%;background-repeat: no-repeat;transition: 0.4s;transform: translateX(30%) translateY(-50%);top: 50%;right: 0;} 
 .subBannerMenu_area .pathbar li:not(:last-child, .path_R)::after{background-image: url("../images/sub/arrow1.png");}
-.subBannerMenu_area .pathbar li.path:hover{font-weight: 600;cursor: pointer;}
+.subBannerMenu_area .pathbar li.path:hover{cursor: pointer;}
 .subBannerMenu_area .pathbar li.path:hover::after{background-image: url("../images/sub/arrow1.png");transform: rotate(90deg) translateX(0%) translateY(-50%);opacity: 1;top: 9px;}
 .subBannerMenu_area .pathbar li.path .hd_dep4{font-size: 0;position: absolute;}
 .subBannerMenu_area .pathbar li.path .hd_dep4 p{display: block;} 
@@ -345,9 +345,9 @@ input:focus {outline: none;}
 .subBannerMenu_area .pathbar li.path.active::before{content: unset;} 
 .subBannerMenu_area .pathbar li.path.active::after{background-image: url("../images/sub/arrow1.png");transform: rotate(-90deg) translateX(46%) translateY(50%);transition: 0.4s;opacity: 1;} 
 .subBannerMenu_area .pathbar li.path.active:hover::after{top: 14px;}
-.subBannerMenu_area .pathbar li.path.active .hd_dep4 {color: #636363;left: 0px;width: 100%;width: 180px;background-color: #fafafa;z-index: 100;margin-top: 12px;box-shadow: 4px 4px 4px #0a0a0a1f;font-size: 14px;font-weight: 400;}
+.subBannerMenu_area .pathbar li.path.active .hd_dep4 {color: #636363;left: 0px;width: 100%;width: 180px;background-color: #fafafa;z-index: 100;margin-top: 12px;box-shadow: 4px 4px 4px #0a0a0a1f;font-size: 14px;font-weight: 300;}
 .subBannerMenu_area .pathbar li.path.active .hd_dep4 p {display: block;padding: 12px 0;border-top: 1px solid #ddd;padding-left: 14px;}
-.subBannerMenu_area .pathbar li.path.active .hd_dep4 p:hover{text-decoration: underline;color: #001A51;}
+.subBannerMenu_area .pathbar li.path.active .hd_dep4 p:hover{text-decoration: underline;color: #034EA2;font-weight: 300;}
 .subBannerMenu_area{visibility: hidden;}
 
 /* login */

@@ -42,6 +42,7 @@ const Write = (props) => {
     if(token) {userData = getTokenData(token);}
     let menuInfo = getMenuInfo(menuCd);
     
+    
     useEffect(() => {
         if(!token && menuInfo.USER_WRITE != 1 ){
            navigate("/login?url="+location.pathname)

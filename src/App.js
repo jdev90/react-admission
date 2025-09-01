@@ -103,6 +103,7 @@ function App() {
               <Route path={URL.LIST1} element={<List/>} />
               <Route path={URL.LIST2} element={<List/>} />
               <Route path={URL.LIST3} element={<List/>} />
+              <Route path={URL.LIST4} element={<List/>} />
 
               <Route path={URL.GRID} element={<Grid/>} />
               <Route path={URL.VIEW} element={<View/>} /> 

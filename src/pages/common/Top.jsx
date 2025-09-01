@@ -133,38 +133,7 @@ const Top = (props) => {
                             <span className='home_p_name'>입학안내</span>
                         </Link>
                     </div>
-                    {/*하드코딩 
-                    <ul className='tab topmenu' onMouseEnter={() => setIsMenuHovered(true)} onMouseLeave={() => setIsMenuHovered(false)} onClick={() => setIsMenuHovered(false)}>
-                       <li  className='dep1'>수시모집
-                            <ul className='dep2'>
-                                <li ><Link>모집요강</Link></li>
-                            </ul>
-                        </li>
-                        <li  className='dep1'>정시모집
-                            <ul className='dep2'>
-                                <li ><Link >모집요강</Link></li>
-                            </ul>
-                        </li>
-                        <li  className='dep1'>재외국민 외국인
-                            <ul className='dep2'>
-                                <li ><Link >모집요강</Link></li>
-                            </ul>
-                        </li>
-                        <li  className='dep1'><Link>편입학</Link>
-                            <ul className='dep2'>
-                                <li ><Link>모집요강</Link></li>
-                            </ul>
-                        </li>
-                        <li  className='dep1'><Link>입학도우미</Link>
-                            <ul className='dep2'>
-                                <li ><Link>모집요강</Link></li>
-                            </ul>
-                        </li>
-
-                        <li className='dep1 ex_link'><div><Link>학과안내<img src='/images/top_exlink.png'/></Link></div></li>
-                        <li className='dep1 ex_link'><div className='vdo'><Link>홍보영상<img src='/images/top_exlink.png'/></Link></div></li>
-                        <li className='sitem'><Link to={'/contents/182/view'}><img src={isHovered ? '/images/top_sitemB.png' : '/images/top_sitemW.png'}/></Link></li>
-                    </ul>*/}
+                    
                     <ul className='tab topmenu' onMouseEnter={() => setIsMenuHovered(true)} onMouseLeave={() => setIsMenuHovered(false)} onClick={() => setIsMenuHovered(false)}>
                         {menuList?.map((data1, index)=> {
                             if(data1.DEPTH == 1 && data1.MENU_CD != 179){                                
@@ -174,7 +143,7 @@ const Top = (props) => {
                                             {menuList?.map((data2, index)=> {
                                                 if(data2.DEPTH == 2 && data2.PARENT_MENU_CD == data1.MENU_CD){
                                                     return(
-                                                        <li key={index}><Link to={data2.LINK} onMouseEnter={() => setMenuName(data1.MENU_NM)}>{data2.MENU_NM}</Link></li>
+                                                        <li key={index}><Link to={data2.LINK}>{data2.MENU_NM}</Link></li>
                                                 )}
                                             })}
                                         </ul>

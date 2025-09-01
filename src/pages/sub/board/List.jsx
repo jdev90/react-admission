@@ -18,7 +18,8 @@ const List= (props) => {
     const location = useLocation();
     const navigate = useNavigate(); 
     const params = useParams();
-	// const menuCd = params.menuCd; 
+	// const menuCd = params.menuCd;
+    let menuInfo = getMenuInfo(location.pathname + location.search); 
     const menuCd = 551; 
     const [menuList, setMenuList] = useState([]);
 
@@ -58,7 +59,7 @@ const List= (props) => {
 
         
     if(token) {userData = getTokenData(token); userDataid = userData.user.id}
-    let menuInfo = getMenuInfo(menuCd);
+    //let menuInfo = /etMenuInfo(menuCd);
     //**권한**//
     useEffect(() => {
         if(menuCd == 176 && !token){ //자료실
@@ -82,14 +83,14 @@ const List= (props) => {
           
         Init();
         window.scrollTo(0, 0);
-    },[menuCd]);
+    },[menuInfo.MENU_CD]);
    
     
       
     const Init = async () =>{
         try{
             // const res = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?PAGESTART='+pageSt+'&PAGEEND=10', {method: "POST", headers : {"Content-Type" : "application/json;charset=utf-8;"}});
-            const res = await fetch(SERVER_URL+'/api/board/551/list?PAGESTART='+pageSt+'&PAGEEND=10', {method: "POST", headers : {"Content-Type" : "application/json;charset=utf-8;"}});
+            const res = await fetch(SERVER_URL+'/api/board/'+menuInfo.MENU_CD+'/list?PAGESTART='+pageSt+'&PAGEEND=10', {method: "POST", headers : {"Content-Type" : "application/json;charset=utf-8;"}});
             
             const data = await res.json();
             setMenuList(data?.getBoardList); 
@@ -104,10 +105,10 @@ const List= (props) => {
 
     {/*검색 옵션*/}
     const getOption = async () => { 
-        const res = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND=10',{method:"GET", headers:{'content-type':'application/json'}});
+        const res = await fetch(SERVER_URL+'/api/board/'+menuInfo.MENU_CD+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND=10',{method:"GET", headers:{'content-type':'application/json'}});
         const data = await res.json();
         setMenuList(data?.getBoardList);         
-        const res2 = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND='+menuTotalCnt,{method:"GET", headers:{'content-type':'application/json'}});
+        const res2 = await fetch(SERVER_URL+'/api/board/'+menuInfo.MENU_CD+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND='+menuTotalCnt,{method:"GET", headers:{'content-type':'application/json'}});
         const data2 = await res2.json();
         setMenuListCnt(data2?.getBoardList.length); 
     }
@@ -145,8 +146,8 @@ const List= (props) => {
     }
     const paginga = async () => {
         let res ='';        
-        if(pageEd == showPostCnt-1){ res = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND=10',{method:"GET", headers:{'content-type':'application/json'}});}              
-        else{ res = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND='+pageEd,{method:"GET", headers:{'content-type':'application/json'}});} 
+        if(pageEd == showPostCnt-1){ res = await fetch(SERVER_URL+'/api/board/'+menuInfo.MENU_CD+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND=10',{method:"GET", headers:{'content-type':'application/json'}});}              
+        else{ res = await fetch(SERVER_URL+'/api/board/'+menuInfo.MENU_CD+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND='+pageEd,{method:"GET", headers:{'content-type':'application/json'}});} 
         const data = await res.json();
         setMenuList(data?.getBoardList);
     }
@@ -176,11 +177,11 @@ const List= (props) => {
     function PWChkPopup(priv, BOARD_ID){
         
         if(priv == "1"){
-            {writePermission && navigate("/board/"+menuCd+"/view?boardId="+BOARD_ID);}
+            {writePermission && navigate("/board/"+menuInfo.MENU_CD+"/view?boardId="+BOARD_ID);}
             setPWpop(true)
             setBoard_id(BOARD_ID);
         }
-        else{navigate("/board/"+menuCd+"/view?boardId="+BOARD_ID);}
+        else{navigate("/board/"+menuInfo.MENU_CD+"/view?boardId="+BOARD_ID);}
     }
     const PWChk = async () => {
         let JsonArray = new Array();
@@ -198,7 +199,7 @@ const List= (props) => {
             return setPWbool(true);
         }
         else if(data.PASS == 1){
-            navigate("/board/"+menuCd+"/view?boardId="+board_id);
+            navigate("/board/"+menuInfo.MENU_CD+"/view?boardId="+board_id);
         }
 
        

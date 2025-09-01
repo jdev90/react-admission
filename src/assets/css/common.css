@@ -243,7 +243,10 @@ footer .info ul li p:not(.titl){margin-bottom: 2px;}
 .contentMenu ul li img{position: absolute;right: 20px;top:50%;transform: translateY(-50%);}
 
 /*----서브페이지 contents*/
-.cont-h {font-size: 32px;font-weight: 400;margin-bottom: 40px;}
+.cont-h {font-size: 32px;font-weight: 400;}
+.mgB{margin-bottom: 100px;}
+.mgB20{margin-bottom: 20px;}
+.mgB40{margin-bottom: 40px;}
 /* 1. 모집요강 */
 .guideline_file{text-align: left;margin-bottom: 20px;overflow: visible;}
 .guideline_file li{display: inline-block;}
@@ -261,6 +264,33 @@ footer .info ul li p:not(.titl){margin-bottom: 2px;}
 .guideline_pdfview .pdfindex ul li:hover{color: #0052af;}
 .guideline_pdfview .pdfindex ul li::before{position: absolute;content: "";width: 3px;height: 3px;border-radius: 50%;background-color: #777;top:28px;left: 10px;}
 
+
+
+/* 2. 원서접수 */
+.cont-cate{box-shadow: inset 0 0 0 1px #cacaca;border-radius:10px;margin-bottom: 30px;}
+.cont-cate .cate{display: inline-block;width: 33.26%;font-size: 20px;text-align: center;padding: 20px 0;cursor: pointer;}
+.cont-cate .cate:not(:first-child){border-left:1px solid #cacaca ;}
+.cont-cate .cate.active{background-color: #003774;color: #fff;}
+
+
+figure.table{margin: 0;}
+.cont-table{text-align: center;font-size: 15px;}
+.cont-table{width:100%;border-collapse: collapse;border-spacing: 0;}
+.cont-table thead th{border-right:1px solid #D6D6D6;font-weight: 300;font-size: 18px;padding: 15px 0;background-color: #DFEFFF;}
+.cont-table thead th:first-child{border-radius: 10px 0 0 10px;}
+.cont-table thead th:last-child{border-radius: 0 10px 10px 0;}
+.cont-table tbody td{border-right:1px solid #D6D6D6;border-bottom:1px solid #D6D6D6;}
+.cont-table tbody th{border-right:1px solid #D6D6D6;border-bottom:1px solid #D6D6D6;font-weight: 300;}
+.cont-table tbody td:last-child, .cont-table thead th:last-child{border-right: 0px;}
+.cont-table thead th.font_s_14{font-size: 14px;}
+.cont-table tbody th{font-size: 16px;padding: 15px 8px;word-break: keep-all;background-color: #f7fafc;}
+.cont-table tbody td{font-size: 16px;padding: 15px 8px;word-break: keep-all;}
+.cont-table tbody td a{color: #111;}
+.cont-table tbody td a:hover{color: #032b81;text-decoration: underline;}
+.cont-table tbody td.borR, .cont-table tbody th.borR, .cont-table thead th.borR{border-right:1px solid #D6D6D6;}
+.cont-table tbody td.borR_none, .cont-table tbody th.borR_none, .cont-table thead th.borR_none{border-right:0px;}
+.cont-table thead th.none, .cont-table tbody td.none, .cont-table tbody th.none {border:0px; background-color: initial;}
+.cont-table tbody td p{padding: 2px 0;}
 
 /*.contents페이지 CMS공통*/
 /* .contentBox a:hover{color: #032b81;text-decoration: underline;}
@@ -331,28 +361,10 @@ footer .info ul li p:not(.titl){margin-bottom: 2px;}
 .contentBox .contactInfo li.phone span::before{background-image: url("../images/sub/p_icon1.png");}
 .contentBox .contactInfo li.fax span::before{background-image: url("../images/sub/p_icon5.png");}*/
 /*contents table*/
-figure.table{margin: 0;}
-.content_table{text-align: center;font-size: 15px;}
-.content_table{width:100%;border-collapse: collapse;border-spacing: 0;}
-.content_table thead th{ border-top:2px solid #6e7b97;border-bottom:1px solid #8591aa;border-right:1px solid #dddee0;}
-.content_table tbody td{border-right:1px solid #dddee0;border-bottom:1px solid #dddee0;font-weight: 400;}
-.content_table tbody th{border-right:1px solid #dddee0;border-bottom:1px solid #dddee0;font-weight: 400;}
-.content_table thead th{padding: 8px 0;font-size: 16px;color: #1d1d1d;background-color: #f7fafc;font-weight: 400;}
-.content_table tbody td:last-child, .content_table tbody th:last-child, .content_table thead th:last-child{border-right: 0px;}
-.content_table thead th.font_s_14{font-size: 14px;}
-.content_table tbody th{font-size: 15px;color: #1d1d1d;padding: 8px 10px;word-break: keep-all;background-color: #f7fafc;}
-.content_table tbody td{font-size: 15px;color: #1d1d1d;padding: 8px 10px;word-break: keep-all;}
-.content_table tbody td a{color: #1d1d1d;}
-.content_table tbody td a:hover{color: #032b81;text-decoration: underline;}
-.content_table .btn2_1{background-color: #616f91;border-radius: 4px;padding: 3px 8px;}
-.content_table .btn2_1{color: #fff;font-weight: 200;font-size: 13px;}
-.content_table .btn2_1:hover{color: rgb(255, 187, 0);}
-.content_table tbody td.borR, .content_table tbody th.borR, .content_table thead th.borR{border-right:1px solid #dddee0;}/*.content_table .borR{border-right:0px;}*/
-.content_table tbody td.borR_none, .content_table tbody th.borR_none, .content_table thead th.borR_none{border-right:0px;}
-.content_table thead th.none, .content_table tbody td.none, .content_table tbody th.none {border:0px; background-color: initial;}
+
 /*테이블안 세로 스크롤*/
 .col_scroll{overflow-y: auto;height: 600px;border: 1px solid #ddd;border-width: 1px 0px 1px;}
-.col_scroll .content_table{width: 100%;}
+.col_scroll .cont-table{width: 100%;}
 /*테이블안에 숫자 리스트*/
 figure.table {display: -webkit-box;}
 table.li_st_num tbody{counter-reset: number 0;}
@@ -557,9 +569,9 @@ table.li_st_num tbody tr th.w1::before{left: 1%;}
 @media (max-width: 980px) {
     .is-wauto-box {overflow-x: auto;}
     table.listTable{min-width:980px;}
-    .content_table{min-width:980px;}
+    .cont-table{min-width:980px;}
     table.listTable.of_n{min-width:0;width:100%;}    
-    .content_table.of_n{min-width:0;width:100%;}    
+    .cont-table.of_n{min-width:0;width:100%;}    
 }
 @media (max-width: 880px){ 
     .noticeTableSearch .count{width: 100%;margin-top: 0;margin-bottom: 10px;}

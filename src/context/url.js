@@ -14,10 +14,11 @@ const URL = {
     // SUBJECTMODI: "/subject/:menuCd/write",
 
     // - /:menuCd/notice, /guideline,  /library, /talk, /video, /result
-    CONTENTS: ":menuCd/guideline",  
+    CONTENTS: "/:menuCd/guideline",  
     LIST1: "/:menuCd/talk", 
     LIST2: "/:menuCd/library",
     LIST3: "/:menuCd/notice", 
+    LIST4: "/:menuCd/result", 
 
     GRID: "/:menuCd/video",  
     VIEW: "/board/:menuCd/view",
