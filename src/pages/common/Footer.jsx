@@ -9,9 +9,8 @@ const Footer = (props) => {
                     <Link><img src='/images/top_logoW.png'/><span className='.home_p_name'>입학안내</span></Link>
                 </div>
                 <ul>
-                    <li><Link>개인정보처리방침</Link></li>
-                    <li><Link>찾아오시는 길</Link></li>
-                    <li><Link>사이트맵</Link></li>
+                    <li><Link to="https://www.cs.ac.kr/document/site3" target='_blank'>개인정보처리방침</Link></li>
+                    <li><Link to={URL.SITEMAP}>사이트맵</Link></li>
                 </ul>
             </div>
             <div className='m_line'></div>

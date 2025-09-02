@@ -13,7 +13,7 @@ const MainGalleryComp = (props) => {
 
     const Init = async () =>{
         try{
-            const res = await fetch(SERVER_URL+'/api/board/178/list',{method:"GET", headers:{'content-type':'application/json'}});
+            const res = await fetch(SERVER_URL+'/api/board/572/list',{method:"GET", headers:{'content-type':'application/json'}});
             const data = await res.json();
             setPostList(data?.getBoardList); 
         }catch(e){
@@ -36,10 +36,10 @@ const MainGalleryComp = (props) => {
                 <p>창신대학교 소식을 생생한 유튜브로</p>
                 <h1>CSU<span>홍보영상</span></h1>
                 <ul className='Tab'>
-                    <li className='vdo'><Link title='창신대학교 홍보영상 유튜브'><div><p>창신대학교</p>2025 홍보영상</div></Link></li>
-                    <li className='btn sns2'><div><Link title='창신대학교 입학 페이스북'></Link></div></li>
-                    <li className='btn sns3'><div><Link title='창신대학교 입학 인스타그램 '></Link></div></li>
-                    <li className='btn more'><div><Link title='창신대학교 홍보영상 더보기'></Link></div></li>
+                    <li className='vdo'><Link to={"https://www.youtube.com/watch?v=x05iDgSyLIU"} target='_blank' title='창신대학교 홍보영상 유튜브'><div><p>창신대학교</p>2025 홍보영상</div></Link></li>
+                    <li className='btn sns2'><div><Link to={"https://www.facebook.com/changshinuniversity"} target='_blank' title='창신대학교 입학 페이스북'></Link></div></li>
+                    <li className='btn sns3'><div><Link to={"https://www.instagram.com/changshin_university"} target='_blank' title='창신대학교 입학 인스타그램 '></Link></div></li>
+                    <li className='btn more'><div><Link to={"/assistant/video"} title='창신대학교 홍보영상 더보기'></Link></div></li>
                 </ul>
             </div> 
             <div className='gallshow'>                 

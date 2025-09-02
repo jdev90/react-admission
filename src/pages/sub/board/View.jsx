@@ -4,9 +4,11 @@ import { SERVER_URL } from "context/config";
 import qs from "qs";
 
 import SubBannerComp from "pages/common/components/subBannerComp";
+import ContentMenuComp from 'pages/common/components/contentMenuComp';
+
 // **권한** //
 import {writePermissionCheck, deletePermissionCheck, getTokenData, getUserRoles} from "assets/js/jwt";
-import {getMenuInfo} from "assets/js/utils";
+import {getMenuInfo, getMenuInfoMenuCd} from "assets/js/utils";
 // **권한** //
 
 const View = () => {
@@ -44,7 +46,8 @@ const View = () => {
   /* --------------------------- 토큰/유저 --------------------------- */
   const token = window.sessionStorage.getItem("accessToken");
   let userData, roles;
-  let menuInfo = getMenuInfo(menuCd);
+  let menuInfo = getMenuInfoMenuCd(menuCd);
+
   if (token) {
     userData = getTokenData(token);
     roles = getUserRoles(token);
@@ -260,12 +263,9 @@ const View = () => {
   return (
     <>
       <SubBannerComp menuCd={menuCd} />
-
-      <div className="subcontain">
-        {/* <SideMenuComp menuCd={menuCd} /> */}
-        <div className="infocontain">
-          {/* <PathbarComp menuCd={menuCd} /> */}
-
+        <div className='Subcontain'>
+          <ContentMenuComp menuCd={menuCd}/>                          
+            <div className='contentBox'>
           {/* ---------------- 게시글 ---------------- */}
           <div className="table_area">
             <table className="comm viewTable">

@@ -16,20 +16,16 @@ import QuickMenu from "./pages/common/QuickMenu";
 
 import Main from "./pages/main/Main";
 import Contents from "./pages/sub/content/Contents";
+import Contents2 from "./pages/sub/content/Contents";
 import List from "./pages/sub/board/List";
-import List1 from "./pages/sub/board/List";
-import List2 from "./pages/sub/board/List";
+//import List2 from "./pages/sub/board/List2";
+
 
 import Grid from "./pages/sub/board/Grid";
 import View from "./pages/sub/board/View";
 import Write from "./pages/sub/board/Write";
-// import Schedule from "./pages/sub/schedule/Schedule";
-// import ScheduleModi from "./pages/sub/schedule/ScheduleModi";
-// import Prof from "./pages/sub/profile/Profile";
-// import ProfModi from "./pages/sub/profile/ProfileModi";
-// import Subject from "./pages/sub/subject/Subject";
-// import SubjectModi from "./pages/sub/subject/SubjectModi";
 
+import Sitemap from "./pages/sub/Sitemap";
 
 import Login from "./pages/sub/Login";
 import Error from "./pages/common/Error";
@@ -100,21 +96,16 @@ function App() {
             <Routes>
               <Route path={URL.MAIN} element={<Main/>} />
               <Route path={URL.CONTENTS} element={<Contents/>} /> 
+              <Route path={URL.CONTENTS2} element={<Contents/>} /> 
               <Route path={URL.LIST1} element={<List/>} />
               <Route path={URL.LIST2} element={<List/>} />
               <Route path={URL.LIST3} element={<List/>} />
-              <Route path={URL.LIST4} element={<List/>} />
+              {/*<Route path={URL.LIST4} element={<List2/>} />*/}
 
               <Route path={URL.GRID} element={<Grid/>} />
               <Route path={URL.VIEW} element={<View/>} /> 
-              {/* <Route path={URL.WRITE} element={<ProtectedRoute element={<Write />} requiredRoles={['ADMIN', 'MANAGER']} />} />  */}
               <Route path={URL.WRITE} element={<Write/>} /> 
-              {/* <Route path={URL.SCHEDULE} element={<Schedule/>} />
-              <Route path={URL.SCHEDULEMODI} element={<ProtectedRoute element={<ScheduleModi/>} requiredRoles={['ADMIN', 'MANAGER']} />} />
-              <Route path={URL.PROF} element={<Prof/>} />
-              <Route path={URL.PROFMODI} element={<ProtectedRoute element={<ProfModi/>} requiredRoles={['ADMIN', 'MANAGER']} />} />
-              <Route path={URL.SUBJECT} element={<Subject/>} />
-              <Route path={URL.SUBJECTMODI} element={<ProtectedRoute element={<SubjectModi/>} requiredRoles={['ADMIN', 'MANAGER']} />} /> */}
+              <Route path={URL.SITEMAP} element={<Sitemap/>} />
               <Route path={URL.LOGIN} element={<Login/>} />
               <Route path="/*" element={<Error/>} />
             </Routes>

@@ -1,25 +1,32 @@
 import React, { useState, useEffect } from 'react';
-import {  Link } from 'react-router-dom';
+import {  Link,useLocation } from 'react-router-dom';
 import MainBannerComp from './components/mainBannerComp';
 import MainNoticeComp from './components/mainNoticeComp';
 import MainGalleryComp from './components/mainGalleryComp';
 import MainCalendarComp from './components/mainCalendarComp';
 import MainGuideBookComp from './components/mainGuideBookComp';
 import PopupComp from 'pages/main/components/PopupComp';
+import {getMenuInfoMenuCd} from "assets/js/utils";
 
 const Main = (props) => {  
   const [ipsiIndex, setIpsiIndex] = useState(""); //달별로 분리된 학사일정 리스트
-  
+    const location = useLocation();
+    let early = getMenuInfoMenuCd(584).LINK;
+    let regular = getMenuInfoMenuCd(585).LINK;
+    let transfer = getMenuInfoMenuCd(586).LINK;
+    // let international = getMenuInfoMenuCd(location.pathname + location.search);
+
   const quickmenulist = [
-    {title: "수시모집",date: "2026",},
-    {title: "정시모집",date: "2026",},
-    {title: "외국인",date: "2026",},
-    {title: "편입학",date: "2026",}
+    {title: "수시모집",date: "2026",guideurl:"/early/guideline",rateurl:early,},
+    {title: "정시모집",date: "2026",guideurl:"/regular/guideline",rateurl:regular,},
+    {title: "편입학",date: "2026",guideurl:"/transfer/guideline",rateurl:transfer,},
+    {title: "외국인",date: "2026",guideurl:"/international/guideline",rateurl:"",},
+    
   ];
 
   const callList = [
-    {title: "신입학",phone: "055) 250-1200",link: "",},
-    {title: "편입학", phone: "055) 250-1304, 6",link: "",},
+    {title: "신입학",phone: "055) 250-1200",link: "/assistant/talk",},
+    {title: "편입학", phone: "055) 250-1304, 6",link: "/transfer/talk",},
   ];
 
   const ipsi = [
@@ -118,7 +125,7 @@ const Main = (props) => {
             <MainNoticeComp/>
             {/*2. 안내책자*/}
             <MainGuideBookComp/>
-            {/*3. 행사갤러리*/}
+            {/*3. 홍보영상*/}
             <MainGalleryComp/>
             {/*4. 입학도우미*/}
             <div className='ipBgc'>
@@ -135,8 +142,8 @@ const Main = (props) => {
                                 <p className='title'>{data.title}</p>
                             </div>
                             <div className='btn'>
-                                <Link><div className='book'>모집요강</div></Link>
-                                <Link><div>경쟁률</div></Link>
+                                <Link to={data.guideurl}><div className='book'>모집요강</div></Link>
+                                {data.rateurl != "" &&<Link to={data.rateurl} target='_blank'><div>경쟁률</div></Link>}
                             </div>
                         </li>
                     ))}</ul> 
@@ -148,7 +155,7 @@ const Main = (props) => {
                             </div>
                             <div className='col col2'>
                                 <div className='num'>전화 상담<span>{data.phone}</span></div>
-                                <div className={'link link'+index}>온라인 상담<span><Link>바로가기</Link></span></div>
+                                <div className={'link link'+index}>온라인 상담<span><Link to={data.link}>바로가기</Link></span></div>
                             </div>
                         </li>
                     ))}</ul>

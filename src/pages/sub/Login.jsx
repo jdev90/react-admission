@@ -65,8 +65,8 @@ const Login = (props) => {
     
     return(
         <>
-            <SubBannerComp/>
-            <div className='maincontain'>
+            <SubBannerComp menuCd={null}/>
+            <div className='noneContentMenu-box'>
                 <div className='logintitle'><p>로그인</p></div>
                 <div className='loginbox'>
                     <div className="cslogo"><img src='/images/sub/login/cslogo.png' alt='창신대학교 로고'/></div>

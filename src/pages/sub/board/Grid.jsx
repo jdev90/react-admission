@@ -11,11 +11,12 @@ import { writePermissionCheck } from 'assets/js/jwt';
 
 const Grid = (props) => {    
     
-    const params = useParams();    
-	const menuCd = '551'; //임의 menucd int X  string O 
+    //const params = useParams();    
+	const menuCd = '572'; //임의 menucd int X  string O 
    // const [boardList, setBoardList] = useState([]);
     const [menuList, setMenuList] = useState("");
     const [postList, setPostList] = useState([]);
+    //let menuInfo = getMenuInfo(location.pathname + location.search);
 
     const [menuListCnt, setMenuListCnt] = useState([]);
     const [menuTotalCnt, setMenuTotalCnt] = useState([]);
@@ -222,7 +223,7 @@ const Grid = (props) => {
                                 <ul className='com'>{pasing.map((data, index)=> {                             
                                         if(index < menuListCnt / showPostCnt &&  index >= pagingNum[0] && index < pagingNum[1]){                                                         
                                         return(                                      
-                                            <li className={pageClicked == index ? 'num active' : 'num'}  onClick={()=>{setPageSt(showPostCnt*index);setPageEd(showPostCnt*(index+1)-1);setPageIndexClicked(index)}}>{index+1}</li>
+                                            <li className={pageClicked == index ? 'num active' : 'num'}  onClick={()=>{setPageSt(showPostCnt*index);setPageEd(showPostCnt*(index+1)-1);setPageIndexClicked(index)}}><div>{index+1}</div></li>
                                         )}
                                     })}
                                 </ul>

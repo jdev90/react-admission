@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import {  Link, useParams } from 'react-router-dom';
 import SubBannerMenuComp from 'pages/common/components/subBannerMenuComp';
 import {SERVER_URL} from '../../../context/config';
+import {getMenuInfoMenuCd} from "assets/js/utils";
 
 const SubBannerComp = (props) => {
     const menuCd = props.menuCd 
     const [menuList, setMenuList] = useState([]); 
-   
-    let dep1_MC;
+    const menuInfo = getMenuInfoMenuCd(menuCd);
     useEffect(() => {
-        Init();
+        Init()
     },[menuCd]);
     
     const Init = async () =>{
@@ -17,14 +17,13 @@ const SubBannerComp = (props) => {
             const res = await fetch(SERVER_URL+'/api/menu/list',{method:"POST", headers:{'content-type':'application/json'}});
             const data = await res.json();  
             setMenuList(data.getMenuList); 
-            authChk(data.getMenuList);
-                    
+            //authChk(data.getMenuList);                    
         }catch(e){
             console.log(e);
         }
     }
 
-    function authChk(list) {
+    {/*function authChk(list) {
         let privacy;let reply;let user_write;
         for(var i=0;i<list.length;i++){
             if(list[i].MENU_CD == menuCd){
@@ -48,7 +47,7 @@ const SubBannerComp = (props) => {
                 return menu(menuList[i].PARENT_MENU_CD) //현 메뉴코드의 부모메뉴코드 넣고 다시
             }
         }    
-    }
+    }*/}
     
     return(
         <div className='banner'>
@@ -56,24 +55,26 @@ const SubBannerComp = (props) => {
                 <img src="/images/sub/sub_banner.png" alt='서브페이지 배너'/>
             </div> 
             <div className='subBannertxt'>
-                {/*{menuList?.map((data, index)=> {
-                    menu(menuCd)  
-                    
-                    if(data.DEPTH == 1 && data.MENU_CD == dep1_MC ){
-                        return(
-                        <div className='dep1'>
-                            <p>{data.MENU_NM}</p>
-                        </div> 
-                        )
+                {menuCd != null && menuList?.map((data, index)=> {
+                    if(data.DEPTH == 1 && data.MENU_CD == menuInfo.PARENT_MENU_CD){
+                        return(<>
+                        <p className='dep1'>{data.MENU_NM}</p>
+                        <p>ALL NEW CSU, 새로운 CSU! 시작은 NEW! 주인공은 YOU!</p>
+                        </>)
                     }
                 })}
-                 {dep1_MC == undefined &&
+                {menuCd == null && 
+                    <>
+                    <p className='dep1'>창신대학교</p>
+                    <p>ALL NEW CSU, 새로운 CSU! 시작은 NEW! 주인공은 YOU!</p>
+                    </>
+                }
+                {/* {dep1_MC == undefined &&
                     <div className='dep1'>
                         <p>창신대학교 대학원</p>
                     </div> 
                 } */}
-                <p className='dep1'>수시모집</p>
-                <p>ALL NEW CSU, 새로운 CSU! 시작은 NEW! 주인공은 YOU!</p>
+                
                 
             </div>  
             <SubBannerMenuComp menuCd={menuCd} />

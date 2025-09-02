@@ -17,8 +17,10 @@ import 'swiper/css/effect-coverflow';
 const MainGuideBookComp = (props) => {  
     const params = useParams();
     const menuCd = params.menuCd; 
-  const sliderRef = useRef(null);
-  const intervalRef = useRef(null);
+    const sliderRef = useRef(null);
+    const intervalRef = useRef(null);
+    const [guideList, setGuideList] = useState([]); //달별로 분리된 학사일정 리스트
+    
 
   // 자동 슬라이드
   useEffect(() => {
@@ -59,7 +61,18 @@ const MainGuideBookComp = (props) => {
           
     const Init = async () =>{
         try{
-        //    showBook(1)
+
+            let JsonArray = new Array();
+            let JsonObject = new Object;
+            JsonObject.YEAR = 2025; //년도
+            JsonObject.GUBUN = 2; //0: 안내책자, 1 : 수시, 2: 정시, 3: 편입학, 4: 외국인
+            JsonArray.push(JsonObject);  
+            let res = await fetch(SERVER_URL+'/api/guide/view',{method:"POST", headers:{'content-type':'application/json'}, body : JSON.stringify(JsonArray)});
+            const sudata = await res.json();
+
+            
+            setGuideList(sudata.getGuideView[0]);
+            console.log(sudata.getGuideView);
         }catch(e){
             console.log(e);
         }

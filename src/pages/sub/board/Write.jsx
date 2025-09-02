@@ -4,6 +4,8 @@ import { SERVER_URL } from 'context/config'; //
 import ReCAPTCHA from "react-google-recaptcha";
 import qs from 'qs';
 import SubBannerComp from 'pages/common/components/subBannerComp';
+import ContentMenuComp from 'pages/common/components/contentMenuComp';
+
 // import { getTokenData,getUserRoles } from 'server';
 // import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { ClassicEditor } from 'ckeditor5';
@@ -224,8 +226,9 @@ const Write = (props) => {
         <>
             {/* <SubBannerComp menuCd={menuCd} onMessage={handleMessage}/> */}
             <SubBannerComp menuCd={menuCd} />
-            <div className='subcontain'>
-                <div className='infocontain'>
+                <div className='Subcontain'>
+                <ContentMenuComp menuCd={menuCd}/>                          
+                    <div className='contentBox'>
                     <div className='table_area'>
                         <table className='comm writeTable'>
                             <colgroup>

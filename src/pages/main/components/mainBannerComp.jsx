@@ -92,11 +92,11 @@ const MainBannerComp = (props) => {
             </div> */}
             <div className="banner_board">
                 <div className='static'>
-                    <div className='line'><Link>
+                    <div className='line'><Link to="/board/569/view?boardId=320">
                         <p>2026학년도</p>
                         <p>대학입학전형 시행계획 주요사항</p>
                     </Link></div>
-                    <div><Link>
+                    <div><Link to="/board/569/view?boardId=288">
                         <p>2025학년도</p>
                         <p>대학입학전형 시행계획 주요사항</p>
                     </Link></div>

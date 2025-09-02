@@ -62,7 +62,6 @@ const Top = (props) => {
             const data = await res.json();   
             setMenuList(data.getMenuList);
             sessionStorage.setItem("menuList", JSON.stringify(data.getMenuList));
-            console.log(data.getMenuList);
         }catch(e){
             console.log(e);
         }
@@ -152,7 +151,7 @@ const Top = (props) => {
                         })}
                         <li className='dep1 ex_link'><div><Link>학과안내<img src='/images/top_exlink.png'/></Link></div></li>
                         {/* <li className='dep1 ex_link'><div className='vdo'><Link>홍보영상<img src='/images/top_exlink.png'/></Link></div></li> */}
-                        <li className='sitem'><Link to={'/contents/182/view'}><img src={isHovered ? '/images/top_sitemB.png' : '/images/top_sitemW.png'}/></Link></li>
+                        <li className='sitem'><Link to={URL.SITEMAP}><img src={isHovered ? '/images/top_sitemB.png' : '/images/top_sitemW.png'}/></Link></li>
                     </ul> 
                     <div className='mob_menubtn' onClick={() =>{isOpen ? handleOpenMenu(false): handleOpenMenu(true)}}><img src={isHovered ? '/images/top_sitemB.png' : '/images/top_sitemW.png'}/></div>
 

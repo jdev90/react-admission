@@ -64,7 +64,7 @@ header.active .Top .logoTab .topmenu li.dep1 .dep2:hover{background-color: #f3fa
 #top span:before{position: absolute;left: -7px;top: -5px;content: '';width: 13px;height: 13px;border-top: 3px solid #fff;border-right: 3px solid #fff;transform: rotate(-45deg);}
   
 /*테이블*/
-.table_area{width:100%;margin: auto;margin: 80px auto 100px auto;} 
+.table_area{width:100%;margin: auto;} 
 table.comm{border-collapse: collapse;position:relative;width:100%;word-break:break-all;border-collapse: collapse;border-spacing: 0;}
 table.comm thead th{ border-top:2px solid #001C58;border-bottom:1px solid #666;border-right:1px solid #dddee0;}
 table.comm tbody td{border-right:1px solid #dddee0;border-bottom:1px solid #dddee0;}
@@ -98,32 +98,39 @@ table.listTable tbody td a:hover{color: #014DA1; text-decoration:underline ;}
 table.listTable tbody td.txtleft img{width: 14px; margin-left: 10px;transform: translateY(-8%);}
 table.listTable tbody td.txtleft {text-align:left; padding: 0 10px;}
 table.listTable tbody td.file_img img{width: 16px;}
-table.listTable tbody td .notice{color: #f1f1f1;background-color: #0070d1;display: inline;padding: 2px 8px;border-radius: 3px;font-weight: 300;font-size: 13px;}
-table.listTable tbody td .cate{transform: translateY(-2px);display: inline-block;padding: 2px 6px;border-radius: 2px;font-weight: 300;font-size: 13px;margin-right: 5px;}
-.cate.cate0{background-color: #D9D9D9;}
-.cate.cate1{background-color: #f5d4d4;}
-.cate.cate2{background-color: #d8d5b7;}
-.cate.cate3{background-color: #c8e9c7;}
-.cate.cate4{background-color: #c0ebeb;}
-.cate.cate5{background-color: #b5c5dd;}
-.cate.cate5{background-color: #ecdec9;}
-.cate.cate6{background-color: #e6c8f5;}
-.cate.cate7{background-color: #f5c8c8;}
-.cate.cate8{background-color: #c8f5e6;}
-.cate.cate9{background-color: #b8ffe7;}
-.cate.cate10{background-color: #fdf2b5;}
-table.listTable tbody td a.noti_a{font-weight: 600;}
+table.listTable tbody td .notice{color: #f1f1f1;background-color: #0070d1;display: inline;padding: 2px 8px;padding-top: 4px;border-radius: 3px;font-weight: 300;font-size: 13px;}
+table.listTable tbody td .cate{transform: translateY(-2px);display: inline-block;padding: 2px 0;padding-top: 4px;width: 50px;text-align: center;border-radius: 10px;font-weight: 300;font-size: 13px;margin-right: 5px;color: #fff;}
+.cate.cate0{ background-color: #9852A9;}
+.cate.cate1{ background-color: #034EA2;}
+.cate.cate2{ background-color: #E55D94;}
+.cate.cate3{ background-color: #FF8474;}
+.cate.cate4{ background-color: #FFBD5E;}
+table.listTable tbody td a.noti_a{font-weight: 400;}
 table.listTable tbody td.nonepost{line-height: 100px;}
 table.listTable tbody td .new {display: inline-block;background-color: #D37100;width: 18px;text-align: center;font-size: 11px;height: 18px;line-height: 19px;color: #fff;font-weight: 400;border-radius: 8px 8px 6px 0px;transform: translateY(-16%);margin-left: 10px;}
 
-/*게시글 페이징*/
+/*게시글 페이징
+.paging{text-align: center;}
 .paging .com{display: inline;} 
 .paging ul li{margin: 0 8px;color: #868686;cursor: pointer;display: inline;}
 .paging ul li.active{color: #0052af;}
 .paging .btn img{margin: 0 10px;width: 14px;transform: rotate(90deg);cursor: pointer; opacity: 0.6;}
 .paging .next img{transform: rotate(-90deg);}
 .paging .btnL img{height: 14px;transform: rotate(180deg);cursor: pointer; opacity: 0.6;}
+.paging .nextL img{transform: rotate(0deg);}*/
+.paging{text-align: center;}
+.paging .com{display: inline;} 
+.paging ul li{margin: 0 8px;color: #868686;cursor: pointer;display: inline;}
+.paging ul li.active{color: #0052af;}
+.paging .btn img{margin: 0 10px;width: 14px;transform: rotate(90deg);cursor: pointer; opacity: 0.6;}
+.paging .next img{transform: rotate(-90deg);}
+.paging .btnL img{height: 12px;transform: rotate(180deg);cursor: pointer; opacity: 0.6;}
 .paging .nextL img{transform: rotate(0deg);}
+.paging .com{margin: 0 6px;color: #868686;cursor: pointer;}
+.paging ul li {margin: 0 2px;}
+.paging ul li div{display: inline-block;width: 32px; border: 1px solid #dddddd00;padding: 4px 0;border-radius: 6px;}
+.paging ul li.active div{color: #fff;background-color: #0052af;}
+.paging ul li:not(.active) div:hover{background-color: #e3f9ff;}
 /*게시글리스트(채용정보)
 table.listTable.jobinfoTable tbody td a{display:inline-block;color: #6e6e6e; width: 70%;overflow: hidden; white-space: nowrap;text-overflow: ellipsis;word-break: break-all;}
 .table_area.jobinfo_table .paging{margin-top: 40px;}*/
@@ -231,8 +238,8 @@ footer .info ul li p:not(.titl){margin-bottom: 2px;}
 /*######### 서브페이지 ###########*/
 .Subcontain{position: relative;;background-color: #0077ff00; width: 1416px;margin: auto;min-height: 730px;display: inline-block;margin-bottom: 200px;}
 .contentMenu{position: absolute;width: 20%;top:-35px;word-break: keep-all;}
-.contentBox{width: 76%;margin-left: auto;text-align: left;padding-top: 100px;}
-
+.contentBox{width: 76%;margin-left: auto;text-align: left;padding-top: 100px;word-break: keep-all;}
+.noneContentMenu-box{width: 100%;padding-top: 100px;}
 /*----서브페이지 사이드메뉴*/
 .contentMenu .dep1_nm{position: relative;color: #fff;background:linear-gradient(160deg, #034EA2, #003774);box-shadow: 3px 3px 6px #00000049;font-size: 30px; font-weight: 400;border-radius: 0 20px 0 20px;height: 160px;}
 .contentMenu .dep1_nm p{position: absolute;transform: translateX(-50%) translateY(-50%);top:50%;left: 50%;width: 85%;}
@@ -243,8 +250,16 @@ footer .info ul li p:not(.titl){margin-bottom: 2px;}
 .contentMenu ul li img{position: absolute;right: 20px;top:50%;transform: translateY(-50%);}
 
 /*----서브페이지 contents*/
+.cont-area{counter-reset: number 0;}
 .cont-h {font-size: 32px;font-weight: 400;}
+.cont-m-num{position: relative;padding-left: 34px;margin-bottom: 18px;font-size: 24px;color: #0062CF;}
+.cont-m-num::before{position: absolute;counter-increment: number 1; content:counter(number);width: 26px;padding: 2px 0;border-radius: 5px; font-size: 14px;line-height: 20px;background-color: #0062CF;color: #fff;text-align: center; left: 0;top:0;}
+.cont-s{position: relative;;font-size: 18px;padding-left: 15px;margin-left: 10px;line-height: 26px;}
+.cont-s::before{position: absolute;content: "";width: 4px;height: 4px;border-radius: 50%;background-color: #111;left: 0;top: 9px;}
+.cont-s.mgM{margin-bottom: 40px;}
+
 .mgB{margin-bottom: 100px;}
+.mgB5{margin-bottom: 5px;}
 .mgB20{margin-bottom: 20px;}
 .mgB40{margin-bottom: 40px;}
 /* 1. 모집요강 */
@@ -271,7 +286,10 @@ footer .info ul li p:not(.titl){margin-bottom: 2px;}
 .cont-cate .cate{display: inline-block;width: 33.26%;font-size: 20px;text-align: center;padding: 20px 0;cursor: pointer;}
 .cont-cate .cate:not(:first-child){border-left:1px solid #cacaca ;}
 .cont-cate .cate.active{background-color: #003774;color: #fff;}
-
+.cont-query{counter-reset: number 0;display: table;width: 100%;padding-top: 40px;padding-bottom: 40px;background-color: #F8F8F8;border-radius: 20px;box-shadow: inset -4px 4px 7px #1111111e;}
+.cont-query li{position: relative;;display: table-cell;text-align: center;padding-top: 45px; width: 16.66%;}
+.cont-query li::before{position: absolute;counter-increment: number 1; content:"0"counter(number); top:0px;left: 50%;transform: translateX(-50%);width: 35px;height: 35px;line-height: 35px;border-radius: 50%;background-color: #D8F0FF;}
+.cont-query li:not(:last-child):after{position: absolute;content: ">";top:50%;right: 0;transform: translatey(-50%);color: #adadad;}
 
 figure.table{margin: 0;}
 .cont-table{text-align: center;font-size: 15px;}

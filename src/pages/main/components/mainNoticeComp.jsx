@@ -5,7 +5,11 @@ import { SERVER_URL } from "context/config";
 const MainNoticeComp = (props) => {
     const [postList, setPostList] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [menucd, setMenucd] = useState(174);
+    const [menucd, setMenucd] = useState(569);
+    const [cate, setCate] = useState("");
+    const listCate = ["공통","수시","정시","편입학","외국인"]; 
+    const noticeUrlList = ["/assistant/notice","/early/notice","/regular/notice","/transfer/notice","/international/notice"]; 
+
     //const location = useLocation();
     // const today = new Date();
     // const formattedDate = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일`;
@@ -25,10 +29,9 @@ const MainNoticeComp = (props) => {
     }
 
     const getBoard = async () => {
-        const res = await fetch(SERVER_URL+'/api/board/'+menucd+'/list',{method:"GET", headers:{'content-type':'application/json'}});
+        const res = await fetch(SERVER_URL+'/api/board/569/list?CATE='+cate,{method:"GET", headers:{'content-type':'application/json'}});
         const data = await res.json();
         setPostList(data?.getBoardList);
-
     }
     function newFunc(postDate){
         // 날짜 문자열을 Date 객체로 변환 (yyyyMMdd 형식에서 Date로 변환)
@@ -58,12 +61,12 @@ const MainNoticeComp = (props) => {
                 <p>창신대학교 입시 소식을 확인할 수 있습니다.</p>
                 <h1>CSU<span>공지사항</span></h1>  
                 <ul className='Tab'>
-                    <li onClick={e => tabClick(174)} className={ 174 == menucd  ? "on" : "" }>전체</li>
-                    <li onClick={e => tabClick(163)} className={ 163 == menucd  ? "on" : "" }>수시</li>
-                    <li onClick={e => tabClick(174)} className={ 172 == menucd  ? "on" : "" }>정시</li>
-                    <li onClick={e => tabClick(174)} className={ 173 == menucd  ? "on" : "" }>편입학</li>
-                    <li onClick={e => tabClick(174)} className={ 171 == menucd  ? "on" : "" }>외국인</li>
-                    <li className='more'><Link><img src='/images/main/comm_more.png'/></Link></li>
+                    <li onClick={e => (tabClick(569),setCate(''))} className={ 569 == menucd  ? "on" : "" }>전체</li>
+                    <li onClick={e => (tabClick(551),setCate(1))} className={ 551 == menucd  ? "on" : "" }>수시</li>
+                    <li onClick={e => (tabClick(556),setCate(2))} className={ 556 == menucd  ? "on" : "" }>정시</li>
+                    <li onClick={e => (tabClick(565),setCate(3))} className={ 565 == menucd  ? "on" : "" }>편입학</li>
+                    <li onClick={e => (tabClick(561),setCate(4))} className={ 561 == menucd  ? "on" : "" }>외국인</li>
+                    <li className='more'><Link to={cate == '' ? noticeUrlList[0] :noticeUrlList[cate]}><img src='/images/main/comm_more.png'/></Link></li>
                 </ul>              
             </div>
 
@@ -75,7 +78,7 @@ const MainNoticeComp = (props) => {
                             <li>
                                 <Link to={"/board/"+data.MENU_CD+"/view?boardId="+data.BOARD_ID}>
                                     <div className='title'>
-                                        {data.MENU_CD == 174 && <span className={'cata cate'+data.CATE}>{data.CATE_NM}</span>}
+                                        <span className={'cata cate'+data.CATE}>{listCate[data.CATE]}</span>
                                         {/* {data.NOTICE && <span className='noti'>공지</span>} */}
                                         {data.TITLE}
                                         {isnew && <div className='new'>N</div>}

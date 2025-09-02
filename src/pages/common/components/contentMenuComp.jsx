@@ -1,17 +1,14 @@
 import React, { useState, useEffect} from 'react';
 import {  Link, useParams , useLocation} from 'react-router-dom';
 import {SERVER_URL} from 'context/config'; //
-import {getMenuInfo} from "assets/js/utils";
+import {getMenuInfoMenuCd} from "assets/js/utils";
 
 const ContentMenuComp = (props) => {    
-    // const params = useParams();
-    // const menuCd = params.menuCd; 
-    const location = useLocation();
-    let menuInfo = getMenuInfo(location.pathname + location.search);
+    const menuCd = props.menuCd 
+    let menuInfo = getMenuInfoMenuCd(menuCd);
     const [menuList, setMenuList] = useState([]);
 
     useEffect(() => {
-        console.log(menuInfo?.MENU_CD);
         Init();       
     },[menuInfo?.MENU_CD]);
 
@@ -55,7 +52,6 @@ const ContentMenuComp = (props) => {
                     <div className='dep1_nm'><p>{data.MENU_NM}</p></div>
                     <ul className='dep2'>
                         {menuList?.map((data1, index1)=> {
-                            console.log(index1, index);
                             if(data1.DEPTH === "2" && data1.PARENT_MENU_CD == menuInfo?.PARENT_MENU_CD){
                                 return(
                                     <li key={index1}><Link to={data1.LINK}><p className={menuInfo?.MENU_CD == data1.MENU_CD ? 'dep2_nm active' : 'dep2_nm'} onClick={() => showTab(index1-(index+1)) }>{data1.MENU_NM}</p><img src='/images/sub/content/comm_menu.png'/></Link></li>

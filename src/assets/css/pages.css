@@ -243,8 +243,9 @@
 .MainIphakService .quickbtn li .index::before{content: "";position: absolute;width: 130px;height: 130px;border-radius: 50%;background-color: #fff;top:0;left: 30px;z-index: -1;background-repeat: no-repeat;background-position: center;}
 .MainIphakService .quickbtn li .index0::before{background-image: url("../images/main/quick_icon1.png");}
 .MainIphakService .quickbtn li .index1::before{background-image: url("../images/main/quick_icon2.png");}
-.MainIphakService .quickbtn li .index2::before{background-image: url("../images/main/quick_icon3.png");}
-.MainIphakService .quickbtn li .index3::before{background-image: url("../images/main/quick_icon4.png");}
+.MainIphakService .quickbtn li .index2::before{background-image: url("../images/main/quick_icon4.png");}
+
+.MainIphakService .quickbtn li .index3::before{background-image: url("../images/main/quick_icon3.png");}
 .MainIphakService .quickbtn li .btn{position: absolute;top:60%;right: 50px;transform: translateY(-50%);}
 .MainIphakService .quickbtn li .btn div{width: 122px;border-radius: 50px;background-color: #fff;padding: 6px 0;margin: 6px 0;}
 .MainIphakService .quickbtn li .btn div.book{background-color: #034EA2;color: #fff;}
@@ -351,7 +352,7 @@ input:focus {outline: none;}
 .subBannerMenu_area{visibility: hidden;}
 
 /* login */
-.logintitle{margin:70px auto 50px auto;font-size: 36px;font-weight: 500;}
+.logintitle{font-size: 36px;font-weight: 400;margin-bottom: 50px;}
 .logintitle p{padding: 0;}
 .loginbox{width: 56%; height: 350px; border: 1px solid #a7a7a7; border-top: 5px solid #014DA1;margin:auto;margin-bottom: 120px;border-radius: 0px;}
 .loginbox .cslogo, .login{float: left;height: 100%;width: 51%;}
@@ -396,11 +397,11 @@ input:focus {outline: none;}
 .siteBox{position: relative; display: inline-block;width: 100%; padding: 20px 0;}/*border-top:1px dashed #AFCAFF; */
 .siteBox:first-child{border-top:0px;}
 .siteBox .dep{float: left;}
-.siteBox .dep1{margin-bottom: 6px;margin-left: 30px;font-size: 22px;font-weight: 500; width: 30%;text-align: left;}
+.siteBox .dep1{margin-bottom: 6px;margin-left: 30px;font-size: 22px;font-weight: 400; width: 30%;text-align: left;}
 .siteBox .dep2{text-align: left;float: left;margin-top: 0px;width: 58%;}
 .siteBox .dep2 li{margin-bottom:15px;}
-.siteBox .dep2 a{color: #424242;font-size: 18px;font-weight: 400;}
-.siteBox .dep2 a:hover{color: #014DA1;text-decoration: underline;font-weight: 500;}
+.siteBox .dep2 a{color: #202020;font-size: 18px;font-weight: 300;}
+.siteBox .dep2 a:hover{color: #014DA1;text-decoration: underline;}
 .siteBox .dep3 li{margin:6px 20px;}
 .siteBox .dep3 a{font-size: 16px;}
 .siteBox .dep3 li::before{display: inline-block;content: "";background: #014DA1;height: 5px;width: 5px;border-radius: 4px;margin-right: 10px;margin-bottom: 6px;}

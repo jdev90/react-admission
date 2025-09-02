@@ -17,38 +17,27 @@ const List= (props) => {
     const focusRef = useRef();
     const location = useLocation();
     const navigate = useNavigate(); 
+    const params = useParams();
     let menuInfo = getMenuInfo(location.pathname + location.search);
-    const getMenucd = () => {
-        if(location.pathname.endsWith('/notice')){return 569;}
-        else if(location.pathname.endsWith('/talk')){return 571;}
-        else if(location.pathname.endsWith('/library')){return 570;}
-    };
-    let allnoice_menucd = getMenucd(); //전체공지 메뉴코드
-    const getInitialCate = () => {
-        switch (menuInfo?.MENU_CD) {
-            case '569' || '570' || '571': return '';
-            case '551' || '552' || '553': return 1;
-            case '556' || '557' || '558': return 2;
-            case '565' || '566' || '567': return 3;
-            case '561' || '562' || '563': return 4;
-            default: return null; 
-        }
-    };
-    const [cate, setCate] = useState(getInitialCate());
-
+    
+	const menuCd = menuInfo.MENU_CD; 
+    // const menuCd = 175; 
     const [menuList, setMenuList] = useState([]);
 
     const [menuListCnt, setMenuListCnt] = useState([]);
     const [menuTotalCnt, setMenuTotalCnt] = useState([]);
     const showPostCnt = 10; //최대 10개 게시물 보여짐
-    const showpageCnt = 6; //최대 10쪽씩 보여짐
+    const showpageCnt = 10; //최대 10쪽씩 보여짐
     const [pageIndexClicked, setPageIndexClicked] = useState(0);
     const [pasing, setPasing] = useState([]);   //페이지숫자 
     const [pagingNum, setPagingNum] = useState([0, showpageCnt]);
+    
+
     const [opClicked, setOpClicked] = useState(false);
     const [option, setOption] = useState('search_title');
     const [optionName, setOptionName] = useState('제목');
     const [input, setInput] = useState('');
+
     const [pageSt, setPageSt] = useState('');
     const [pageEd, setPageEd] = useState(""); //""
 
@@ -58,25 +47,29 @@ const List= (props) => {
     const roles = getUserRoles(token);
     let userData;
     let userDataid;
+
     const [PWpop, setPWpop] = useState(false);
     const [PW, setPW] = useState('');
     const [PWbool, setPWbool] = useState(false);
+
     const [board_id, setBoard_id] = useState(''); 
-             
+
     // const [privacy, setprivacy] = useState(''); // 비밀글
     // const [reply, setreply] = useState(''); // 댓글
     // const [user_write, setUser_write] = useState(''); //글쓰기
-    const listCate = ["공통","수시","정시","편입학","외국인"]; 
+
+        
     if(token) {userData = getTokenData(token); userDataid = userData.user.id}
+    // let menuInfo = getMenuInfo(menuCd);
     //**권한**//
     useEffect(() => {
-        //if(menuCd == 176 && !token){ //자료실
-        //    navigate("/login?url="+location.pathname)
-        //}
+        if(menuCd == 176 && !token){ //자료실
+            navigate("/login?url="+location.pathname)
+        }
         //**권한**//
         setWritePermission(false);
         if (token) {
-            setWritePermission(writePermissionCheck(token, menuInfo.MENU_CD)); // 권한 확인
+            setWritePermission(writePermissionCheck(token, menuCd)); // 권한 확인
         }
         //**권한**//
         setOption('search_title');
@@ -87,24 +80,22 @@ const List= (props) => {
         setPageSt(0);
         setPageEd(showPostCnt); 
         setPagingNum([0,showpageCnt]);
+          
         Init();
         window.scrollTo(0, 0);
-        allnoice_menucd = getMenucd(); //전체공지 메뉴코드
-    },[cate]);
-     useEffect(() => {
-        setCate(getInitialCate())
-    },[menuInfo.MENU_CD]);
-    
+    },[menuCd]);
    
+    
       
     const Init = async () =>{
         try{
-            const res = await fetch(SERVER_URL+'/api/board/'+allnoice_menucd+'/list?PAGESTART='+pageSt+'&PAGEEND=10&CATE='+cate, {method: "POST", headers : {"Content-Type" : "application/json;charset=utf-8;"}});
+            const res = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?PAGESTART='+pageSt+'&PAGEEND=10', {method: "POST", headers : {"Content-Type" : "application/json;charset=utf-8;"}});
             const data = await res.json();
             setMenuList(data?.getBoardList); 
             setMenuListCnt(data?.totalCnt);
             setMenuTotalCnt(data?.totalCnt);
             setPasing(new Array(data?.totalCnt).fill(null));            
+     
         }catch(e){
             console.log(e);
         }
@@ -112,10 +103,10 @@ const List= (props) => {
 
     {/*검색 옵션*/}
     const getOption = async () => { 
-        const res = await fetch(SERVER_URL+'/api/board/'+allnoice_menucd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND=10&CATE='+cate,{method:"GET", headers:{'content-type':'application/json'}});
+        const res = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND=10',{method:"GET", headers:{'content-type':'application/json'}});
         const data = await res.json();
         setMenuList(data?.getBoardList);         
-        const res2 = await fetch(SERVER_URL+'/api/board/'+allnoice_menucd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND='+menuTotalCnt+'&CATE='+cate,{method:"GET", headers:{'content-type':'application/json'}});
+        const res2 = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND='+menuTotalCnt,{method:"GET", headers:{'content-type':'application/json'}});
         const data2 = await res2.json();
         setMenuListCnt(data2?.getBoardList.length); 
     }
@@ -153,8 +144,8 @@ const List= (props) => {
     }
     const paginga = async () => {
         let res ='';        
-        if(pageEd == showPostCnt-1){ res = await fetch(SERVER_URL+'/api/board/'+allnoice_menucd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND=10&CATE='+cate,{method:"GET", headers:{'content-type':'application/json'}});}              
-        else{ res = await fetch(SERVER_URL+'/api/board/'+allnoice_menucd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND='+pageEd+'&CATE='+cate,{method:"GET", headers:{'content-type':'application/json'}});} 
+        if(pageEd == showPostCnt-1){ res = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND=10',{method:"GET", headers:{'content-type':'application/json'}});}              
+        else{ res = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND='+pageEd,{method:"GET", headers:{'content-type':'application/json'}});} 
         const data = await res.json();
         setMenuList(data?.getBoardList);
     }
@@ -182,18 +173,19 @@ const List= (props) => {
     }, [PWpop,PWbool]);
 
     function PWChkPopup(priv, BOARD_ID){
+        
         if(priv == "1"){
-            {writePermission && navigate("/board/"+menuInfo.MENU_CD+"/view?boardId="+BOARD_ID);}
+            {writePermission && navigate("/board/"+menuCd+"/view?boardId="+BOARD_ID);}
             setPWpop(true)
             setBoard_id(BOARD_ID);
         }
-        else{navigate("/board/"+menuInfo.MENU_CD+"/view?boardId="+BOARD_ID);}
+        else{navigate("/board/"+menuCd+"/view?boardId="+BOARD_ID);}
     }
     const PWChk = async () => {
         let JsonArray = new Array();
         let JsonObject = new Object;
         JsonObject.BOARD_ID = board_id;
-        JsonObject.MENU_CD = menuInfo.MENU_CD;
+        JsonObject.MENU_CD = menuCd;
         JsonObject.PASSWD = PW;
         JsonArray.push(JsonObject);
         // let res ='';     
@@ -205,7 +197,7 @@ const List= (props) => {
             return setPWbool(true);
         }
         else if(data.PASS == 1){
-            navigate("/board/"+menuInfo.MENU_CD+"/view?boardId="+board_id);
+            navigate("/board/"+menuCd+"/view?boardId="+board_id);
         }
 
        
@@ -214,12 +206,16 @@ const List= (props) => {
         if (window.event.keyCode == 13){PWChk();}
     }
     
+    // const handleMessage = ({ privacy, reply, user_write }) => {
+    //     setUser_write(user_write)
+    //  }; 
+    
 
     return(
         <>
-            <SubBannerComp menuCd={menuInfo.MENU_CD} />
+            <SubBannerComp menuCd={menuCd} />
             <div className='Subcontain'>
-                <ContentMenuComp menuCd={menuInfo.MENU_CD}/>                          
+                <ContentMenuComp  menuCd={menuInfo.MENU_CD}/>                          
                 <div className='contentBox'>
                     <div className='table_area'>
                         <div className='noticeTableSearch'>  
@@ -268,7 +264,7 @@ const List= (props) => {
                                             <tr key={index}>
                                                 {data?.NOTICE != '1' ?<td>{data.NO}</td>:<td><div className='notice'>공지</div></td>}{/*menuListCnt-pageSt-index*/}
                                                 <td className="txtleft" onClick={() => PWChkPopup(data.PRIVACY, data.BOARD_ID)}>
-                                                    {data.CATE !="" && <div className={'cate cate'+data.CATE}>{listCate[data.CATE]}</div>}
+                                                    {/* {data.CATE !="" && <div className={'cate cate'+data.CATE}>{listCate[data.CATE]}</div>} */}
                                                     <Link className={data?.NOTICE == '1' && 'noti_a'} ><p dangerouslySetInnerHTML={{ __html:  data.REPLY_CNT > 0 ? data.TITLE+' ['+data.REPLY_CNT+']' : data.TITLE}} /></Link>                                                    
                                                     {/* {data.FILE_NAME != "" ?<img src='/images/sub/down.png' alt='첨부파일 있음'/>:null } */}
                                                     {data?.PRIVACY == "1" ?<img src='/images/sub/lock.png' alt='비밀글'/>:null }
