@@ -10,10 +10,11 @@ import {getMenuInfoMenuCd} from "assets/js/utils";
 
 const Main = (props) => {  
   const [ipsiIndex, setIpsiIndex] = useState(""); //달별로 분리된 학사일정 리스트
+
     const location = useLocation();
-    let early = getMenuInfoMenuCd(584).LINK;
-    let regular = getMenuInfoMenuCd(585).LINK;
-    let transfer = getMenuInfoMenuCd(586).LINK;
+    let early = getMenuInfoMenuCd(584)?.LINK;
+    let regular = getMenuInfoMenuCd(585)?.LINK;
+    let transfer = getMenuInfoMenuCd(586)?.LINK;
     // let international = getMenuInfoMenuCd(location.pathname + location.search);
 
   const quickmenulist = [
@@ -29,13 +30,33 @@ const Main = (props) => {
     {title: "편입학", phone: "055) 250-1304, 6",link: "/transfer/talk",},
   ];
 
-  const ipsi = [
-    {title: "원서접수",stdate: "2025.08.08",endate: "2025.09.12"},
-    {title: "서류제출",stdate: "2025.08.18",endate: "2025.09.22"},
-    {title: "면접고사",stdate: "2025.10.08",endate: "2025.10.12"},
-    {title: "면접고사",stdate: "2025.11.08",endate: "2025.11.12"},
-    {title: "(최초)합격자발표",stdate: "2025.12.08",endate: ""},
+  const ipsi1 = [ //수시
+    {title: "원서접수",stdate: "2025.09.08",endate: "2025.09.12"},
+    {title: "서류제출",stdate: "2025.09.08",endate: "2025.09.22"},
+    {title: "면접고사",stdate: "2025.10.24 /창신인재면접",endate: ""},
+    {title: "(최초)합격자발표",stdate: "2025.11.21(14:00)",endate: ""},
   ];
+  const ipsi2 = [
+    {title: "원서접수",stdate: "2025.12.29",endate: "2025.12.31"},
+    {title: "서류제출",stdate: "2025.08.29",endate: "2025.01.09"},
+    {title: "합격자발표",stdate: "2026.01.22(10:00)",endate: ""},
+    {title: "고지서출력",stdate: "2026.01.26",endate: "2026.02.05"},
+    {title: "합격자등록",stdate: "2026.02.03",endate: "2026.02.05"},
+  ];
+  const ipsi3 = [
+    {title: "원서접수",stdate: "2026.01.12",endate: "2026.01.16"},
+    {title: "서류제출",stdate: "2026.01.12",endate: "2026.01.23"},
+    {title: "합격자발표",stdate: "2026.02.04",endate: ""},
+    {title: "등록금납부",stdate: "2026.02.09",endate: "2026.02.13"},
+    {title: "추가모집",stdate: "2026.02.20",endate: "2026.02.27"},
+  ];
+  const ipsi4 = [
+    {title: "원서접수/서류접수",stdate: "2025.07.15",endate: "2025.07.17"},
+    {title: "면접/실기고사",stdate: "실시하지 않음",endate: ""},
+    {title: "합격자발표",stdate: "2025.07.24 (14:00예정)",endate: ""},
+    {title: "면접고사",stdate: "2025.07.28",endate: "2025.07.31"},
+  ];
+  const [ipsiList, setIpsiList] = useState(ipsi1); //달별로 분리된 학사일정 리스트
 
   useEffect(() => {
     Init();
@@ -59,6 +80,16 @@ const Main = (props) => {
     }
     // 선택한 탭 버튼과 콘텐츠 활성화
     buttons[index].classList.add('active');
+    if(index === 0){
+      setIpsiList(ipsi1);
+    }else if(index === 1){
+      setIpsiList(ipsi2);
+    }else if(index === 2){
+      setIpsiList(ipsi3);
+    }else if(index === 3){
+      setIpsiList(ipsi4);
+    }
+    setIpsiIndex(getCurrentSchedule())
   }
   
 
@@ -97,8 +128,8 @@ const Main = (props) => {
     };
     let latestIndex = 0;
     let latestDate = new Date(0); // 과거 날짜로 초기화
-    for (let i = 0; i < ipsi.length; i++) {
-      const itemDate = parseDate(ipsi[i].stdate);
+    for (let i = 0; i < ipsiList.length; i++) {
+      const itemDate = parseDate(ipsiList[i].stdate);
       if (today >= itemDate && itemDate > latestDate) {
         latestDate = itemDate;
         latestIndex = i;
@@ -166,11 +197,11 @@ const Main = (props) => {
                           <li><div className='tab_btn active' onClick={() => showTab(0)}>수시모집</div></li>
                           <li><div className='tab_btn' onClick={() => showTab(1)}>정시모집</div></li>
                           <li><div className='tab_btn' onClick={() => showTab(2)}>재외국민 외국인</div></li>
-                          <li><div className='tab_btn' onClick={() => showTab(3)}>평입학</div></li>
+                          <li><div className='tab_btn' onClick={() => showTab(3)}>편입학</div></li>
                       </ul>
-                      <div className={'bar bar'+ipsi.length+ipsiIndex}></div>
+                      <div className={'bar bar'+ipsiList.length+ipsiIndex}></div>
                       <ul className={'date'}>
-                          {ipsi?.map((data, index) => {
+                          {ipsiList?.map((data, index) => {
                             return(
                               <li className='date_item active' key={index}>
                                 <p className='nm'>{data.title}</p>

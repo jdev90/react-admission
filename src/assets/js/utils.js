@@ -3,6 +3,8 @@
  * @param {*} link 
  * @returns 
  */
+import {SERVER_URL} from 'context/config'; //
+
 export const getMenuInfo = (link) => {
     const raw = sessionStorage.getItem('menuList'); // 문자열
     let menuList = [];
@@ -30,3 +32,5 @@ export const getMenuInfoMenuCd = (menucd) => {
     const hasRequiredRole = menuList.filter(r => r.MENU_CD == menucd);
     return hasRequiredRole[0];
 };
+
+

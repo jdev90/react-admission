@@ -156,7 +156,7 @@ const View = () => {
 
   /* 삭제 완료 시 목록 이동 */
   useEffect(() => {
-    if (delFlag) navigate("/board/"+menuCd+"/list");
+    if (delFlag) navigate(getMenuInfoMenuCd(query.menuId)?.LINK);
   }, [delFlag]);
 
   /* --------------------------- 비밀번호 체크 --------------------------- */
@@ -206,7 +206,7 @@ const View = () => {
     const { type, item } = action;
     switch (type) {
       case "BoardModify":
-        navigate("/board/"+postList[0]?.MENU_CD+"/write?boardId="+postList[0]?.BOARD_ID);
+        navigate("/board/"+postList[0]?.MENU_CD+"/write?boardId="+postList[0]?.BOARD_ID+"&menuId="+query.menuId);
         break;
 
       case "BoardDelete":
@@ -264,7 +264,7 @@ const View = () => {
     <>
       <SubBannerComp menuCd={menuCd} />
         <div className='Subcontain'>
-          <ContentMenuComp menuCd={menuCd}/>                          
+          <ContentMenuComp menuCd={query.menuId}/>                          
             <div className='contentBox'>
           {/* ---------------- 게시글 ---------------- */}
           <div className="table_area">
@@ -414,9 +414,7 @@ const View = () => {
                             data.CREATE_ID === userData?.user?.id ? (
                               <>
                                 <p onClick={() => replyModi(data)}>수정</p>
-                                <p onClick={() => replyDel(data.REPLY_ID)}>
-                                  삭제
-                                </p>
+                                <p onClick={() => replyDel(data.REPLY_ID)}>삭제</p>
                               </>
                             ) : null}
                           </td>
@@ -471,18 +469,18 @@ const View = () => {
                 <>
                   {/* 이전/다음 */}
                   {postList[1]?.BOARD_ID && (
-                    <Link to={"?boardId="+postList[1].BOARD_ID}>
+                    <Link to={"?boardId="+postList[1].BOARD_ID+"&menuId="+query.menuId}>
                       <div className="prev">이전</div>
                     </Link>
                   )}
                   {postList[2]?.BOARD_ID && (
-                    <Link to={"?boardId="+postList[2].BOARD_ID}>
+                    <Link to={"?boardId="+postList[2].BOARD_ID+"&menuId="+query.menuId}>
                       <div className="next">다음</div>
                     </Link>
                   )}
 
                   {/* 목록 */}
-                  <Link to={"/board/"+menuCd+"/list"}>
+                  <Link to={getMenuInfoMenuCd(query.menuId)?.LINK}>
                     <div className="list">목록</div>
                   </Link>
 

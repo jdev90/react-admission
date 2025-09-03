@@ -18,6 +18,7 @@ const List= (props) => {
     const location = useLocation();
     const navigate = useNavigate(); 
     let menuInfo = getMenuInfo(location.pathname + location.search);
+
     const getMenucd = () => {
         if(location.pathname.endsWith('/notice')){return 569;}
         else if(location.pathname.endsWith('/talk')){return 571;}
@@ -104,7 +105,7 @@ const List= (props) => {
             setMenuList(data?.getBoardList); 
             setMenuListCnt(data?.totalCnt);
             setMenuTotalCnt(data?.totalCnt);
-            setPasing(new Array(data?.totalCnt).fill(null));            
+            setPasing(new Array(data?.totalCnt).fill(null));
         }catch(e){
             console.log(e);
         }
@@ -183,11 +184,11 @@ const List= (props) => {
 
     function PWChkPopup(priv, BOARD_ID){
         if(priv == "1"){
-            {writePermission && navigate("/board/"+menuInfo.MENU_CD+"/view?boardId="+BOARD_ID);}
+            {writePermission && navigate("/board/"+allnoice_menucd+"/view?boardId="+BOARD_ID+"&menuId="+menuInfo?.MENU_CD);}
             setPWpop(true)
             setBoard_id(BOARD_ID);
         }
-        else{navigate("/board/"+menuInfo.MENU_CD+"/view?boardId="+BOARD_ID);}
+        else{navigate("/board/"+allnoice_menucd+"/view?boardId="+BOARD_ID+"&menuId="+menuInfo?.MENU_CD);}
     }
     const PWChk = async () => {
         let JsonArray = new Array();
@@ -287,7 +288,7 @@ const List= (props) => {
                         </div>
                         <div className='viewBtn writeBtn'>
                             {/* {writePermission || user_write == 1 ? <Link to={"/board/"+menuCd+"/write"}><div className=''>글쓰기</div></Link>  :null}  */}
-                            {writePermission || menuInfo?.USER_WRITE == 1 ? <Link to={"/board/"+menuInfo.MENU_CD+"/write"}><div className=''>글쓰기</div></Link>  :null} 
+                            {writePermission || menuInfo?.USER_WRITE == "" ? <Link to={"/board/"+allnoice_menucd+"/write?url="+location.pathname}><div className=''>글쓰기</div></Link>  :null} 
 
                         </div>
                         

@@ -17,7 +17,8 @@ const Sub = (props) => {
 	//const menuCd = params.menuCd;
     const [menuList, setMenuList] = useState([]);
     const [page, setPage] = useState(1);
-    const [guideList, setGuideList] = useState([]); //달별로 분리된 학사일정 리스트
+    const [guide, setGuide] = useState([]); //달별로 분리된 학사일정 리스트
+    const [guideBookMark, setGuideBookMark] = useState([]); //달별로 분리된 학사일정 리스트
     
     
 
@@ -49,13 +50,12 @@ const Sub = (props) => {
             // setContentList(data.getContentsView);
             let JsonArray = new Array();
             let JsonObject = new Object;
-            JsonObject.YEAR = 2025; //년도
             JsonObject.GUBUN = 1; //0: 안내책자, 1 : 수시, 2: 정시, 3: 편입학, 4: 외국인
             JsonArray.push(JsonObject);  
             let res = await fetch(SERVER_URL+'/api/guide/view',{method:"POST", headers:{'content-type':'application/json'}, body : JSON.stringify(JsonArray)});
             const data = await res.json();
-            setGuideList(data.getGuideView[0]);
-            console.log(data.getGuideView[0]);
+            setGuide(data.getGuideView);
+            setGuideBookMark(data.getGuideBookMarkList);
         }catch(e){
             console.log(e);
         }
@@ -66,11 +66,14 @@ const Sub = (props) => {
     function showTab(index) {
         // 모든 탭 버튼과 콘텐츠를 숨기기
         var buttons = document.querySelectorAll('.cate');
+        var box = document.querySelectorAll('.cont-catebox');
         for (var i = 0; i < buttons.length; i++) {
             buttons[i].classList.remove('active');
+            box[i].classList.remove('active');
         }
         // 선택한 탭 버튼과 콘텐츠 활성화
         buttons[index].classList.add('active');
+        box[index].classList.add('active');
     }
     
     return(
@@ -96,14 +99,18 @@ const Sub = (props) => {
                     </ul>
                     <div className='guideline_pdfview'>
                         <div className='pdfview'>
-                            <iframe key={page} src={`/pdf/pdf_guideline.pdf#page=${page}`} type="application/pdf" title="PDF Viewer" aria-label="example" width="100%" height="800"/>
-                            {/* <iframe key={page} src={SERVER_URL+"/api/attach/view?PATH=/guide/&FILE_NM=E2D7806D540B4E558CBE5ADF8F8B0146&CREATE_ID=30072&ORI_FILE_NM=2026_nonscheduled.pdf&YEAR="} type="application/pdf" title="PDF Viewer" aria-label="example" width="100%" height="800"/> */}
+                            {/*<iframe key={page} src={`/pdf/pdf_guideline.pdf#page=${page}`} type="application/pdf" title="PDF Viewer" aria-label="example" width="100%" height="800"/>*/}
+                            <iframe key={page} src={SERVER_URL+"/api/attach/view?PATH=/guide/&FILE_NM=E2D7806D540B4E558CBE5ADF8F8B0146&CREATE_ID=30072&ORI_FILE_NM=2026_nonscheduled.pdf&YEAR=2025"} type="application/pdf" title="PDF Viewer" aria-label="example" width="100%" height="800"/>
 
                         </div> 
                         <div className='pdfindex'>
                             <p>Contents Index</p>
                             <p className='paraphrase'>선택하면 각 페이지로 이동합니다.</p>
-                            <ul>
+                            <ul>{guideBookMark?.map((data, index) =>(
+                                <li key={index} onClick={() => handlePageChange(data.BOOKMARK_PAGE)}>{data.BOOKMARK_TITLE}</li>))}
+                                
+                            </ul>
+                            {/*<ul>
                                 <li onClick={() => handlePageChange(1)}>2026 대학 수시모집 주요 변경사항</li>
                                 <li onClick={() => handlePageChange(2)}>수시모집 요약</li>
                                 <li>전형일정</li>
@@ -111,7 +118,7 @@ const Sub = (props) => {
                                 <li>유의사항</li>
                                 <li>전형안내</li>
                                 <li>합격자생활기록부 반영방법</li>
-                            </ul>
+                            </ul>*/}
                         </div>                   
                     </div>
                     </>}
@@ -200,7 +207,7 @@ const Sub = (props) => {
                         <li className='cate' onClick={() => showTab(2)}>편입학</li>
                     </ul>
                     {/* <수시원서접수  */}
-                    <div className=''>
+                    <div className='cont-catebox active'>
                         <div className='cont-area'>     
                             <div className='cont-h mgB20'>인터넷 원서접수</div>
                             <table className='cont-table mgB'>
@@ -298,7 +305,7 @@ const Sub = (props) => {
                         </div>
                     </div>
                     {/* <정시원서접수  */}
-                    <div className=''>
+                    <div className='cont-catebox'>
                         <div className='cont-area'>     
                             <div className='cont-h mgB20'>인터넷 원서접수</div>
                             <table className='cont-table mgB'>
@@ -327,7 +334,7 @@ const Sub = (props) => {
                         </div>
                     </div>
                     {/* <편입학 원서접수  */}
-                    <div className=''>
+                    <div className='cont-catebox'>
                         <div className='cont-area'>     
                             <div className='cont-h mgB20'>접수기간</div>
                             <table className='cont-table mgB'>

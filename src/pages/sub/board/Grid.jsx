@@ -139,7 +139,7 @@ const Grid = (props) => {
         <>
             <SubBannerComp menuCd={menuCd}/>
             <div className='Subcontain'>
-                <ContentMenuComp />                          
+                <ContentMenuComp menuCd={menuCd}/>                          
                     <div className='contentBox'>
                     <div className='table_area'>
                         <div className='noticeTableSearch' style={{width:"96%"}}> 

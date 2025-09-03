@@ -39,10 +39,9 @@ const Write = (props) => {
     const token = sessionStorage.getItem('accessToken');
     let userData;
     const recaptchaRef = React.createRef();    
-    // const [privacyA, setPrivacyA] = useState(''); // 비밀글
-    // const [user_writeA, setUser_writeA] = useState(''); //글쓰기
+    
     if(token) {userData = getTokenData(token);}
-    let menuInfo = getMenuInfo(menuCd);
+    let menuInfo = getMenuInfo(query.url);
     
     
     useEffect(() => {
@@ -225,9 +224,9 @@ const Write = (props) => {
     return(
         <>
             {/* <SubBannerComp menuCd={menuCd} onMessage={handleMessage}/> */}
-            <SubBannerComp menuCd={menuCd} />
+            <SubBannerComp menuCd={menuInfo.MENU_CD} />
                 <div className='Subcontain'>
-                <ContentMenuComp menuCd={menuCd}/>                          
+                <ContentMenuComp menuCd={menuInfo.MENU_CD}/>                          
                     <div className='contentBox'>
                     <div className='table_area'>
                         <table className='comm writeTable'>
@@ -323,7 +322,7 @@ const Write = (props) => {
                         </table>
 
                         <div className='viewBtn viewMarB writeBtn'>
-                            <Link to={'/board/'+menuCd+"/list"}><div className='prev'>취소</div></Link>
+                            <Link to={query.url}><div className='prev'>취소</div></Link>
                             <div className='next' onClick={()=> handleSave()}>저장</div>                       
                         </div>
 

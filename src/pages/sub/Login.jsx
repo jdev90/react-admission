@@ -7,6 +7,7 @@ import SubBannerComp from '../common/components/subBannerComp';
 const Login = (props) => {
     const location = useLocation();
     const query = qs.parse(location.search, {ignoreQueryPrefix: true});
+    const boardId = query.boardId;
     const [id, setId] = useState('');
     const [pw, setPw] = useState('');
     const [isLogin, setIsLogin] = useState(false);
@@ -36,8 +37,8 @@ const Login = (props) => {
     useEffect(() => {//
         if(isLogin){
             //navigate(query.url); //로그인하기 바로 전 페이지로 이동
-            if(query.d){navigate(query.url);}
-            else if(query.boardId){navigate(query.url+"?boardId="+query.boardId);}    
+
+            if(query.boardId){navigate(query.url+"?boardId="+query.boardId+"&menuId="+query.menuId);}    
             else{navigate(query.url);}
         }
     },[isLogin]);

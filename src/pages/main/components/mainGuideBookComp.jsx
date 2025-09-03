@@ -1,98 +1,50 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
-import { Navigation, Pagination, EffectCoverflow, Autoplay } from 'swiper';
+import React, { useState, useEffect} from 'react';
+import { Navigation, Pagination} from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {SERVER_URL} from 'context/config'; //
-import {Link} from 'react-router-dom';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/controller';
-
 import 'swiper/css/effect-coverflow';
-// import { Pagination, Navigation } from 'swiper/modules';
+
 
 const MainGuideBookComp = (props) => {  
-    const params = useParams();
-    const menuCd = params.menuCd; 
-    const sliderRef = useRef(null);
-    const intervalRef = useRef(null);
     const [guideList, setGuideList] = useState([]); //달별로 분리된 학사일정 리스트
-    
+    const [loading, setLoading] = useState(false); //달별로 분리된 학사일정 리스트
 
-  // 자동 슬라이드
-  useEffect(() => {
-    const slider = sliderRef.current;
-    const speed = 1;
-
-    const autoScroll = () => {
-      if (!slider) return;
-      if (slider.scrollLeft >= slider.scrollWidth / 2) {
-        slider.scrollLeft = 0;
-      } else {
-        slider.scrollLeft += speed;
-      }
-    };
-
-    intervalRef.current = setInterval(autoScroll, 20);
-
-    return () => clearInterval(intervalRef.current);
-  }, []);
-
-  // 수동 넘김
-  const handleScroll = (direction) => {
-    const slider = sliderRef.current;
-    const slideWidth = 210; // 이미지 + margin-right (조정 필요)
-
-    if (direction === 'next') {
-      slider.scrollLeft += slideWidth;
-    } else {
-      slider.scrollLeft -= slideWidth;
-    }
-  };
-  
-
-    useEffect(() => {
-       Init();
-         
-     },[]);
-          
-    const Init = async () =>{
-        try{
-
-            let JsonArray = new Array();
-            let JsonObject = new Object;
-            JsonObject.YEAR = 2025; //년도
-            JsonObject.GUBUN = 2; //0: 안내책자, 1 : 수시, 2: 정시, 3: 편입학, 4: 외국인
-            JsonArray.push(JsonObject);  
-            let res = await fetch(SERVER_URL+'/api/guide/view',{method:"POST", headers:{'content-type':'application/json'}, body : JSON.stringify(JsonArray)});
-            const sudata = await res.json();
-
-            
-            setGuideList(sudata.getGuideView[0]);
-            console.log(sudata.getGuideView);
-        }catch(e){
-            console.log(e);
-        }
-    }
     const bookList = [
         {title: "2025 CSU 신입생 정시모집요강",img:"/images/main/book_img1.png"},
         {title: "2025 CSU 신입생 수시모집요강",img:"/images/main/book_img2.png"},
         {title: "2025 창신대학교 후기 폅입학 모집요강",img:"/images/main/book_img3.png"},
     ];
 
-    // function showBook(index) {
-    //     // 모든 탭 버튼과 콘텐츠를 숨기기
-    //     var book = document.querySelectorAll('.slide-bk');
-    //     console.log(book)
-    //     for (var i = 0; i < book.length; i++) {
-    //         book[i].classList.remove('active');
-    //     }
-    //     // 선택한 탭 버튼과 콘텐츠 활성화
-    //     book[index].classList.add('active');
-    // }
+    useEffect(() => {
+       setLoading(false);
+       Init();
+     },[]);
+
+    const Init = async () =>{
+        try{
+            let JsonArray = new Array();
+            let JsonObject = new Object;
+            //JsonObject.GUBUN = 1; //0: 안내책자, 1 : 수시, 2: 정시, 3: 편입학, 4: 외국인
+            JsonArray.push(JsonObject);  
+            let res = await fetch(SERVER_URL+'/api/guide/view',{method:"POST", headers:{'content-type':'application/json'}, body : JSON.stringify(JsonArray)});
+            const sudata = await res.json();
+            setGuideList(sudata?.getGuideView);
+            console.log(sudata?.getGuideView);
+
+        }catch(e){
+            console.log(e);
+        }
+    }
+
+
+    
+
     return(
         <>
             <div className='bkBgc'>
@@ -102,6 +54,7 @@ const MainGuideBookComp = (props) => {
                         <h1>CSU<span>안내책자</span></h1>
                     </div>
                     <div className='guide_swiper'>
+                        {guideList.length > 0 && (
                         <Swiper
                             effect={'coverflow'}
                             centeredSlides={true}
@@ -113,37 +66,15 @@ const MainGuideBookComp = (props) => {
                             loop={true}
                             navigation={true}
                         >
-                            {bookList?.map((data, index) =>(
-                                <SwiperSlide><img className='slide-bk' src={data.img}/><div className='guide_title'>{data.title}</div></SwiperSlide>
-                            ))}
+                            
+                           {guideList?.map((data, index) =>{
+                            return(
+                                <SwiperSlide key={index}><img className='slide-bk' src={SERVER_URL+"/api/guide/thumnail?url=https://cfile.cs.ac.kr/upload/fileserver/admission/"+data.PATH+"/"+data.FILE_NM}/><div className='guide_title'>{data.ORI_FILE_NM}</div></SwiperSlide>
+                            )
+                            })}
                         </Swiper>
+                        )}
                     </div>
-                    <div></div>
-
-                    {/* <div className='book_list'>
-                        <div className='slider'>
-                            <ul className='slider-container'>
-                                {bookList?.map((data, index) =>(
-                                <li className='slide-bk'><img src={data.img} /></li>
-                                ))}
-                            </ul> 
-                            <ul className='slider-container bu'>
-                                {bookList?.map((data, index) =>(
-                                <li className='slide-bk'><img src={data.img} /></li>
-                                ))}
-                            </ul>  
-                        </div>                               
-                    </div>                                */}
-
-                {/* <div id="popup-slide-box" >
-                    <div className="inner">
-                        <div className="slide-wrap">
-                            <div className="img"/>
-                        </div>
-                    </div>
-                </div> */}
-
-
                 </div>    
 
             </div>        

@@ -9,6 +9,7 @@ const Top = (props) => {
 //     // const params = useParams();
 //     // const menuCd = params.menuCd;
 // const menuCd = props.menuCd 
+
     const [menuList, setMenuList] = useState([]);
     const [isHovered, setIsHovered] = useState(false);
     const [isMenuHovered, setIsMenuHovered] = useState(false);
@@ -42,7 +43,8 @@ const Top = (props) => {
         if(token == null){
             const fullUrl = window.location.href;
             // URL을 파싱하여 pathname과 search 가져오기
-            setLoginHTML(<Link to={URL.LOGIN+'?url='+`${location.pathname}${location.search}`}>로그인</Link>); //  로그인 이전 페이지 기억 하기위한
+            if(query.boardId){setLoginHTML(<Link to={URL.LOGIN+'?url='+`${location.pathname}`+'&boardId='+query.boardId+'&menuId='+query.menuId}>로그인</Link>);}
+            else{setLoginHTML(<Link to={URL.LOGIN+'?url='+`${location.pathname}${location.search}`}>로그인</Link>);} //  로그인 이전 페이지 기억 하기위한
         }else{
             // setLoginHTML(<span onClick={()=>handleLogOut()}   style={{cursor : 'pointer'}}>로그아웃</span>);
             setLoginHTML(<Link onClick={()=>handleLogOut()} to={"/"}  style={{cursor : 'pointer'}}>로그아웃</Link>);
@@ -163,7 +165,6 @@ const Top = (props) => {
                                 <ul onClick={() => {handleOpenMenu(false);}}>
                                     <li><Link to="https://www.cs.ac.kr/" target="_blank">창신대학교</Link></li>
                                     <li>{loginHTML}</li>
-                                    <li>ENG</li>
                                 </ul>
                             </div>
                             <ul>
