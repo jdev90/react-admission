@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {Link} from 'react-router-dom';
+import {SERVER_URL} from 'context/config'; //
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -10,6 +11,12 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/controller';
 
 const MainBannerComp = (props) => {
+    const [loading, setLoading] = useState(false);
+    const [menucd, setMenucd] = useState(569);
+    const [cate, setCate] = useState("");
+    const [postList, setPostList] = useState([]);
+    const listCate = ["공통","수시","정시","편입학","외국인"]; 
+    
     const navigationPrevRef = React.useRef(null);
     const navigationNextRef = React.useRef(null);
     const [mainBannerCurrentIndex, setMainBannerCurrentIndex] = useState(1);
@@ -18,7 +25,30 @@ const MainBannerComp = (props) => {
     const [mainBannerCount, setMainBannerCount] = useState(1);
     const [isPlaying, setIsPlaying] = useState(true);
     const [issueOpen, setIssueOpen] = useState(false);
+        
     
+     //이슈
+
+    useEffect(() => {
+        Init();
+    },[]);
+
+    const Init = async () =>{
+        try{
+            const res = await fetch(SERVER_URL+'/api/board/569/list?CATE='+cate,{method:"GET", headers:{'content-type':'application/json'}});
+            const data = await res.json();
+            setPostList(data?.getBoardList);          
+            
+        }catch(e){
+            console.log(e);
+        }
+    }
+    useEffect(() => {
+        postList?.length != 0 && setIssueOpen(true);
+    },[postList]);
+
+
+    //배너 
     const mainBannerPlayAndPause = (e) =>{
         if (isPlaying) {
             swiper.autoplay.stop();
@@ -67,31 +97,14 @@ const MainBannerComp = (props) => {
                   }}>
                
                 <SwiperSlide tag="li">
-                    <div className='imgafter'><img src="/images/main/banner1.png" alt='메인페이지 배너1'/></div>
+                    <div className='imgafter'><img src="/images/main/banner1.jpg" alt='메인페이지 배너1'/></div>
                 </SwiperSlide>    
                     
             </Swiper>
                     
 
                 
-            {/* <div className="ss visual20_ctrl">           
-                <div className='namebox'>
-                    <div className='bannertxt'>
-                        <p className='txt_m'>사회가 필요로 하는 전문인력 양성</p>                            
-                        <p className='txt'>창신대학교 대학원</p>
-                    </div>
-                </div>                    
-            </div> */}
-            {/* <div className="navgroup">
-                <div className="btngroup">
-                    <div className="nav_number visual20_count"><span>{mainBannerCurrentIndex}</span> · {mainBannerCount}</div> 
-                     
-                    <a href="#" onClick={e => e.preventDefault} className="btn_main_slide prevbtn" ref={navigationPrevRef} tabindex='-1'/>                            
-                    <a href="#" onClick={e => e.preventDefault} className="btn_main_slide nextbtn" ref={navigationNextRef} tabindex='-1' />   
-                    <div type="button" className="pp pause visual_btn" title="슬라이드 재생 버튼" onClick={()=>mainBannerPlayAndPause()}></div>      
-                </div>
-                
-            </div> */}
+            
             <div className="banner_board">
                 <div className='static'>
                     <div className='line'><Link to="/board/569/view?boardId=320&menuId=569">
@@ -106,14 +119,25 @@ const MainBannerComp = (props) => {
                 <div className='dynamic'>
                     <div className='area'>
                         <div className='issue'  onClick={() => !issueOpen && setIssueOpen(true)}>
-                            <p>CSU ISSUE <span>3</span></p>
+                            <p>CSU ISSUE <span>{postList?.length}</span></p>
                             <div className='cancle' onClick={() => setIssueOpen(false)}><img src="/images/main/comm_more.png"/></div>
                         </div>
-                        {issueOpen && <ul>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                        {issueOpen  && <ul>
+                             {postList.map((data, index)=> {                                                      
+                                if(index < 5){
+                                    return(
+                                        <li>
+                                            <Link to={"/board/"+data.MENU_CD+"/view?boardId="+data.BOARD_ID+"&menuId="+menucd}>
+                                                <div className='title'>
+                                                    <span className={'cata cate'+data.CATE}>{listCate[data.CATE]}</span>
+                                                    {/* {data.NOTICE && <span className='noti'>공지</span>} */}
+                                                    {data.TITLE}
+                                                </div>
+                                            </Link>
+                                        </li>
+                                    )
+                                }
+                            })}
                         </ul>}
                     </div>
                 </div>

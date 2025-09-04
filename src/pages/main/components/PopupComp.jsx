@@ -13,11 +13,15 @@ const PopupComp = () => {
     const [popupVisible, setPopupVisible] = useState(false);
     const [swiperInstance, setSwiperInstance] = useState(null);
     const location = useLocation();
-
+    const [swiper, setSwiper] = useState(null);
     const [popupList, setPopupList] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [mainBannerCount, setMainBannerCount] = useState(1);
+
     useEffect(() => {
         Init();
+        const swiperInstance = document.querySelector('.swiper-container').swiper;
+        setSwiper(swiperInstance);
     }, []);
 
     const Init = async () => {
@@ -25,12 +29,13 @@ const PopupComp = () => {
             setLoading(false);
             let JsonArray = new Array();
             let JsonObject = new Object;
-            // JsonObject.HP_CD = 'GRAD';
+            JsonObject.HP_CD = 'ADMISSION';
             JsonArray.push(JsonObject);
             const res = await fetch(SERVER_URL+'/api/popup/list',{method:"POST", headers:{'content-type':'application/json'}, body : JSON.stringify(JsonArray)});     
             const data = await res.json(); 
             setPopupList(data.getPopupList);
             setLoading(true);
+            console.log(data.getPopupList);
         }catch(e){
             console.log(e);
         }
@@ -86,8 +91,8 @@ const PopupComp = () => {
 
     // swiper 슬라이더 설정
     const swiperSettings = {
-        loop: true,
-        slidesPerView: 1,
+        //loop: true,
+        slidesPerView: 3,
         spaceBetween: 25,
         pagination: {
             type: 'fraction',
@@ -106,16 +111,21 @@ const PopupComp = () => {
             delay: 3000,
             disableOnInteraction: false,
         },
-        breakpoints: {
-            480: {
-                slidesPerView: 1,
-                spaceBetween: 15,
-            },
-            768: {
-                slidesPerView: 1,
-                spaceBetween: 15,
-            },
-        }
+        //breakpoints: {
+        //    480: {
+        //        slidesPerView: 1,
+        //        spaceBetween: 15,
+        //    },
+        //    768: {
+        //        slidesPerView: 2,
+        //        spaceBetween: 15,
+        //    },
+        //    1280: {
+        //        slidesPerView: 3,
+        //        spaceBetween: 15,
+        //    },
+        //}
+        
     };
 
     return (
@@ -137,7 +147,7 @@ const PopupComp = () => {
                             <i className="xi-angle-right"></i>
                         </button>
                     </div>
-                    <Swiper {...swiperSettings} onSwiper={setSwiperInstance} 
+                    <Swiper {...swiperSettings} onSwiper={(swiper)=>{setMainBannerCount(swiper.slides.length);}} 
                     >
                     
                     {loading && popupList && Array.isArray(popupList) && popupList.map((data, index)=> { 

@@ -13,7 +13,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { editorConfig }from 'assets/js/ckeditor5_config.js'
 import 'ckeditor5/ckeditor5.css';
 import { getTokenData,getUserRoles } from 'assets/js/jwt';
-import {getMenuInfo} from "assets/js/utils";
+import {getMenuInfoMenuCd, getMenuInfo} from "assets/js/utils";
 
 const token = window.sessionStorage.getItem('accessToken');
 let roles;
@@ -24,9 +24,9 @@ const Write = (props) => {
     const navigate = useNavigate(); 
     const query = qs.parse(location.search, {ignoreQueryPrefix: true});
     const params = useParams();
-	const menuCd = params.menuCd; 
+	const allmenuCd = params.menuCd;
     const [cateList, setCateList] = useState([]);
-    const [cate, setCate] = useState('');
+    const [cate, setCate] = useState(0);
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     //const [save, setSave] = useState(false);
@@ -41,13 +41,20 @@ const Write = (props) => {
     const recaptchaRef = React.createRef();    
     
     if(token) {userData = getTokenData(token);}
-    let menuInfo = getMenuInfo(query.url);
+    let menuInfo;let menuCd;
+    if(query.url !== undefined ){
+        menuInfo = getMenuInfo(query.url);
+        menuCd = menuInfo?.MENU_CD;
+    }else{
+        menuCd = query.menuId;
+        menuInfo = getMenuInfoMenuCd(menuCd);
+    }
     
     
     useEffect(() => {
-        if(!token && menuInfo.USER_WRITE != 1 ){
-           navigate("/login?url="+location.pathname)
-        }
+        // if(!token && menuInfo.USER_WRITE != 1 ){
+        //    navigate("/login?url="+location.pathname)
+        // }
         if(query.boardId !== undefined){
             Init();
             window.scrollTo(0, 0);
@@ -73,10 +80,11 @@ const Write = (props) => {
         const data = await res.json();
 
         setCateList(data.getCodeList);
+        console.log(data.getCodeList);
     }
     const Init = async () =>{
         try{                   
-            const res = await fetch(SERVER_URL+'/api/board/'+menuCd +'/'+boardId +'/view',{method: "POST", headers : {"Content-Type" : "application/json;charset=utf-8;" }});
+            const res = await fetch(SERVER_URL+'/api/board/'+allmenuCd +'/'+boardId +'/view',{method: "POST", headers : {"Content-Type" : "application/json;charset=utf-8;" }});
             const data = await res.json();
             
             setContent(data.getBoardView[0]?.CONTENT);
@@ -169,10 +177,9 @@ const Write = (props) => {
                 formData.append('file'+(index+1), file.files[0]);
             }
         });
-        if(query.boardId !== undefined){
-            formData.append('BOARD_ID', query.boardId);
-        }
-        formData.append('MENU_CD', menuCd);
+        
+        formData.append('BOARD_ID', query.boardId !== undefined ? query.boardId : "");
+        formData.append('MENU_CD', allmenuCd);
         formData.append('TITLE', title);
         formData.append('CONTENT', content);
         formData.append('USER_ID', token ? userData.user.id :"user");//userData.user.id
@@ -182,15 +189,18 @@ const Write = (props) => {
         formData.append('CATE', cate);
         
        
-        const res = await fetch(SERVER_URL+'/api/board/'+menuCd+'/write', {method: "POST",
+        const res = await fetch(SERVER_URL+'/api/board/'+allmenuCd+'/write', {method: "POST",
             headers: {
             },
             body : formData
         });
         const data = await res.json(); 
-        data?.MSG == "SUCCESS" ? navigate('/board/'+menuCd+"/list"): console.log('업로드실패');
+        data?.MSG == "SUCCESS" ? query.url != undefined ? navigate(query.url):navigate(getMenuInfoMenuCd(query.menuId).LINK) : console.log('업로드실패');
     }
     
+useEffect(() => {
+        console.log(cate);
+    },[cate]);
 
     const customUploadAdapter = (loader) => { // (2)
         return {
@@ -221,17 +231,18 @@ const Write = (props) => {
 
     // };
 
+    
     return(
         <>
             {/* <SubBannerComp menuCd={menuCd} onMessage={handleMessage}/> */}
-            <SubBannerComp menuCd={menuInfo.MENU_CD} />
+            <SubBannerComp menuCd={menuCd} />
                 <div className='Subcontain'>
-                <ContentMenuComp menuCd={menuInfo.MENU_CD}/>                          
+                <ContentMenuComp menuCd={menuCd}/>                          
                     <div className='contentBox'>
                     <div className='table_area'>
                         <table className='comm writeTable'>
                             <colgroup>
-                                <col width="15%"></col>
+                                <col width="50px"></col>
                                 <col width="35%"></col>
                                 <col width="15%"></col>
                                 <col width="35%"></col>  
@@ -254,16 +265,24 @@ const Write = (props) => {
                                             placeholder='제목을 입력하세요.'/>
                                     </td>                                                                 
                                 </tr>
-                                {menuInfo?.USER_WRITE != 1 &&  <tr>
+                                {( query.menuId != 572) &&  <tr>
                                     <td>카테고리</td>  
                                     <td className='txt borR' colSpan={3}>
                                         <select id="gubun" className='cate_op'  value={cate} onChange={(e)=>{setCate(e.target.value);}}>
                                             <option value="">선택</option>
-                                             {cateList?.map((data, index)=> {
+                                             {/* {cateList.length == 0 && cateList?.map((data, index)=> {
                                                 return(
                                                     <option value={data.KEY} onChange={(e)=>{setCate(e.target.value);}} key={index}>{data.VALUE}</option>
                                                 )
-                                             })}                                             
+                                             })}   */}
+                                             <option value={0} onChange={(e)=>{setCate(e.target.value);}}>공통</option>
+                                             <option value={1} onChange={(e)=>{setCate(e.target.value);}}>수시</option>
+                                             <option value={2} onChange={(e)=>{setCate(e.target.value);}}>정시</option>
+                                             <option value={3} onChange={(e)=>{setCate(e.target.value);}}>편입학</option>
+                                             <option value={4} onChange={(e)=>{setCate(e.target.value);}}>외국인</option>
+                                             
+                                             
+
                                         </select>
                                     </td>                                                                 
                                 </tr>}

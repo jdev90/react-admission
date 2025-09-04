@@ -122,7 +122,7 @@ const SubBannerMenuComp = (props) => {
                                     {menuList?.map((data2, index)=> {
                                         if(data2.DEPTH == 2 && data2.PARENT_MENU_CD == dep1_MC){
                                             return(
-                                                <Link to={data2.LINK}><p>{data2.MENU_NM}</p></Link>
+                                                <Link to={data2.LINK} target={data2.BLANK == "1" ? "_blank":''}><p>{data2.MENU_NM}</p></Link>
                                             )
                                         }
                                     })}

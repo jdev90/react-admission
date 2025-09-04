@@ -3,7 +3,7 @@ import {  Link,useLocation } from 'react-router-dom';
 import MainBannerComp from './components/mainBannerComp';
 import MainNoticeComp from './components/mainNoticeComp';
 import MainGalleryComp from './components/mainGalleryComp';
-import MainCalendarComp from './components/mainCalendarComp';
+import MainImpsiComp from './components/mainImpsiComp';
 import MainGuideBookComp from './components/mainGuideBookComp';
 import PopupComp from 'pages/main/components/PopupComp';
 import {getMenuInfoMenuCd} from "assets/js/utils";
@@ -11,10 +11,10 @@ import {getMenuInfoMenuCd} from "assets/js/utils";
 const Main = (props) => {  
   const [ipsiIndex, setIpsiIndex] = useState(""); //달별로 분리된 학사일정 리스트
 
-    const location = useLocation();
-    let early = getMenuInfoMenuCd(584)?.LINK;
-    let regular = getMenuInfoMenuCd(585)?.LINK;
-    let transfer = getMenuInfoMenuCd(586)?.LINK;
+  const location = useLocation();
+  let early = getMenuInfoMenuCd(584)?.LINK;
+  let regular = getMenuInfoMenuCd(585)?.LINK;
+  let transfer = getMenuInfoMenuCd(586)?.LINK;
     // let international = getMenuInfoMenuCd(location.pathname + location.search);
 
   const quickmenulist = [
@@ -190,27 +190,7 @@ const Main = (props) => {
                             </div>
                         </li>
                     ))}</ul>
-                    {/*__입시일정*/} 
-                    <div className='schedule'>
-                      <div className='title'>입시일정</div>
-                      <ul className='tab'>
-                          <li><div className='tab_btn active' onClick={() => showTab(0)}>수시모집</div></li>
-                          <li><div className='tab_btn' onClick={() => showTab(1)}>정시모집</div></li>
-                          <li><div className='tab_btn' onClick={() => showTab(2)}>재외국민 외국인</div></li>
-                          <li><div className='tab_btn' onClick={() => showTab(3)}>편입학</div></li>
-                      </ul>
-                      <div className={'bar bar'+ipsiList.length+ipsiIndex}></div>
-                      <ul className={'date'}>
-                          {ipsiList?.map((data, index) => {
-                            return(
-                              <li className='date_item active' key={index}>
-                                <p className='nm'>{data.title}</p>
-                                <p>{data.stdate} {data.endate != '' ? `~${data.endate}` :''}</p>
-                              </li>
-                            )
-                          })}
-                      </ul>
-                    </div>
+                    <MainImpsiComp/>
                 </div> 
             </div>
             {/*5. WhyCSU*/}
@@ -234,7 +214,7 @@ const Main = (props) => {
                   <li className='wc3'>
                     <p className='pcent'>100%</p>
                     <p className='titl'>부영그룹 우정장학생 특별장학금</p>
-                    <p className='txt'>2024년 신입생(수시, 정시모집) 전원<br/> 등록금 전액(입학금 포함) 장학금 지급<br/> (간호학과 50% 지급)</p>
+                    <p className='txt'>2025년 신입생(수시, 정시모집) 전원<br/> 등록금 전액(입학금 포함) 장학금 지급<br/> (간호학과 50% 지급)</p>
                   </li>
                 </ul>
 

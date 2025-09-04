@@ -36,14 +36,13 @@ const MainGuideBookComp = (props) => {
             const sudata = await res.json();
             setGuideList(sudata?.getGuideView);
             console.log(sudata?.getGuideView);
-
         }catch(e){
             console.log(e);
         }
     }
 
 
-    
+    const handleFileDown = (src) => window.open(src, "self");
 
     return(
         <>
@@ -68,8 +67,10 @@ const MainGuideBookComp = (props) => {
                         >
                             
                            {guideList?.map((data, index) =>{
+                            const bookNm = data.ORI_FILE_NM.slice(0,data.ORI_FILE_NM.length - 4);
+                            console.log(data)
                             return(
-                                <SwiperSlide key={index}><img className='slide-bk' src={SERVER_URL+"/api/guide/thumnail?url=https://cfile.cs.ac.kr/upload/fileserver/admission/"+data.PATH+"/"+data.FILE_NM}/><div className='guide_title'>{data.ORI_FILE_NM}</div></SwiperSlide>
+                                <SwiperSlide key={index}><img className='slide-bk' onClick={() => handleFileDown(SERVER_URL+"/api/guide/pdfview?GUBUN="+data.GUBUN)} src={SERVER_URL+"/api/guide/thumnail?url=https://cfile.cs.ac.kr/upload/fileserver/admission/"+data.PATH+"/"+data.FILE_NM}/><div className='guide_title'>{bookNm}</div></SwiperSlide>
                             )
                             })}
                         </Swiper>

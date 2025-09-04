@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {  Link, useParams } from 'react-router-dom';
+import {  Link, useParams,useLocation } from 'react-router-dom';
 import {SERVER_URL} from 'context/config'; //
 
 import SubBannerComp from 'pages/common/components/subBannerComp';
@@ -10,13 +10,11 @@ import { writePermissionCheck } from 'assets/js/jwt';
 //**권한**//
 
 const Grid = (props) => {    
-    
-    //const params = useParams();    
+    const location = useLocation();
 	const menuCd = '572'; //임의 menucd int X  string O 
    // const [boardList, setBoardList] = useState([]);
     const [menuList, setMenuList] = useState("");
     const [postList, setPostList] = useState([]);
-    //let menuInfo = getMenuInfo(location.pathname + location.search);
 
     const [menuListCnt, setMenuListCnt] = useState([]);
     const [menuTotalCnt, setMenuTotalCnt] = useState([]);
@@ -81,7 +79,6 @@ const Grid = (props) => {
         const res2 = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND='+menuTotalCnt,{method:"GET", headers:{'content-type':'application/json'}});
         const data2 = await res2.json();
         setMenuListCnt(data2?.getBoardList.length); 
-        // setMenuListCnt(data2?.getBoardList.length); 
     }
     function enterkey() {
         if (window.event.keyCode == 13){getOption();}
@@ -119,7 +116,6 @@ const Grid = (props) => {
         if(pageEd == showPostCnt-1){res = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND=9',{method:"GET", headers:{'content-type':'application/json'}});}
         else{res = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND='+pageEd,{method:"GET", headers:{'content-type':'application/json'}});}
         const data = await res.json();
-        // setMenuList(data[0]?.getBoardList); 
         setPostList(data?.getBoardList);
 
     }
@@ -179,7 +175,7 @@ const Grid = (props) => {
                                         return (    
                                             <li><div className='grid'> 
                                                 {data.CATE_NM && <div className={'cate cate'+data.CATE}>{data.CATE_NM}</div>}
-                                                <Link to={"/board/"+menuCd+"/view?boardId="+data.BOARD_ID}>
+                                                <Link to={"/board/"+menuCd+"/view?boardId="+data.BOARD_ID+"&menuId="+menuCd}>
                                                     <div className='img'><img src={imgSrcPath} alt='행사사진'/></div>                                                        
                                                     <div className='txt'>
                                                         <div className='title' dangerouslySetInnerHTML={{ __html:  data.TITLE }}></div>
@@ -193,8 +189,8 @@ const Grid = (props) => {
                                 return ( 
                                     <li><div className='grid'>
                                         {data.CATE_NM && <div className={'cate cate'+data.CATE}>{data.CATE_NM}</div>}
-                                        <Link to={"/board/"+menuCd+"/view?boardId="+data.BOARD_ID}>
-                                            <div className='img'><img src={img ? 'https://cfile.cs.ac.kr/upload/fileserver/grad/'+data.MENU_CD+'/'+data.FILE_NAME : "/images/main/galleryTemp.png"} alt='행사사진'/></div>
+                                        <Link to={"/board/"+menuCd+"/view?boardId="+data.BOARD_ID+"&menuId="+menuCd}>
+                                            <div className='img'><img src={img ? 'https://cfile.cs.ac.kr/upload/fileserver/admission/'+data.MENU_CD+'/'+data.FILE_NAME : "/images/main/galleryTemp.png"} alt='행사사진'/></div>
                                             <div className='txt'>
                                                 <div className='title' dangerouslySetInnerHTML={{ __html:  data.TITLE }}></div>
                                                 <span><img src='/images/sub/board/gall2.png' alt='작성일'/>{data.CREATE_DT.slice(0,11)}</span>
@@ -209,7 +205,7 @@ const Grid = (props) => {
                         {writePermission ? 
                         <div className='viewBtn writeBtn'>
                             {/* <Link to={"/borad/"+menuCd+"/write"}><div className=''>글쓰기</div></Link>   */}
-                            <Link to={"/board/"+menuCd+"/write"}><div className=''>글쓰기</div></Link>                  
+                            <Link to={"/board/"+menuCd+"/write?url="+location.pathname}><div className=''>글쓰기</div></Link>                  
                         </div>:null}
                         
                         {menuListCnt >10 ? 

@@ -76,7 +76,7 @@ const MainNoticeComp = (props) => {
                         const isnew = newFunc(data.CREATE_DT);                          
                         return(
                             <li>
-                                <Link to={"/board/"+data.MENU_CD+"/view?boardId="+data.BOARD_ID}>
+                                <Link to={"/board/"+data.MENU_CD+"/view?boardId="+data.BOARD_ID+"&menuId="+menucd}>
                                     <div className='title'>
                                         <span className={'cata cate'+data.CATE}>{listCate[data.CATE]}</span>
                                         {/* {data.NOTICE && <span className='noti'>공지</span>} */}

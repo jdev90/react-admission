@@ -20,22 +20,34 @@ const List= (props) => {
     let menuInfo = getMenuInfo(location.pathname + location.search);
 
     const getMenucd = () => {
-        if(location.pathname.endsWith('/notice')){return 569;}
-        else if(location.pathname.endsWith('/talk')){return 571;}
-        else if(location.pathname.endsWith('/library')){return 570;}
+        if(location.pathname.endsWith('/notice')){return '569';}
+        else if(location.pathname.endsWith('/talk')){return '570';}
+        else if(location.pathname.endsWith('/library')){return '571';}
     };
-    let allnoice_menucd = getMenucd(); //전체공지 메뉴코드
+   // let allnoice_menucd = ; //전체공지 메뉴코드
     const getInitialCate = () => {
+
         switch (menuInfo?.MENU_CD) {
-            case '569' || '570' || '571': return '';
-            case '551' || '552' || '553': return 1;
-            case '556' || '557' || '558': return 2;
-            case '565' || '566' || '567': return 3;
-            case '561' || '562' || '563': return 4;
+            case '569':
+            case '570':
+            case '571': return '';
+            case '551':
+            case '552':
+            case '553': return '1';
+            case '556':
+            case '557':
+            case '558': return '2';
+            case '565':
+            case '566':
+            case '567': return '3';
+            case '561':
+            case '562':
+            case '563': return '4';
             default: return null; 
         }
     };
-    const [cate, setCate] = useState(getInitialCate());
+    const [cate, setCate] = useState();
+    const [menuCd, setMenuCd] = useState(getMenucd());
 
     const [menuList, setMenuList] = useState([]);
 
@@ -63,12 +75,10 @@ const List= (props) => {
     const [PW, setPW] = useState('');
     const [PWbool, setPWbool] = useState(false);
     const [board_id, setBoard_id] = useState(''); 
-             
-    // const [privacy, setprivacy] = useState(''); // 비밀글
-    // const [reply, setreply] = useState(''); // 댓글
-    // const [user_write, setUser_write] = useState(''); //글쓰기
+
     const listCate = ["공통","수시","정시","편입학","외국인"]; 
     if(token) {userData = getTokenData(token); userDataid = userData.user.id}
+    
     //**권한**//
     useEffect(() => {
         //if(menuCd == 176 && !token){ //자료실
@@ -80,6 +90,9 @@ const List= (props) => {
             setWritePermission(writePermissionCheck(token, menuInfo.MENU_CD)); // 권한 확인
         }
         //**권한**//
+       // allnoice_menucd = getMenucd(); //전체공지 메뉴코드
+       setMenuCd(getMenucd());
+        setCate(getInitialCate())
         setOption('search_title');
         setOptionName('제목');
         setInput('');
@@ -88,24 +101,35 @@ const List= (props) => {
         setPageSt(0);
         setPageEd(showPostCnt); 
         setPagingNum([0,showpageCnt]);
-        Init();
+
         window.scrollTo(0, 0);
-        allnoice_menucd = getMenucd(); //전체공지 메뉴코드
-    },[cate]);
+     
+    },[location.pathname]);
+    useEffect(() => {
+        if(menuCd != ''){
+            Init();
+        }
+    },[cate, menuCd]);
+
+
+
+    /*
      useEffect(() => {
-        setCate(getInitialCate())
+        console.log("메뉴코드 변경");
+        
     },[menuInfo.MENU_CD]);
-    
+    */
    
       
     const Init = async () =>{
         try{
-            const res = await fetch(SERVER_URL+'/api/board/'+allnoice_menucd+'/list?PAGESTART='+pageSt+'&PAGEEND=10&CATE='+cate, {method: "POST", headers : {"Content-Type" : "application/json;charset=utf-8;"}});
+            const res = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?PAGESTART='+pageSt+'&PAGEEND=10&CATE='+cate, {method: "POST", headers : {"Content-Type" : "application/json;charset=utf-8;"}});
             const data = await res.json();
             setMenuList(data?.getBoardList); 
             setMenuListCnt(data?.totalCnt);
             setMenuTotalCnt(data?.totalCnt);
             setPasing(new Array(data?.totalCnt).fill(null));
+
         }catch(e){
             console.log(e);
         }
@@ -113,10 +137,10 @@ const List= (props) => {
 
     {/*검색 옵션*/}
     const getOption = async () => { 
-        const res = await fetch(SERVER_URL+'/api/board/'+allnoice_menucd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND=10&CATE='+cate,{method:"GET", headers:{'content-type':'application/json'}});
+        const res = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND=10&CATE='+cate,{method:"GET", headers:{'content-type':'application/json'}});
         const data = await res.json();
         setMenuList(data?.getBoardList);         
-        const res2 = await fetch(SERVER_URL+'/api/board/'+allnoice_menucd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND='+menuTotalCnt+'&CATE='+cate,{method:"GET", headers:{'content-type':'application/json'}});
+        const res2 = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND='+menuTotalCnt+'&CATE='+cate,{method:"GET", headers:{'content-type':'application/json'}});
         const data2 = await res2.json();
         setMenuListCnt(data2?.getBoardList.length); 
     }
@@ -154,8 +178,8 @@ const List= (props) => {
     }
     const paginga = async () => {
         let res ='';        
-        if(pageEd == showPostCnt-1){ res = await fetch(SERVER_URL+'/api/board/'+allnoice_menucd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND=10&CATE='+cate,{method:"GET", headers:{'content-type':'application/json'}});}              
-        else{ res = await fetch(SERVER_URL+'/api/board/'+allnoice_menucd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND='+pageEd+'&CATE='+cate,{method:"GET", headers:{'content-type':'application/json'}});} 
+        if(pageEd == showPostCnt-1){ res = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND=10&CATE='+cate,{method:"GET", headers:{'content-type':'application/json'}});}              
+        else{ res = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?SEARCH_TP='+option+'&SEARCH_KEY='+input+'&PAGESTART='+pageSt+'&PAGEEND='+pageEd+'&CATE='+cate,{method:"GET", headers:{'content-type':'application/json'}});} 
         const data = await res.json();
         setMenuList(data?.getBoardList);
     }
@@ -184,11 +208,11 @@ const List= (props) => {
 
     function PWChkPopup(priv, BOARD_ID){
         if(priv == "1"){
-            {writePermission && navigate("/board/"+allnoice_menucd+"/view?boardId="+BOARD_ID+"&menuId="+menuInfo?.MENU_CD);}
+            {writePermission && navigate("/board/"+menuCd+"/view?boardId="+BOARD_ID+"&menuId="+menuInfo?.MENU_CD);}
             setPWpop(true)
             setBoard_id(BOARD_ID);
         }
-        else{navigate("/board/"+allnoice_menucd+"/view?boardId="+BOARD_ID+"&menuId="+menuInfo?.MENU_CD);}
+        else{navigate("/board/"+menuCd+"/view?boardId="+BOARD_ID+"&menuId="+menuInfo?.MENU_CD);}
     }
     const PWChk = async () => {
         let JsonArray = new Array();
@@ -206,7 +230,7 @@ const List= (props) => {
             return setPWbool(true);
         }
         else if(data.PASS == 1){
-            navigate("/board/"+menuInfo.MENU_CD+"/view?boardId="+board_id);
+            navigate("/board/"+menuInfo.MENU_CD+"/view?boardId="+board_id+"&menuId="+menuInfo?.MENU_CD);
         }
 
        
@@ -250,7 +274,7 @@ const List= (props) => {
                                     <col width="7%"></col>
                                     <col width="auto"></col>
                                     <col width="6%"></col>
-                                    <col width="12%"></col>
+                                    <col width="16%"></col>
                                     <col width="10%"></col>
                                 </colgroup>
                                 <thead>                                
@@ -288,7 +312,7 @@ const List= (props) => {
                         </div>
                         <div className='viewBtn writeBtn'>
                             {/* {writePermission || user_write == 1 ? <Link to={"/board/"+menuCd+"/write"}><div className=''>글쓰기</div></Link>  :null}  */}
-                            {writePermission || menuInfo?.USER_WRITE == "" ? <Link to={"/board/"+allnoice_menucd+"/write?url="+location.pathname}><div className=''>글쓰기</div></Link>  :null} 
+                            {writePermission || menuInfo?.USER_WRITE == 1 ? <Link to={"/board/"+menuCd+"/write?url="+location.pathname}><div className=''>글쓰기</div></Link>  :null} 
 
                         </div>
                         
@@ -321,7 +345,7 @@ const List= (props) => {
                         {PWpop && 
                         <div className='pw_popup_back'>
                             <div className='pw_popup'> 
-                                <div className='back' onClick={()=>{setPWpop(false);setPW("");setPWbool(false)}}><img src='/images/sub/content/l_m_close.png'/></div>                           
+                                <div className='back' onClick={()=>{setPWpop(false);setPW("");setPWbool(false)}}><img src='/images/main/comm_more.png'/></div>                           
                                 <h3>게시물 인증</h3>
                                 {PWbool ? <p className='color'>비밀번호를 다시 입력해주세요.</p> : <p>비밀번호 확인</p>}
                                 <input  
@@ -332,7 +356,7 @@ const List= (props) => {
                                     ref={focusRef}
                                     placeholder="비밀번호를 입력해 주세요."
                                     />
-                                <div className='btn'><div className="O" onClick={()=>{setPWpop(false);setPW("");setPWbool(false)}}>취소</div><div onClick={()=>PWChk()}>확인</div></div>                            
+                                <div className='btn' style={{textAlign:"center"}}><div className="O" onClick={()=>{setPWpop(false);setPW("");setPWbool(false)}}>취소</div><div onClick={()=>PWChk()}>확인</div></div>                            
                             </div>
                         </div>
                         }

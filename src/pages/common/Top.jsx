@@ -144,14 +144,14 @@ const Top = (props) => {
                                             {menuList?.map((data2, index)=> {
                                                 if(data2.DEPTH == 2 && data2.PARENT_MENU_CD == data1.MENU_CD){
                                                     return(
-                                                        <li key={index}><Link to={data2.LINK}>{data2.MENU_NM}</Link></li>
+                                                        <li key={index}><Link to={data2.LINK} target={data2.BLANK == "1" ? "_blank":''}>{data2.MENU_NM}</Link></li>
                                                 )}
                                             })}
                                         </ul>
                                     </li>
                             ) }
                         })}
-                        <li className='dep1 ex_link'><div><Link>학과안내<img src='/images/top_exlink.png'/></Link></div></li>
+                        <li className='dep1 ex_link'><div><Link to={"https://www.cs.ac.kr/document/college?tab=1"} target='_blank'>학과안내<img src='/images/top_exlink.png'/></Link></div></li>
                         {/* <li className='dep1 ex_link'><div className='vdo'><Link>홍보영상<img src='/images/top_exlink.png'/></Link></div></li> */}
                         <li className='sitem'><Link to={URL.SITEMAP}><img src={isHovered ? '/images/top_sitemB.png' : '/images/top_sitemW.png'}/></Link></li>
                     </ul> 
@@ -179,7 +179,7 @@ const Top = (props) => {
                                                     {menuList?.map((data2, index)=> {
                                                         if(data2.DEPTH == 2 && data2.PARENT_MENU_CD == data1.MENU_CD){
                                                             return(
-                                                                <li key={index}><Link to={data2.LINK}  onClick={() => {handleOpenMenu(false);}}>{data2.MENU_NM}</Link></li>
+                                                                <li key={index}><Link to={data2.LINK} target={data2.BLANK == "1" ? "_blank":''} onClick={() => {handleOpenMenu(false);}}>{data2.MENU_NM}</Link></li>
                                                         )}
                                                     })}
                                                 </ul>

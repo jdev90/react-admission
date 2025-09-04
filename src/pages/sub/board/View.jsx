@@ -206,7 +206,7 @@ const View = () => {
     const { type, item } = action;
     switch (type) {
       case "BoardModify":
-        navigate("/board/"+postList[0]?.MENU_CD+"/write?boardId="+postList[0]?.BOARD_ID+"&menuId="+query.menuId);
+        navigate("/board/"+menuCd+"/write?boardId="+query.boardId+"&menuId="+query.menuId);
         break;
 
       case "BoardDelete":
@@ -342,6 +342,7 @@ const View = () => {
                           );
                           const exlist = ["jpg","png","JPG","PNG","JPEG","jpeg","GIF","gif",];
                           const expdf = ["pdf"];
+                          const exvideo = ["mp4","MP4","mov","MOV","avi","AVI"];
                           // if (!exlist.includes(ex)) return null;
                           // if (!expdf.includes(ex)) return null;
                           // if(!expdf.includes(ex) && !exlist.includes(ex)) return null;
@@ -349,7 +350,7 @@ const View = () => {
                             return (
                               <div className="img" key={file.FILE_ID}>
                                 <img
-                                  src={"https://cfile.cs.ac.kr/upload/fileserver/grad/"+file.PATH+"/"+file.FILE_NM}
+                                  src={"https://cfile.cs.ac.kr/upload/fileserver/admission/"+file.PATH+"/"+file.FILE_NM}
                                   alt="행사사진"
                                 />
                               </div>
@@ -357,9 +358,18 @@ const View = () => {
                           }
                           else if(expdf.includes(ex)){
                             return (
-                              <div className="img" key={file.FILE_ID}>
+                              <div className="" key={file.FILE_ID}>
                                {/* <iframe src={"https://cfile.cs.ac.kr/upload/fileserver/grad/"+file.PATH+"/"+file.FILE_NM} type="application/pdf" aria-label="example" width="100%" height="500"/>*/}
-                                <iframe src={SERVER_URL+"/api/attach/view?BOARD_ID="+file.BOARD_ID+"&MENU_CD="+file.MENU_CD+"&FILE_ID="+file.FILE_ID+"&PATH="+file.PATH} type="application/pdf" aria-label="example" width="100%" height="500"/>
+                                <iframe className="pdf" src={SERVER_URL+"/api/attach/view?BOARD_ID="+file.BOARD_ID+"&MENU_CD="+file.MENU_CD+"&FILE_ID="+file.FILE_ID+"&PATH="+file.PATH} type="application/pdf" aria-label="example" width="100%" height="500"/>
+                              </div>
+                            );
+                          }
+                          else if(exvideo.includes(ex)){
+                            return (
+                              <div className="" key={file.FILE_ID}>
+                                <video className="video" autoPlay loop muted width="100%" controls>
+                                  <source src={"https://cfile.cs.ac.kr/upload/fileserver/admission/"+file.PATH+"/"+file.FILE_NM} type="video/mp4" />
+                                </video>
                               </div>
                             );
                           }
@@ -467,6 +477,7 @@ const View = () => {
             <div className="viewBtn viewMarB">
               {postList.length > 0 && (
                 <>
+                {menuInfo?.USER_WRITE != 1 &&<>
                   {/* 이전/다음 */}
                   {postList[1]?.BOARD_ID && (
                     <Link to={"?boardId="+postList[1].BOARD_ID+"&menuId="+query.menuId}>
@@ -477,7 +488,7 @@ const View = () => {
                     <Link to={"?boardId="+postList[2].BOARD_ID+"&menuId="+query.menuId}>
                       <div className="next">다음</div>
                     </Link>
-                  )}
+                  )}</>}
 
                   {/* 목록 */}
                   <Link to={getMenuInfoMenuCd(query.menuId)?.LINK}>
@@ -515,7 +526,7 @@ const View = () => {
         <div className="pw_popup_back">
           <div className="pw_popup">
             <div className="back" onClick={resetPwModal}>
-              <img src="/images/sub/content/l_m_close.png" alt="close" />
+              <img src="/images/main/comm_more.png" alt="close" />
             </div>
 
             <h3>게시물 인증</h3>

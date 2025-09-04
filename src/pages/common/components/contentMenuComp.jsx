@@ -54,7 +54,7 @@ const ContentMenuComp = (props) => {
                         {menuList?.map((data1, index1)=> {
                             if(data1.DEPTH === "2" && data1.PARENT_MENU_CD == menuInfo?.PARENT_MENU_CD){
                                 return(
-                                    <li key={index1}><Link to={data1.LINK}><p className={menuInfo?.MENU_CD == data1.MENU_CD ? 'dep2_nm active' : 'dep2_nm'} onClick={() => showTab(index1-(index+1)) }>{data1.MENU_NM}</p><img src='/images/sub/content/comm_menu.png'/></Link></li>
+                                    <li key={index1}><Link to={data1.LINK} target={data1.BLANK == "1" ? "_blank":''}><p className={menuInfo?.MENU_CD == data1.MENU_CD ? 'dep2_nm active' : 'dep2_nm'} onClick={() => showTab(index1-(index+1)) }>{data1.MENU_NM}</p><img src='/images/sub/content/comm_menu.png'/></Link></li>
                                 )
                             }
                         })}

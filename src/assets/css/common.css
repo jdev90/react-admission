@@ -101,10 +101,10 @@ table.listTable tbody td.file_img img{width: 16px;}
 table.listTable tbody td .notice{color: #f1f1f1;background-color: #0070d1;display: inline;padding: 2px 8px;padding-top: 4px;border-radius: 3px;font-size: 13px;}
 table.listTable tbody td .cate{transform: translateY(-2px);display: inline-block;padding: 2px 0;padding-top: 4px;width: 50px;text-align: center;border-radius: 10px;font-size: 13px;margin-right: 5px;color: #fff;}
 .cate.cate0{ background-color: #9852A9;}
-.cate.cate1{ background-color: #034EA2;}
-.cate.cate2{ background-color: #E55D94;}
-.cate.cate3{ background-color: #FF8474;}
-.cate.cate4{ background-color: #FFBD5E;}
+.cate.cate1{ background-color: #63CDF5;}
+.cate.cate2{ background-color: #0073BC;}
+.cate.cate3{ background-color: #00ADEF;}
+.cate.cate4{ background-color: #2E3192;}
 table.listTable tbody td a.noti_a{}
 table.listTable tbody td.nonepost{line-height: 100px;}
 table.listTable tbody td .new {display: inline-block;background-color: #D37100;width: 18px;text-align: center;font-size: 11px;height: 18px;line-height: 19px;color: #fff;border-radius: 8px 8px 6px 0px;transform: translateY(-16%);margin-left: 10px;}
@@ -153,8 +153,8 @@ table.viewTable .row1 td.down div{float: left;}
 table.viewTable .row1 td.txtR{text-align: right;}
 table.viewTable .row2 td{padding: 10px;text-align: left;} 
 table.viewTable .row2 td.content div{padding:20px 10px;}
-table.viewTable .row2 td.content div img{margin: auto;display: block;width: 60%;}
-
+table.viewTable .row2 td.content div img{margin: auto;display: block;width: 100%;}
+table.viewTable .row2 td iframe{width: 100% !important;}
 /*게시글 버튼 - 글쓰기, 수정, 삭제 버튼*/
 .viewBtn{display: inline-block;width: 100%;margin-top: 10px;}/**/
 .viewBtn a:hover{color: #014DA1;text-decoration: underline;}
@@ -163,13 +163,14 @@ table.viewTable .row2 td.content div img{margin: auto;display: block;width: 60%;
 .viewBtn div{float: left;margin-right: 6px;}/**/
 .viewBtn div.list{float: right;margin-right:0;margin-left: 6px;}/**/
 .viewBtn.viewMarB{margin-bottom: 100px;}
-
+.table_area .authBtn{text-align: center;}
 /*게시글 - 글쓰기 페이지*/
 table.writeTable{width: 936px;margin: auto;}
 table.writeTable thead th{border:0px;font-size: 24px;padding-bottom: 16px; text-align: left;}
 table.writeTable tbody .title td{border-top:2px solid #001C58;}
 table.writeTable tbody tr td{padding: 10px;}
 table.writeTable .content .txt{height: 400px;}
+table.writeTable .content .txt iframe{width: 100% !important;}
 table.writeTable .title .txt input{width: 95%;padding: 8px 5px;font-size: 16px;border: 1px solid #aeb1b7;border-radius: 4px;}
 table.writeTable .noti_option td.checkbox{text-align: left;padding-left: 30px;}
 table.writeTable .noti_option td.checkbox span{margin-left: 8px;margin-right : 15px;}
@@ -184,9 +185,9 @@ table.writeTable tbody tr td .cate_op{width: 160px;display: block;margin-right: 
 .insert_file .upload-name{float: left;border-radius: 4px;border: 1px solid #aeb1b7;color: #999;font-size: 13px;padding: 8px;width: 70%;margin-left: 10px;}
 .insert_file label {float: left;background-color: #999;border: 1px solid #707070;border-radius: 4px;color: #fff;cursor: pointer;font-size: 13px;margin-bottom: 5px;margin-left: 10px;padding: 6px 11px;}
 .insert_file input[type=file]{border: 0;height: 0;overflow: hidden;padding: 0;position: absolute; width: 0;}
-.insert_file .cancle{cursor: pointer;float: left;border: 2px solid #838383;border-radius: 16px;width: 20px;height: 20px;transform: translateY(12%);margin-left: 10px;}
+.insert_file .cancle{cursor: pointer;float: left;text-align: center;border: 2px solid #838383;border-radius: 16px;width: 20px;height: 20px;transform: translateY(12%);margin-left: 10px;}
 .insert_file .cancle:hover{border: 2px solid #e05a50;}
-.insert_file .cancle img{width: 10px;height: 10px; transform: translateY(-29%);} 
+.insert_file .cancle img{width: 10px;height: 10px; vertical-align: middle;} 
 
 /*footer*/
 footer{width: 100%;background-color: #2F2F2F;color: #fff;}
@@ -234,7 +235,9 @@ footer .info ul li p:not(.titl){margin-bottom: 2px;}
 #popup-slide-box .btn-box button:hover, #popup-slide-box .btn-box button:focus { filter: brightness(0.8); }
 #popup-slide-box .popup-slide-bg { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 0; background-color: rgba(0, 0, 0, 0.3); }
 .btn_popup .cnt {width: 25px; height: 25px; background-color: #034EA2; border-radius: 50%; display: flex; justify-content: center; align-items: center; position: absolute; right: 0; top: 0; color: #FFF !important;}
-
+/*#popup-slide-box .swiper-slide {width: 50% !important;}
+#popup-slide-box .swiper-wrapper{margin: auto;}*/
+#popup-slide-box .swiper-slide .img img{ width: 88% !important; height: auto !important; }
 /*######### 서브페이지 ###########*/
 .Subcontain{position: relative;;background-color: #0077ff00; width: 1416px;margin: auto;min-height: 730px;display: inline-block;margin-bottom: 200px;}
 .contentMenu{position: absolute;width: 20%;top:-35px;word-break: keep-all;}
@@ -274,7 +277,7 @@ footer .info ul li p:not(.titl){margin-bottom: 2px;}
 .guideline_pdfview .pdfindex{width: 32%;margin-left: 3%; box-shadow:inset 0 0 0 0px #555;padding-top: 20px;word-break: keep-all;}
 .guideline_pdfview .pdfindex p:not(.paraphrase){font-size: 24px;font-weight: 400;}
 .guideline_pdfview .pdfindex p.paraphrase{font-size: 14px;color:#898989;margin-top: 4px;}
-.guideline_pdfview .pdfindex ul{margin-top: 40px;border-top: 2px solid #777;}
+.guideline_pdfview .pdfindex ul{margin-top: 40px;border-top: 2px solid #777;max-height: 748px;overflow-y: auto;}
 .guideline_pdfview .pdfindex ul li{position: relative;padding: 20px;border-bottom: 1px solid #777;cursor: pointer;}
 .guideline_pdfview .pdfindex ul li:hover{color: #0052af;}
 .guideline_pdfview .pdfindex ul li::before{position: absolute;content: "";width: 3px;height: 3px;border-radius: 50%;background-color: #777;top:28px;left: 10px;}
@@ -282,12 +285,12 @@ footer .info ul li p:not(.titl){margin-bottom: 2px;}
 
 
 /* 2. 원서접수 */
-.cont-catebox{display: none;}
+/*.cont-catebox{display: none;}
 .cont-catebox.active{display: block;}
 .cont-cate{box-shadow: inset 0 0 0 1px #cacaca;border-radius:10px;margin-bottom: 30px;display: table;width: 100%;}
 .cont-cate .cate{display: table-cell;width: 33.26%;font-size: 20px;text-align: center;padding: 20px 0;cursor: pointer;}
 .cont-cate .cate:not(:first-child){border-left:1px solid #cacaca ;}
-.cont-cate .cate.active{background-color: #003774;color: #fff;}
+.cont-cate .cate.active{background-color: #003774;color: #fff;}*/
 .cont-query{counter-reset: number 0;display: table;width: 100%;padding-top: 40px;padding-bottom: 40px;background-color: #F8F8F8;border-radius: 20px;box-shadow: inset -4px 4px 7px #1111111e;}
 .cont-query li{position: relative;;display: table-cell;text-align: center;padding-top: 45px; width: 16.66%;}
 .cont-query li::before{position: absolute;counter-increment: number 1; content:"0"counter(number); top:0px;left: 50%;transform: translateX(-50%);width: 35px;height: 35px;line-height: 35px;border-radius: 50%;background-color: #D8F0FF;}
@@ -598,7 +601,8 @@ table.li_st_num tbody tr th.w1::before{left: 1%;}
    
 }
 @media (max-width: 770px){ 
-    
+    .guideline_pdfview .pdfview{width: 100%;}
+    .guideline_pdfview .pdfindex{display: none;}
     /* .btn_2_c {font-size: 14px;width: 38%;}
     .btn_2_c_div {padding-left: 10px;}
     .fture li {width: 88%;} */
@@ -675,6 +679,15 @@ table.li_st_num tbody tr th.w1::before{left: 1%;}
     .Top .logoTab .logo{font-size: 18px;}
     .Top .logoTab .logo a {padding-left: 160px;}
     .Top .logoTab .logo img {width: 130px;}
+    .cont-s {font-size: 16px;}
+    .cont-h {font-size: 28px;}
+    .cont-m-num { font-size: 22px;padding-left: 28px;}
+    .cont-m-num::before {width: 22px;font-size: 12px;line-height: 16px;}
+    .guideline_pdfview .pdfview iframe{height: 560px;}
+    .cont-query li {display: block;width: 100%;margin: 8px 0;}
+    .cont-query li:not(:last-child):after {display: none;}
+    .cont-query li::before {font-size: 12px;width: 28px;height: 28px;line-height: 28px;top: 10px;}
+    .cont-query {padding-top: 4px;padding-bottom: 4px;}
     footer .link .logo a {padding-left: 150px;font-size: 20px;}
     footer .link .logo a img {    width: 140px;}
     footer .link ul {margin-top: 30px;font-size: 12px;}

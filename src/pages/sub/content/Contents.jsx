@@ -14,20 +14,39 @@ const Sub = (props) => {
     let menuInfo = getMenuInfo(location.pathname + location.search);
     //const query = qs.parse(location.search, {ignoreQueryPrefix: true});
     //const params = useParams();
-	//const menuCd = params.menuCd;
-    const [menuList, setMenuList] = useState([]);
+	//const menuCd = menuInfo?.MENU_CD;
     const [page, setPage] = useState(1);
     const [guide, setGuide] = useState([]); //달별로 분리된 학사일정 리스트
     const [guideBookMark, setGuideBookMark] = useState([]); //달별로 분리된 학사일정 리스트
-    
-    
+    const [gubun, setGubun] = useState(""); //달별로 분리된 학사일정 리스트
+    const [contitle, setContitle] = useState(""); //달별로 분리된 학사일정 리스트
 
+    function setting(menuCd){
+        switch (menuCd) {
+        case '550' :  setGubun(1);setContitle("학년도 수시모집요강"); return
+        case '555' :  setGubun(2);setContitle("학년도 정시모집요강"); return 
+        case '564' :  setGubun(3);setContitle("학년도 편입학모집요강");return
+        case '560' :  setGubun(4);setContitle("학년도 외국인모집요강");return
+        case '554' :  setGubun(-1);setContitle("전년도 수시 입시결과");return
+        case '559' :  setGubun(-2);setContitle("전년도 정시 입시결과");return
+        case '568' :  setGubun(-3);setContitle("전년도 편입학 입시결과");return
+        case '591' :  setGubun(0);setContitle("학년도 대학 및 학과소개"); return//안내책자return
+        }
+     }
+    
     
     //const token = window.sessionStorage.getItem('accessToken');
     useEffect(() => {
-       Init();
-        window.scrollTo(0, 0);
+        setting(menuInfo?.MENU_CD);
     },[menuInfo?.MENU_CD]);
+
+    useEffect(() => {
+        {gubun != "" &&
+        setting(menuInfo?.MENU_CD);
+        Init();
+        setPage(1)
+        window.scrollTo(0, 0);}
+    },[gubun]);
 
   const handlePageChange = (pageNumber) => {
     setPage(pageNumber);
@@ -41,20 +60,13 @@ const Sub = (props) => {
       
     const Init = async () =>{
         try{
-            const res1 = await fetch(SERVER_URL+'/api/menu/list',{method:"POST", headers:{'content-type':'application/json'}});
-            const data1 = await res1.json();  
-            setMenuList(data1.getMenuList);
-            
-            // const res = await fetch(SERVER_URL+"/api/contents/"+menuCd+"/view",{method:"GET", headers:{'content-type':'application/json'}});
-            // const data = await res.json();  
-            // setContentList(data.getContentsView);
             let JsonArray = new Array();
             let JsonObject = new Object;
-            JsonObject.GUBUN = 1; //0: 안내책자, 1 : 수시, 2: 정시, 3: 편입학, 4: 외국인
+            JsonObject.GUBUN = gubun; //0: 안내책자, 1 : 수시, 2: 정시, 3: 편입학, 4: 외국인
             JsonArray.push(JsonObject);  
             let res = await fetch(SERVER_URL+'/api/guide/view',{method:"POST", headers:{'content-type':'application/json'}, body : JSON.stringify(JsonArray)});
             const data = await res.json();
-            setGuide(data.getGuideView);
+            setGuide(data.getGuideView[0]);
             setGuideBookMark(data.getGuideBookMarkList);
         }catch(e){
             console.log(e);
@@ -63,18 +75,6 @@ const Sub = (props) => {
     
     const handleFileDown = (src) => window.open(src, "self");
    
-    function showTab(index) {
-        // 모든 탭 버튼과 콘텐츠를 숨기기
-        var buttons = document.querySelectorAll('.cate');
-        var box = document.querySelectorAll('.cont-catebox');
-        for (var i = 0; i < buttons.length; i++) {
-            buttons[i].classList.remove('active');
-            box[i].classList.remove('active');
-        }
-        // 선택한 탭 버튼과 콘텐츠 활성화
-        buttons[index].classList.add('active');
-        box[index].classList.add('active');
-    }
     
     return(
         <>
@@ -82,140 +82,47 @@ const Sub = (props) => {
             <div className='Subcontain'>
                 <ContentMenuComp menuCd={menuInfo.MENU_CD}/>                          
                 <div className='contentBox'>
-                    {/* <div dangerouslySetInnerHTML={{ __html:  contentList[0]?.CONTENT }} ref={containerRef}></div>  */}
-                    
-                    {/* <div class='contents_none'>
-                        <img src="/images/sub/content/contents_none.png"/>
-                        <p class="title">자료를 준비하고 있습니다.</p>
-                        <p>더 많은 서비스와 정확한 정보를 전해드리기 위해 준비중입니다.</p>
-                        <p>이용에 불편을 드려 죄송합니다.</p>                       
-                    </div>    */}
-                    
-                    {menuInfo?.MENU_CD == 550 &&<>
-                    <div className='cont-h mgB40'>2026학년도 수시모집요강</div> 
+
+                    {[550, 555, 564, 560, 554, 559, 568,591].some(role => menuInfo.MENU_CD.includes(role))  &&<>
+                    <div className='cont-h mgB40'>{gubun>=0 && guide?.YEAR}{contitle}</div> 
                     <ul className='guideline_file'>
-                        <li className='filedown' ><a href="/pdf/pdf_guideline.pdf" download>모집요강 다운로드<img src='/images/sub/content/guideline_down.png'/></a></li>
-                        <li className='filezoom' onClick={() => handleFileDown("/pdf/pdf_guideline.pdf")}>확대보기<img src='/images/sub/content/guideline_zoom.png'/></li>
+                        <li className='filedown' ><a  onClick={() => handleFileDown(SERVER_URL+"/api/guide/download?YEAR="+guide?.YEAR+"&GUBUN="+gubun)} download>모집요강 다운로드<img src='/images/sub/content/guideline_down.png'/></a></li>
+                        <li className='filezoom' onClick={() => handleFileDown(SERVER_URL+"/api/guide/pdfview?GUBUN="+gubun)}>확대보기<img src='/images/sub/content/guideline_zoom.png'/></li>
                     </ul>
                     <div className='guideline_pdfview'>
                         <div className='pdfview'>
-                            {/*<iframe key={page} src={`/pdf/pdf_guideline.pdf#page=${page}`} type="application/pdf" title="PDF Viewer" aria-label="example" width="100%" height="800"/>*/}
-                            <iframe key={page} src={SERVER_URL+"/api/attach/view?PATH=/guide/&FILE_NM=E2D7806D540B4E558CBE5ADF8F8B0146&CREATE_ID=30072&ORI_FILE_NM=2026_nonscheduled.pdf&YEAR=2025"} type="application/pdf" title="PDF Viewer" aria-label="example" width="100%" height="800"/>
-
+                            <iframe key={page} src={SERVER_URL+"/api/guide/pdfview?GUBUN="+gubun+`#page=${page}&zoom=page-width`} type="application/pdf" title="PDF Viewer" aria-label="example" width="100%" height="800"/>
                         </div> 
-                        <div className='pdfindex'>
+                         {gubun >= 0 && <div className='pdfindex'>
                             <p>Contents Index</p>
                             <p className='paraphrase'>선택하면 각 페이지로 이동합니다.</p>
                             <ul>{guideBookMark?.map((data, index) =>(
                                 <li key={index} onClick={() => handlePageChange(data.BOOKMARK_PAGE)}>{data.BOOKMARK_TITLE}</li>))}
-                                
                             </ul>
-                            {/*<ul>
-                                <li onClick={() => handlePageChange(1)}>2026 대학 수시모집 주요 변경사항</li>
-                                <li onClick={() => handlePageChange(2)}>수시모집 요약</li>
-                                <li>전형일정</li>
-                                <li>모집단위 및 모집인원</li>
-                                <li>유의사항</li>
-                                <li>전형안내</li>
-                                <li>합격자생활기록부 반영방법</li>
-                            </ul>*/}
-                        </div>                   
+                        </div>}                
                     </div>
                     </>}
+                    
 
-                    {menuInfo?.MENU_CD == 555 &&<>
-                    <div className='cont-h mgB40'>2026학년도 정시모집요강</div> 
-                    <ul className='guideline_file'>
-                        <li className='filedown' ><a href="/pdf/pdf_guideline.pdf" download>모집요강 다운로드<img src='/images/sub/content/guideline_down.png'/></a></li>
-                        <li className='filezoom' onClick={() => handleFileDown("/pdf/pdf_guideline.pdf")}>확대보기<img src='/images/sub/content/guideline_zoom.png'/></li>
-                    </ul>
-                    <div className='guideline_pdfview'>
-                        <div className='pdfview'>
-                            <iframe key={page} src={`/pdf/pdf_guideline.pdf#page=${page}`} type="application/pdf" title="PDF Viewer" aria-label="example" width="100%" height="800"/>
-                        </div> 
-                        <div className='pdfindex'>
-                            <p>Contents Index</p>
-                            <p className='paraphrase'>선택하면 각 페이지로 이동합니다.</p>
-                            <ul>
-                                <li onClick={() => handlePageChange(1)}>2026 대학 수시모집 주요 변경사항</li>
-                                <li onClick={() => handlePageChange(2)}>수시모집 요약</li>
-                                <li>전형일정</li>
-                                <li>모집단위 및 모집인원</li>
-                                <li>유의사항</li>
-                                <li>전형안내</li>
-                                <li>합격자생활기록부 반영방법</li>
-                            </ul>
-                        </div>                   
-                    </div>
-                    </>}
 
-                    {menuInfo?.MENU_CD == 564 &&<>
-                    <div className='cont-h mgB40'>2026학년도 편입학모집요강</div> 
-                    <ul className='guideline_file'>
-                        <li className='filedown' ><a href="/pdf/pdf_guideline.pdf" download>모집요강 다운로드<img src='/images/sub/content/guideline_down.png'/></a></li>
-                        <li className='filezoom' onClick={() => handleFileDown("/pdf/pdf_guideline.pdf")}>확대보기<img src='/images/sub/content/guideline_zoom.png'/></li>
-                    </ul>
-                    <div className='guideline_pdfview'>
-                        <div className='pdfview'>
-                            <iframe key={page} src={`/pdf/pdf_guideline.pdf#page=${page}`} type="application/pdf" title="PDF Viewer" aria-label="example" width="100%" height="800"/>
-                        </div> 
-                        <div className='pdfindex'>
-                            <p>Contents Index</p>
-                            <p className='paraphrase'>선택하면 각 페이지로 이동합니다.</p>
-                            <ul>
-                                <li onClick={() => handlePageChange(1)}>2026 대학 수시모집 주요 변경사항</li>
-                                <li onClick={() => handlePageChange(2)}>수시모집 요약</li>
-                                <li>전형일정</li>
-                                <li>모집단위 및 모집인원</li>
-                                <li>유의사항</li>
-                                <li>전형안내</li>
-                                <li>합격자생활기록부 반영방법</li>
-                            </ul>
-                        </div>                   
-                    </div>
-                    </>}
-
-                    {menuInfo?.MENU_CD == 560 &&<>
-                    <div className='cont-h mgB40'>2026학년도 외국인모집요강</div> 
-                    <ul className='guideline_file'>
-                        <li className='filedown' ><a href="/pdf/pdf_guideline.pdf" download>모집요강 다운로드<img src='/images/sub/content/guideline_down.png'/></a></li>
-                        <li className='filezoom' onClick={() => handleFileDown("/pdf/pdf_guideline.pdf")}>확대보기<img src='/images/sub/content/guideline_zoom.png'/></li>
-                    </ul>
-                    <div className='guideline_pdfview'>
-                        <div className='pdfview'>
-                            <iframe key={page} src={`/pdf/pdf_guideline.pdf#page=${page}`} type="application/pdf" title="PDF Viewer" aria-label="example" width="100%" height="800"/>
-                        </div> 
-                        <div className='pdfindex'>
-                            <p>Contents Index</p>
-                            <p className='paraphrase'>선택하면 각 페이지로 이동합니다.</p>
-                            <ul>
-                                <li onClick={() => handlePageChange(1)}>2026 대학 수시모집 주요 변경사항</li>
-                                <li onClick={() => handlePageChange(2)}>수시모집 요약</li>
-                                <li>전형일정</li>
-                                <li>모집단위 및 모집인원</li>
-                                <li>유의사항</li>
-                                <li>전형안내</li>
-                                <li>합격자생활기록부 반영방법</li>
-                            </ul>
-                        </div>                   
-                    </div>
-                    </>}
-
+                    {/*원서접수 카테고리
                     <ul className='cont-cate'>
                         <li className='cate active' onClick={() => showTab(0)}>수시</li>
                         <li className='cate' onClick={() => showTab(1)}>정시</li>
                         <li className='cate' onClick={() => showTab(2)}>편입학</li>
-                    </ul>
-                    {/* <수시원서접수  */}
-                    <div className='cont-catebox active'>
+                    </ul>*/}
+                    {/* ---수시원서접수  */}
+                    {menuInfo?.MENU_CD == 587 &&<>
+                    <div className='cont-catebox'>
                         <div className='cont-area'>     
                             <div className='cont-h mgB20'>인터넷 원서접수</div>
-                            <table className='cont-table mgB'>
+                            <div className='is-wauto-box mgB'><table className='cont-table'>
                                 <colgroup>
-                                    <col style={{width:"18%"}}/>
-                                    <col style={{width:"18%"}}/>
                                     <col style={{width:"20%"}}/>
-                                    <col style={{width:"30%"}}/>
+                                    <col style={{width:"20%"}}/>
+                                    <col style={{width:"20%"}}/>
+                                    <col style={{width:"20%"}}/>
+                                    <col style={{width:"20%"}}/>
                                 </colgroup>
                                     <thead>                                
                                         <tr>
@@ -229,10 +136,13 @@ const Sub = (props) => {
                                         <tr>
                                             <th>수시모집</th>
                                             <th>진학어플라이</th>
-                                            <td colSpan={3}>현재는 원서접수 기간이 아닙니다</td>
+                                            <td><Link to='https://apply.jinhakapply.com/Notice/4143035/A' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_ap_mv4.gif' border='0'/></Link></td>
+                                            <td><Link href='https://apply.jinhakapply.com/Common/ApplySearch/4143035' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_ac_mv4.gif' border='0'/></Link></td>
+                                            <td><Link href='https://sdoc.jinhakapply.com/Submit/frmSubmitStu.aspx?UnivServiceID=4143035' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_dc_mv4.gif' border='0'/></Link></td>
+                                            {/*<td colSpan={3}>현재는 원서접수 기간이 아닙니다</td>*/}
                                         </tr>
                                     </tbody> 
-                            </table>
+                            </table></div>
                         </div>
                         <div className='cont-area'>  
                             <div className='cont-h mgB20'>접수기간</div>
@@ -246,7 +156,6 @@ const Sub = (props) => {
                                         <tr>
                                             <th>구분</th>
                                             <th>일자</th>
-                                            
                                         </tr>
                                     </thead>
                                     <tbody> 
@@ -297,23 +206,26 @@ const Sub = (props) => {
                             <div className='cont-m-num'>제출방법</div>
                             <div className='cont-s mgB5'>등기우편(제출마감일 소인 유효), 방문제출(기간 중 평일 업무시간에 한함)</div>
                             <div className='cont-s mgM'>서류 제출 후 반드시 도착 여부를 본인이 직접 확인하여야 함 (미도착에 따른 불이익에 대해 책임지지 않음)</div>
-
                             <div className='cont-m-num'>제출장소</div>
                             <div className='cont-s mgM'>경남 창원시 마산회원구 팔용로 262 창신대학교 입학홍보처(055-250-3114)</div>
                             <div className='cont-m-num'>유의사항</div>
                             <div className='cont-s mgM'>제출서류 미제출자는 불합격 처리함</div>
                         </div>
                     </div>
-                    {/* <정시원서접수  */}
+                    </>}
+                    {/* ---정시원서접수  */}
+                    {menuInfo?.MENU_CD == 588 &&<>
                     <div className='cont-catebox'>
                         <div className='cont-area'>     
                             <div className='cont-h mgB20'>인터넷 원서접수</div>
-                            <table className='cont-table mgB'>
+                            <div className='is-wauto-box mgB'><table className='cont-table'>
                                 <colgroup>
-                                    <col style={{width:"18%"}}/>
-                                    <col style={{width:"18%"}}/>
                                     <col style={{width:"20%"}}/>
-                                    <col style={{width:"30%"}}/>
+                                    <col style={{width:"20%"}}/>
+                                    <col style={{width:"20%"}}/>
+                                    <col style={{width:"20%"}}/>
+                                    <col style={{width:"20%"}}/>
+
                                 </colgroup>
                                     <thead>                                
                                         <tr>
@@ -327,13 +239,18 @@ const Sub = (props) => {
                                         <tr>
                                             <th>정시(가군)</th>
                                             <th>진학어플라이</th>
-                                            <td colSpan={3}>현재는 원서접수 기간이 아닙니다</td>
+                                            <td><Link to='https://apply.jinhakapply.com/Notice/4143035/A' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_ap_mv4.gif' border='0'/></Link></td>
+                                            <td><Link href='https://apply.jinhakapply.com/Common/ApplySearch/4143035' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_ac_mv4.gif' border='0'/></Link></td>
+                                            <td><Link href='https://sdoc.jinhakapply.com/Submit/frmSubmitStu.aspx?UnivServiceID=4143035' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_dc_mv4.gif' border='0'/></Link></td>
+                                            {/*<td colSpan={3}>현재는 원서접수 기간이 아닙니다</td>*/}
                                         </tr>
                                     </tbody> 
-                            </table>
+                            </table></div>
                         </div>
                     </div>
-                    {/* <편입학 원서접수  */}
+                    </>}
+                    {/* ---편입학 원서접수  */}
+                    {menuInfo?.MENU_CD == 590 &&<>
                     <div className='cont-catebox'>
                         <div className='cont-area'>     
                             <div className='cont-h mgB20'>접수기간</div>
@@ -372,12 +289,9 @@ const Sub = (props) => {
                             <div className='cont-s mgM'>방문, 우편, 이메일 제출</div>
                             <div className='cont-m-num'>제출장소</div>
                             <div className='cont-s mgM'>경남 창원시 마산회원구 팔용로 262 창신대학교 교무처 교무팀(055-250-3106, 4)</div>
-
                         </div>
                     </div>
-
-
-                    
+                    </>}
                 </div>
             </div>
         </>
