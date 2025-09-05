@@ -35,7 +35,6 @@ const PopupComp = () => {
             const data = await res.json(); 
             setPopupList(data.getPopupList);
             setLoading(true);
-            console.log(data.getPopupList);
         }catch(e){
             console.log(e);
         }

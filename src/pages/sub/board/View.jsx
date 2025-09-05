@@ -85,7 +85,6 @@ const View = () => {
       setPostList(data.getBoardView);
       setAttachList(data.getAttachList);
       setReplyList(data.getReplyList);
-      console.log(data.getBoardView)
 
     } catch (e) {
       console.error(e);

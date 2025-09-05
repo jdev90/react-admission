@@ -194,7 +194,7 @@ const Write = (props) => {
         formData.append('PASSWD', passwd);
         formData.append('PRIVACY', privacy);
         formData.append('CATE', cate);
-        formData.append('HP_CD', catedept);
+        formData.append('ETC1', catedept);
         
        
         const res = await fetch(SERVER_URL+'/api/board/'+allmenuCd+'/write', {method: "POST",
@@ -206,9 +206,7 @@ const Write = (props) => {
         data?.MSG == "SUCCESS" ? query.url != undefined ? navigate(query.url):navigate(getMenuInfoMenuCd(query.menuId).LINK) : console.log('업로드실패');
     }
     
-useEffect(() => {
-        console.log(catedept);
-    },[catedept]);
+
 
     const customUploadAdapter = (loader) => { // (2)
         return {
