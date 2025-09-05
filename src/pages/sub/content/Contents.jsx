@@ -70,12 +70,15 @@ const Sub = (props) => {
         window.scrollTo(0, 0);}
     },[gubun]);
 
-  const handlePageChange = (pageNumber) => {
-    setPage(pageNumber);
-  };
+    const handlePageChange = (pageNumber) => {
+        setPage(pageNumber);
+    };
 
-  useEffect(() => {
-        Init()
+    useEffect(() => {
+        if(gubun != ''){
+            Init();
+        }
+
     },[page]);
 
    
@@ -88,6 +91,7 @@ const Sub = (props) => {
             JsonArray.push(JsonObject);  
             let res = await fetch(SERVER_URL+'/api/guide/view',{method:"POST", headers:{'content-type':'application/json'}, body : JSON.stringify(JsonArray)});
             const data = await res.json();
+
             setGuide(data.getGuideView[0]);
             setGuideBookMark(data.getGuideBookMarkList);
         }catch(e){
@@ -98,8 +102,7 @@ const Sub = (props) => {
         setLoaded(true);
     };
     const handleFileDown = (src) => window.open(src, "self");
-   
-    
+
     return(
         <>
             <SubBannerComp menuCd={menuCd}/>
@@ -110,7 +113,7 @@ const Sub = (props) => {
                     {[550, 555, 564, 560, 554, 559, 568,591].some(role => menuCd?.includes(role))  &&<>
                     <div className='cont-h mgB40'>{gubun>=0 && guide?.YEAR}{contitle}</div> 
                     <ul className='guideline_file'>
-                        <li className='filedown' ><a  onClick={() => handleFileDown(SERVER_URL+"/api/guide/download?YEAR="+guide?.YEAR+"&GUBUN="+gubun)} download>모집요강 다운로드<img src='/images/sub/content/guideline_down.png'/></a></li>
+                        <li className='filedown' ><a  onClick={() => handleFileDown(SERVER_URL+"/api/guide/download?YEAR="+guide?.YEAR+"&GUBUN="+gubun)} download>{gubun >= 0 ? '모집요강 다운로드' : '다운로드'}<img src='/images/sub/content/guideline_down.png'/></a></li>
                         <li className='filezoom' onClick={() => handleFileDown(SERVER_URL+"/api/guide/pdfview?GUBUN="+gubun)}>확대보기<img src='/images/sub/content/guideline_zoom.png'/></li>
                     </ul>
                     <div className='guideline_pdfview'>

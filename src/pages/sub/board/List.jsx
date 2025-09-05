@@ -25,6 +25,7 @@ const List= (props) => {
         else if(location.pathname.endsWith('/library')){return '571';}
     };
    // let allnoice_menucd = ; //전체공지 메뉴코드
+   /*
     const getInitialCate = () => {
 
         switch (menuqq) {
@@ -45,6 +46,24 @@ const List= (props) => {
             case '563': return '4';
             //default: return null; 
         }
+    };
+    */
+    const getInitialCate = () => {
+        if(location.pathname == '/early/notice'){return '1';}
+        else if(location.pathname == '/early/library'){return '1';}
+        else if(location.pathname == '/early/talk'){return '1';}
+        else if(location.pathname == '/regular/notice'){return '2';}
+        else if(location.pathname == '/regular/library'){return '2';}
+        else if(location.pathname == '/regular/talk'){return '2';}
+        else if(location.pathname == '/transfer/notice'){return '3';}
+        else if(location.pathname == '/transfer/library'){return '3';}
+        else if(location.pathname == '/transfer/talk'){return '3';}
+        else if(location.pathname == '/international/notice'){return '4';}
+        else if(location.pathname == '/international/library'){return '4';}
+        else if(location.pathname == '/international/talk'){return '4';}
+        else if(location.pathname == '/assistant/notice'){return '';}
+        else if(location.pathname == '/assistant/library'){return '';}
+        else if(location.pathname == '/assistant/talk'){return '';}
     };
     const [cate, setCate] = useState();
     const [menuCd, setMenuCd] = useState(getMenucd());
@@ -79,14 +98,6 @@ const List= (props) => {
     const listCate = ["공통","수시","정시","편입학","외국인"]; 
     if(token) {userData = getTokenData(token); userDataid = userData.user.id}
     
-<<<<<<< HEAD
-
-
-=======
-   
-
-    //**권한**//
->>>>>>> 620ce94df23448189a5074859d80406da2885f56
     useEffect(() => {
         Init();
     },[location.pathname]);
