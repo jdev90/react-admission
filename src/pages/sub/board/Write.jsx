@@ -194,9 +194,10 @@ const Write = (props) => {
         formData.append('PASSWD', passwd);
         formData.append('PRIVACY', privacy);
         formData.append('CATE', cate);
-        formData.append('ETC1', catedept);
-        
-       
+        if(catedept != null){
+            formData.append('ETC1', catedept);
+        }
+
         const res = await fetch(SERVER_URL+'/api/board/'+allmenuCd+'/write', {method: "POST",
             headers: {
             },
@@ -292,7 +293,7 @@ const Write = (props) => {
                                     {menuInfo?.USER_WRITE == 1 &&<><td>학과</td>  
                                     <td className='txt borR' colSpan={3}>
                                         <select id="dept" className='cate_op'  value={catedept} onChange={(e)=>{setCatedept(e.target.value);}}>
-                                            <option value={"null"} onChange={(e)=>{setCatedept(e.target.value);}}>공통</option>
+                                            <option onChange={(e)=>{setCatedept(e.target.value);}}>공통</option>
                                              {cateList1?.length != 0 && cateList1?.map((data, index)=> {
                                                 return(
                                                     <option value={data.KEY} onChange={(e)=>{setCatedept(e.target.value);}} key={index}>{data.VALUE}</option>
