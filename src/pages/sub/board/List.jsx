@@ -25,28 +25,27 @@ const List= (props) => {
         else if(location.pathname.endsWith('/library')){return '571';}
     };
    // let allnoice_menucd = ; //전체공지 메뉴코드
-    const getInitialCate = () => {
-
-        switch (menuInfo?.MENU_CD) {
-            case '569':
-            case '570':
-            case '571': return '';
-            case '551':
-            case '552':
-            case '553': return '1';
-            case '556':
-            case '557':
-            case '558': return '2';
-            case '565':
-            case '566':
-            case '567': return '3';
-            case '561':
-            case '562':
-            case '563': return '4';
-            default: return null; 
-        }
-    };
-    const [cate, setCate] = useState();
+   const getInitialCate = () => {
+    switch (menuInfo?.MENU_CD) {
+        case '569':
+        case '570':
+        case '571': return '';
+        case '551':
+        case '552':
+        case '553': return '1';
+        case '556':
+        case '557':
+        case '558': return '2';
+        case '565':
+        case '566':
+        case '567': return '3';
+        case '561':
+        case '562':
+        case '563': return '4';
+        default: return null; 
+    }
+};
+    const [cate, setCate] = useState(1);
     const [menuCd, setMenuCd] = useState(getMenucd());
 
     const [menuList, setMenuList] = useState([]);
@@ -79,11 +78,19 @@ const List= (props) => {
     const listCate = ["공통","수시","정시","편입학","외국인"]; 
     if(token) {userData = getTokenData(token); userDataid = userData.user.id}
     
-    //**권한**//
+
+
     useEffect(() => {
-        //if(menuCd == 176 && !token){ //자료실
-        //    navigate("/login?url="+location.pathname)
-        //}
+        Init();
+    },[location.pathname]);
+
+    useEffect(() => {
+        if(menuCd != ''){
+            search();
+        }
+    },[cate, menuCd]);
+
+    const Init = () => {
         //**권한**//
         setWritePermission(false);
         if (token) {
@@ -103,25 +110,9 @@ const List= (props) => {
         setPagingNum([0,showpageCnt]);
 
         window.scrollTo(0, 0);
-     
-    },[location.pathname]);
-    useEffect(() => {
-        if(menuCd != ''){
-            Init();
-        }
-    },[cate, menuCd]);
+    }
 
-
-
-    /*
-     useEffect(() => {
-        console.log("메뉴코드 변경");
-        
-    },[menuInfo.MENU_CD]);
-    */
-   
-      
-    const Init = async () =>{
+    const search = async () =>{
         try{
             const res = await fetch(SERVER_URL+'/api/board/'+menuCd+'/list?PAGESTART='+pageSt+'&PAGEEND=10&CATE='+cate, {method: "POST", headers : {"Content-Type" : "application/json;charset=utf-8;"}});
             const data = await res.json();

@@ -12,16 +12,28 @@ import {getMenuInfo} from "assets/js/utils";
 const Sub = (props) => {
     const location = useLocation();
     let menuInfo = getMenuInfo(location.pathname + location.search);
-    const qq =menuInfo?.MENU_CD
+    
     //const query = qs.parse(location.search, {ignoreQueryPrefix: true});
     //const params = useParams();
 	//const menuCd = menuInfo?.MENU_CD;
     const [page, setPage] = useState(1);
+
     const [guide, setGuide] = useState([]); //달별로 분리된 학사일정 리스트
     const [guideBookMark, setGuideBookMark] = useState([]); //달별로 분리된 학사일정 리스트
     const [gubun, setGubun] = useState(""); //달별로 분리된 학사일정 리스트
     const [contitle, setContitle] = useState(""); //달별로 분리된 학사일정 리스트
     const [loaded, setLoaded] = useState(false);
+    const getMenucd = () => {
+        if(location.pathname == '/early/guideline'){return '550';}
+        else if(location.pathname == '/early/result'){return '554';}
+        else if(location.pathname == '/regular/guideline'){return '555';}
+        else if(location.pathname == '/regular/result'){return '559';}
+        else if(location.pathname == '/transfer/guideline'){return '564';}
+        else if(location.pathname == '/transfer/result'){return '568';}
+        else if(location.pathname == '/international/guideline'){return '560';}
+    };
+
+    const [menuCd, setMenuCd] = useState(getMenucd());
     function setting(menuCd){
         switch (menuCd) {
         case '550' :  setGubun(1);setContitle("학년도 수시모집요강"); return
@@ -35,15 +47,24 @@ const Sub = (props) => {
         }
      }
     
-    
-    //const token = window.sessionStorage.getItem('accessToken');
+
+     useEffect(() => {
+        if(menuInfo?.MENU_CD != null){
+            setMenuCd(menuInfo?.MENU_CD);
+        }
+
+    },[menuInfo]);
+
     useEffect(() => {
-        setting(qq);
-    },[qq]);
+       if(menuCd != null){
+        setting(menuCd);
+       }
+
+    },[menuCd]);
 
     useEffect(() => {
         {gubun != "" &&
-        setting(qq);
+        setting(menuCd);
         Init();
         setPage(1)
         window.scrollTo(0, 0);}
@@ -81,12 +102,12 @@ const Sub = (props) => {
     
     return(
         <>
-            <SubBannerComp menuCd={qq}/>
+            <SubBannerComp menuCd={menuCd}/>
             <div className='Subcontain'>
-                <ContentMenuComp menuCd={qq}/>                          
+                <ContentMenuComp menuCd={menuCd}/>                          
                 <div className='contentBox'>
 
-                    {[550, 555, 564, 560, 554, 559, 568,591].some(role => qq?.includes(role))  &&<>
+                    {[550, 555, 564, 560, 554, 559, 568,591].some(role => menuCd?.includes(role))  &&<>
                     <div className='cont-h mgB40'>{gubun>=0 && guide?.YEAR}{contitle}</div> 
                     <ul className='guideline_file'>
                         <li className='filedown' ><a  onClick={() => handleFileDown(SERVER_URL+"/api/guide/download?YEAR="+guide?.YEAR+"&GUBUN="+gubun)} download>모집요강 다운로드<img src='/images/sub/content/guideline_down.png'/></a></li>
