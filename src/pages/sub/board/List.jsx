@@ -272,6 +272,7 @@ const List= (props) => {
                             <table className='comm listTable'>
                                 <colgroup>
                                     <col width="7%"></col>
+                                    {/* { menuInfo?.USER_WRITE == 1 &&<col width="15%"></col>} */}
                                     <col width="auto"></col>
                                     <col width="6%"></col>
                                     <col width="16%"></col>
@@ -280,6 +281,7 @@ const List= (props) => {
                                 <thead>                                
                                     <tr>
                                         <th>번호</th>
+                                       {/* { menuInfo?.USER_WRITE == 1 &&<th>학과</th>} */}
                                         <th>제목</th>
                                         <th>파일</th>
                                         <th>작성일</th>
@@ -292,6 +294,8 @@ const List= (props) => {
                                         return (                                                                    
                                             <tr key={index}>
                                                 {data?.NOTICE != '1' ?<td>{data.NO}</td>:<td><div className='notice'>공지</div></td>}{/*menuListCnt-pageSt-index*/}
+                                                {/* { menuInfo?.USER_WRITE == 1 &&<td>학과명</td>} */}
+                                                
                                                 <td className="txtleft" onClick={() => PWChkPopup(data.PRIVACY, data.BOARD_ID)}>
                                                     {data.CATE !="" && <div className={'cate cate'+data.CATE}>{listCate[data.CATE]}</div>}
                                                     <Link className={data?.NOTICE == '1' && 'noti_a'} ><p dangerouslySetInnerHTML={{ __html:  data.REPLY_CNT > 0 ? data.TITLE+' ['+data.REPLY_CNT+']' : data.TITLE}} /></Link>                                                    

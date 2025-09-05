@@ -154,10 +154,6 @@ const Main = (props) => {
             <MainBannerComp/>
             {/*1. 공지사항*/}
             <MainNoticeComp/>
-            {/*2. 안내책자*/}
-            <MainGuideBookComp/>
-            {/*3. 홍보영상*/}
-            <MainGalleryComp/>
             {/*4. 입학도우미*/}
             <div className='ipBgc'>
                 <div className='Maincontain MainIphakService'>                        
@@ -193,6 +189,11 @@ const Main = (props) => {
                     <MainImpsiComp/>
                 </div> 
             </div>
+            
+            {/*3. 홍보영상*/}
+            <MainGalleryComp/>
+            {/*2. 안내책자*/}
+            <MainGuideBookComp/>
             {/*5. WhyCSU*/}
             <div className='wcBgc'>
               <div className='Maincontain MainWhycsu'>  
