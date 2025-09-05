@@ -27,7 +27,7 @@ const List= (props) => {
    // let allnoice_menucd = ; //전체공지 메뉴코드
     const getInitialCate = () => {
 
-        switch (menuInfo?.MENU_CD) {
+        switch (menuqq) {
             case '569':
             case '570':
             case '571': return '';
@@ -43,7 +43,7 @@ const List= (props) => {
             case '561':
             case '562':
             case '563': return '4';
-            default: return null; 
+            //default: return null; 
         }
     };
     const [cate, setCate] = useState();
@@ -79,6 +79,8 @@ const List= (props) => {
     const listCate = ["공통","수시","정시","편입학","외국인"]; 
     if(token) {userData = getTokenData(token); userDataid = userData.user.id}
     
+   
+
     //**권한**//
     useEffect(() => {
         //if(menuCd == 176 && !token){ //자료실
@@ -87,7 +89,7 @@ const List= (props) => {
         //**권한**//
         setWritePermission(false);
         if (token) {
-            setWritePermission(writePermissionCheck(token, menuInfo.MENU_CD)); // 권한 확인
+            setWritePermission(writePermissionCheck(token, menuqq)); // 권한 확인
         }
         //**권한**//
        // allnoice_menucd = getMenucd(); //전체공지 메뉴코드
@@ -239,7 +241,6 @@ const List= (props) => {
         if (window.event.keyCode == 13){PWChk();}
     }
     
-
     return(
         <>
             <SubBannerComp menuCd={menuqq} />

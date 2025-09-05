@@ -719,6 +719,8 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     .MainIphakService .schedule .date .date_item .nm {font-size: 14px;}
     .MainIphakService .schedule .date .date_item p{font-size: 14px;}
     .MainIphakService .schedule .date .date_item::before{font-size: 10px;width: 48px;top: 24px;}
+    .ipBgc{margin-top: 15px;}
+    .MainIphakService .schedule .title{margin-top: 80px;}
     .bkBgc {height: 660px;}
     .MainGuideBook .guide_swiper .swiper-slide{height: 300px;padding-bottom: 90px;}
     .MainGuideBook .guide_swiper .swiper-slide img.slide-bk{width: 45%;}
