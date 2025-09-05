@@ -267,7 +267,7 @@ const View = () => {
           <ContentMenuComp menuCd={query.menuId}/>                          
             <div className='contentBox'>
           {/* ---------------- 게시글 ---------------- */}
-          <div className="table_area">
+          <div className="table_area"><div className='is-wauto-box'>
             <table className="comm viewTable">
               <colgroup>
                 <col width="30%" />
@@ -379,7 +379,7 @@ const View = () => {
                   </tbody>
                 </>
               )}
-            </table>
+            </table></div>
 
             {/* ---------------- 댓글 ---------------- */}
 

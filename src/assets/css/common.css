@@ -135,7 +135,7 @@ table.viewTable .row1 td.down div{float: left;}
 table.viewTable .row1 td.txtR{text-align: right;}
 table.viewTable .row2 td{padding: 10px;text-align: left;} 
 table.viewTable .row2 td.content div{padding:20px 10px;}
-table.viewTable .row2 td.content div img{margin: auto;display: block;width: 100%;}
+table.viewTable .row2 td.content .img img{margin: auto;display: block;width: 100%;}
 table.viewTable .row2 td iframe{width: 100% !important;height: 890px;}
 table.viewTable .row2 td p{min-height: 16px;}
 /*게시글 버튼 - 글쓰기, 수정, 삭제 버튼*/
