@@ -92,7 +92,7 @@ const Sub = (props) => {
                         <li className='filezoom' onClick={() => handleFileDown(SERVER_URL+"/api/guide/pdfview?GUBUN="+gubun)}>확대보기<img src='/images/sub/content/guideline_zoom.png'/></li>
                     </ul>
                     <div className='guideline_pdfview'>
-                        <div className='pdfview'>
+                        <div className={gubun >= 0 ? 'pdfview' : 'pdfview noIndex'}>
                             <iframe key={page} src={SERVER_URL+"/api/guide/pdfview?GUBUN="+gubun+`#page=${page}&zoom=page-width`} type="application/pdf" title="PDF Viewer" aria-label="example" width="100%" height="800" style={{ display: loaded ? 'block' : 'none' }} onLoad={handleLoad}/>
                         </div> 
                          {gubun >= 0 && <div className='pdfindex'>

@@ -266,7 +266,7 @@ footer .info ul li p:not(.titl){margin-bottom: 2px;}
 .guideline_pdfview .pdfindex ul li.level1{padding-left: 35px;color: #6e6e6e}
 .guideline_pdfview .pdfindex ul li.level1::before{left: 20px;width: 6px;height: 1px;background-color: #4d4d4d;}
 .guideline_pdfview .pdfindex ul li:hover{color: #0052af;}
-
+.guideline_pdfview .pdfview.noIndex{width: 85%;}
 
 /* 2. 원서접수 */
 .cont-query{counter-reset: number 0;display: table;width: 100%;padding-top: 40px;padding-bottom: 40px;background-color: #F8F8F8;border-radius: 20px;box-shadow: inset -4px 4px 7px #1111111e;}
@@ -387,6 +387,8 @@ figure.table{margin: 0;}
 }
 @media (max-width: 770px){ 
     .guideline_pdfview .pdfview{width: 100%;}
+    .guideline_pdfview .pdfview.noIndex{width: 100%;}
+
     .guideline_pdfview .pdfindex{display: none;}
     
 }
