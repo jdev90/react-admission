@@ -18,7 +18,7 @@ const List= (props) => {
     const location = useLocation();
     const navigate = useNavigate(); 
     let menuInfo = getMenuInfo(location.pathname + location.search);
-
+    const menuqq = menuInfo?.MENU_CD;
     const getMenucd = () => {
         if(location.pathname.endsWith('/notice')){return '569';}
         else if(location.pathname.endsWith('/talk')){return '570';}
@@ -242,9 +242,9 @@ const List= (props) => {
 
     return(
         <>
-            <SubBannerComp menuCd={menuInfo.MENU_CD} />
+            <SubBannerComp menuCd={menuqq} />
             <div className='Subcontain'>
-                <ContentMenuComp menuCd={menuInfo.MENU_CD}/>                          
+                <ContentMenuComp menuCd={menuqq}/>                          
                 <div className='contentBox'>
                     <div className='table_area'>
                         <div className='noticeTableSearch'>  

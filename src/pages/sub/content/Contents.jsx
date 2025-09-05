@@ -12,6 +12,7 @@ import {getMenuInfo} from "assets/js/utils";
 const Sub = (props) => {
     const location = useLocation();
     let menuInfo = getMenuInfo(location.pathname + location.search);
+    const qq =menuInfo?.MENU_CD
     //const query = qs.parse(location.search, {ignoreQueryPrefix: true});
     //const params = useParams();
 	//const menuCd = menuInfo?.MENU_CD;
@@ -37,12 +38,12 @@ const Sub = (props) => {
     
     //const token = window.sessionStorage.getItem('accessToken');
     useEffect(() => {
-        setting(menuInfo?.MENU_CD);
-    },[menuInfo?.MENU_CD]);
+        setting(qq);
+    },[qq]);
 
     useEffect(() => {
         {gubun != "" &&
-        setting(menuInfo?.MENU_CD);
+        setting(qq);
         Init();
         setPage(1)
         window.scrollTo(0, 0);}
@@ -80,12 +81,12 @@ const Sub = (props) => {
     
     return(
         <>
-            <SubBannerComp menuCd={menuInfo?.MENU_CD}/>
+            <SubBannerComp menuCd={qq}/>
             <div className='Subcontain'>
-                <ContentMenuComp menuCd={menuInfo.MENU_CD}/>                          
+                <ContentMenuComp menuCd={qq}/>                          
                 <div className='contentBox'>
 
-                    {[550, 555, 564, 560, 554, 559, 568,591].some(role => menuInfo.MENU_CD.includes(role))  &&<>
+                    {[550, 555, 564, 560, 554, 559, 568,591].some(role => qq?.includes(role))  &&<>
                     <div className='cont-h mgB40'>{gubun>=0 && guide?.YEAR}{contitle}</div> 
                     <ul className='guideline_file'>
                         <li className='filedown' ><a  onClick={() => handleFileDown(SERVER_URL+"/api/guide/download?YEAR="+guide?.YEAR+"&GUBUN="+gubun)} download>모집요강 다운로드<img src='/images/sub/content/guideline_down.png'/></a></li>
