@@ -20,7 +20,7 @@ const Sub = (props) => {
     const [guideBookMark, setGuideBookMark] = useState([]); //달별로 분리된 학사일정 리스트
     const [gubun, setGubun] = useState(""); //달별로 분리된 학사일정 리스트
     const [contitle, setContitle] = useState(""); //달별로 분리된 학사일정 리스트
-
+    const [loaded, setLoaded] = useState(false);
     function setting(menuCd){
         switch (menuCd) {
         case '550' :  setGubun(1);setContitle("학년도 수시모집요강"); return
@@ -72,7 +72,9 @@ const Sub = (props) => {
             console.log(e);
         }
     }
-    
+    const handleLoad = () => {
+        setLoaded(true);
+    };
     const handleFileDown = (src) => window.open(src, "self");
    
     
@@ -91,7 +93,7 @@ const Sub = (props) => {
                     </ul>
                     <div className='guideline_pdfview'>
                         <div className='pdfview'>
-                            <iframe key={page} src={SERVER_URL+"/api/guide/pdfview?GUBUN="+gubun+`#page=${page}&zoom=page-width`} type="application/pdf" title="PDF Viewer" aria-label="example" width="100%" height="800"/>
+                            <iframe key={page} src={SERVER_URL+"/api/guide/pdfview?GUBUN="+gubun+`#page=${page}&zoom=page-width`} type="application/pdf" title="PDF Viewer" aria-label="example" width="100%" height="800" style={{ display: loaded ? 'block' : 'none' }} onLoad={handleLoad}/>
                         </div> 
                          {gubun >= 0 && <div className='pdfindex'>
                             <p>Contents Index</p>

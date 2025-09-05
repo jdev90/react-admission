@@ -89,10 +89,13 @@ const PopupComp = () => {
         setPopupVisible(false);
     };
 
+    function handlePlay(){
+        if(mainBannerCount > 3 ){ return true} else{ return false}
+    }
     // swiper 슬라이더 설정
     const swiperSettings = {
-        //loop: true,
-        slidesPerView: 3,
+        loop: handlePlay(),
+        slidesPerView: 1,
         spaceBetween: 25,
         pagination: {
             type: 'fraction',
@@ -111,21 +114,20 @@ const PopupComp = () => {
             delay: 3000,
             disableOnInteraction: false,
         },
-        //breakpoints: {
-        //    480: {
-        //        slidesPerView: 1,
-        //        spaceBetween: 15,
-        //    },
-        //    768: {
-        //        slidesPerView: 2,
-        //        spaceBetween: 15,
-        //    },
-        //    1280: {
-        //        slidesPerView: 3,
-        //        spaceBetween: 15,
-        //    },
-        //}
-        
+        breakpoints: {
+           480: {
+               slidesPerView: 1,
+               spaceBetween: 15,
+           },
+           768: {
+               slidesPerView: 2,
+               spaceBetween: 15,
+           },
+           1280: {
+               slidesPerView: 3,
+               spaceBetween: 15,
+           },
+        }
     };
 
     return (
@@ -149,7 +151,6 @@ const PopupComp = () => {
                     </div>
                     <Swiper {...swiperSettings} onSwiper={(swiper)=>{setMainBannerCount(swiper.slides.length);}} 
                     >
-                    
                     {loading && popupList && Array.isArray(popupList) && popupList.map((data, index)=> { 
                         let imgContents = data.CONTENT;  
                         return(
@@ -158,7 +159,6 @@ const PopupComp = () => {
                             </SwiperSlide>  
                         )})
                     }
-                            
                     </Swiper>
                     <div className="btn-box">
                         <button type="button" className="btn-week" onClick={handleWeekClose}>7일간 그만 보기</button>

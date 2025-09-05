@@ -218,7 +218,7 @@ const List= (props) => {
         let JsonArray = new Array();
         let JsonObject = new Object;
         JsonObject.BOARD_ID = board_id;
-        JsonObject.MENU_CD = menuInfo.MENU_CD;
+        JsonObject.MENU_CD = menuCd;
         JsonObject.PASSWD = PW;
         JsonArray.push(JsonObject);
         // let res ='';     
@@ -230,7 +230,7 @@ const List= (props) => {
             return setPWbool(true);
         }
         else if(data.PASS == 1){
-            navigate("/board/"+menuInfo.MENU_CD+"/view?boardId="+board_id+"&menuId="+menuInfo?.MENU_CD);
+            navigate("/board/"+menuCd+"/view?boardId="+board_id+"&menuId="+menuInfo?.MENU_CD);
         }
 
        

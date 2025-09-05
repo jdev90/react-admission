@@ -154,7 +154,7 @@ table.viewTable .row1 td.txtR{text-align: right;}
 table.viewTable .row2 td{padding: 10px;text-align: left;} 
 table.viewTable .row2 td.content div{padding:20px 10px;}
 table.viewTable .row2 td.content div img{margin: auto;display: block;width: 100%;}
-table.viewTable .row2 td iframe{width: 100% !important;}
+table.viewTable .row2 td iframe{width: 100% !important;height: 890px;}
 /*게시글 버튼 - 글쓰기, 수정, 삭제 버튼*/
 .viewBtn{display: inline-block;width: 100%;margin-top: 10px;}/**/
 .viewBtn a:hover{color: #014DA1;text-decoration: underline;}
@@ -235,9 +235,10 @@ footer .info ul li p:not(.titl){margin-bottom: 2px;}
 #popup-slide-box .btn-box button:hover, #popup-slide-box .btn-box button:focus { filter: brightness(0.8); }
 #popup-slide-box .popup-slide-bg { width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 0; background-color: rgba(0, 0, 0, 0.3); }
 .btn_popup .cnt {width: 25px; height: 25px; background-color: #034EA2; border-radius: 50%; display: flex; justify-content: center; align-items: center; position: absolute; right: 0; top: 0; color: #FFF !important;}
-/*#popup-slide-box .swiper-slide {width: 50% !important;}
-#popup-slide-box .swiper-wrapper{margin: auto;}*/
+#popup-slide-box .swiper-slide {margin: auto !important;}
+/*#popup-slide-box .swiper-wrapper{margin: auto;}*/
 #popup-slide-box .swiper-slide .img img{ width: 88% !important; height: auto !important; }
+
 /*######### 서브페이지 ###########*/
 .Subcontain{position: relative;;background-color: #0077ff00; width: 1416px;margin: auto;min-height: 730px;display: inline-block;margin-bottom: 200px;}
 .contentMenu{position: absolute;width: 20%;top:-35px;word-break: keep-all;}
@@ -683,6 +684,7 @@ table.li_st_num tbody tr th.w1::before{left: 1%;}
     .cont-h {font-size: 28px;}
     .cont-m-num { font-size: 22px;padding-left: 28px;}
     .cont-m-num::before {width: 22px;font-size: 12px;line-height: 16px;}
+    table.viewTable .row2 td iframe{height: 400px;}
     .guideline_pdfview .pdfview iframe{height: 560px;}
     .cont-query li {display: block;width: 100%;margin: 8px 0;}
     .cont-query li:not(:last-child):after {display: none;}

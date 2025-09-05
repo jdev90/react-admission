@@ -26,7 +26,11 @@ const Write = (props) => {
     const params = useParams();
 	const allmenuCd = params.menuCd;
     const [cateList, setCateList] = useState([]);
+    const [cateList1, setCateList1] = useState([]);
+
     const [cate, setCate] = useState(0);
+    const [catedept, setCatedept] = useState(null);
+
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     //const [save, setSave] = useState(false);
@@ -79,8 +83,11 @@ const Write = (props) => {
         const res = await fetch(SERVER_URL+'/api/code/list',{method: "POST", headers : {"Content-Type" : "application/json;charset=utf-8;" }, body : JSON.stringify(JsonArray)});
         const data = await res.json();
 
+        const res1 = await fetch(SERVER_URL+'/api/code/dept/list',{method: "POST", headers : {"Content-Type" : "application/json;charset=utf-8;" }, body : JSON.stringify(JsonArray)});
+        const data2 = await res1.json();
+
         setCateList(data.getCodeList);
-        console.log(data.getCodeList);
+        setCateList1(data2.getDeptList);
     }
     const Init = async () =>{
         try{                   
@@ -187,6 +194,7 @@ const Write = (props) => {
         formData.append('PASSWD', passwd);
         formData.append('PRIVACY', privacy);
         formData.append('CATE', cate);
+        formData.append('HP_CD', catedept);
         
        
         const res = await fetch(SERVER_URL+'/api/board/'+allmenuCd+'/write', {method: "POST",
@@ -199,8 +207,8 @@ const Write = (props) => {
     }
     
 useEffect(() => {
-        console.log(cate);
-    },[cate]);
+        console.log(catedept);
+    },[catedept]);
 
     const customUploadAdapter = (loader) => { // (2)
         return {
@@ -267,7 +275,7 @@ useEffect(() => {
                                 </tr>
                                 {( query.menuId != 572) &&  <tr>
                                     <td>카테고리</td>  
-                                    <td className='txt borR' colSpan={3}>
+                                    <td className={menuInfo?.USER_WRITE == 1 ? 'txt' : 'txt borR'} colSpan={menuInfo?.USER_WRITE == 1 ? '' : 3}>
                                         <select id="gubun" className='cate_op'  value={cate} onChange={(e)=>{setCate(e.target.value);}}>
                                             <option value="">선택</option>
                                              {/* {cateList.length == 0 && cateList?.map((data, index)=> {
@@ -280,11 +288,26 @@ useEffect(() => {
                                              <option value={2} onChange={(e)=>{setCate(e.target.value);}}>정시</option>
                                              <option value={3} onChange={(e)=>{setCate(e.target.value);}}>편입학</option>
                                              <option value={4} onChange={(e)=>{setCate(e.target.value);}}>외국인</option>
-                                             
-                                             
 
                                         </select>
                                     </td>                                                                 
+                                    {menuInfo?.USER_WRITE == 1 &&<><td>학과</td>  
+                                    <td className='txt borR' colSpan={3}>
+                                        <select id="dept" className='cate_op'  value={catedept} onChange={(e)=>{setCatedept(e.target.value);}}>
+                                            <option value={"null"} onChange={(e)=>{setCatedept(e.target.value);}}>공통</option>
+                                             {cateList1?.length != 0 && cateList1?.map((data, index)=> {
+                                                return(
+                                                    <option value={data.KEY} onChange={(e)=>{setCatedept(e.target.value);}} key={index}>{data.VALUE}</option>
+                                                )
+                                             })}  
+                                             {/* <option value={0} onChange={(e)=>{setCate(e.target.value);}}>공통</option>
+                                             <option value={1} onChange={(e)=>{setCate(e.target.value);}}>수시</option>
+                                             <option value={2} onChange={(e)=>{setCate(e.target.value);}}>정시</option>
+                                             <option value={3} onChange={(e)=>{setCate(e.target.value);}}>편입학</option>
+                                             <option value={4} onChange={(e)=>{setCate(e.target.value);}}>외국인</option> */}
+
+                                        </select>
+                                    </td> </>}                                                               
                                 </tr>}
                                 
                                
