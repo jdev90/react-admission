@@ -249,7 +249,7 @@ const Write = (props) => {
                     <div className='table_area'>
                         <table className='comm writeTable'>
                             <colgroup>
-                                <col width="50px"></col>
+                                <col width="10%"></col>
                                 <col width="35%"></col>
                                 <col width="15%"></col>
                                 <col width="35%"></col>  

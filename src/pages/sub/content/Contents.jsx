@@ -99,7 +99,7 @@ const Sub = (props) => {
                             <p>Contents Index</p>
                             <p className='paraphrase'>선택하면 각 페이지로 이동합니다.</p>
                             <ul>{guideBookMark?.map((data, index) =>(
-                                <li key={index} onClick={() => handlePageChange(data.BOOKMARK_PAGE)}>{data.BOOKMARK_TITLE}</li>))}
+                                <li key={index} className={data.BOOKMARK_LEVEL == "1" ?'level1':""} onClick={() => handlePageChange(data.BOOKMARK_PAGE)}>{data.BOOKMARK_TITLE}</li>))}
                             </ul>
                         </div>}                
                     </div>

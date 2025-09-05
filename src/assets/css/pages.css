@@ -7,6 +7,8 @@
 .banner .imgafter{position: relative;width: 100%; height: 100vh; overflow: hidden;clip-path: inset(0px);} 
 .banner .imgafter:after{position: absolute;content: '';top: 0;left: 0;width: 100%;height: 100%;background:rgb(0, 0, 0, 0.0); }
 .banner .mainBannerImgbox img{display: block;width: 100%;height: 100%;object-fit: cover;object-position: center;}
+.banner .mainBannerImgbox video{display: block;width: 100%;height: 100%;object-fit: cover;object-position: center;}
+
 .banner .ss {position: absolute;transform: translateX(-50%) translateY(-50%);top: 50%;left: 50%;z-index: 1;width: 95%;width: 1370px;}
 /*배너 공지사항*/
 .banner .banner_board{position: absolute;word-break: keep-all;width: 1416px;bottom: 0;left: 50%;transform: translateX(-50%);z-index: 1;}
@@ -134,8 +136,10 @@
 .MainGuideBook .guide_swiper::before{position: absolute;content: "";width: 80%;height: 1px;border-top: 1px solid #B8DAFF;top:40%;left:50%;transform: translateX(-50%) translateY(-50%);}
 .MainGuideBook .guide_swiper::after{position: absolute;content: "";width: 550px;height: 560px;border-radius: 50%;border: 1px solid #B8DAFF;background-color: #F4F5F9;top:40%;left:50%;transform: translateX(-50%) translateY(-50%);}
 .MainGuideBook .guide_swiper .swiper-slide {width: 472px !important; height: 450px;padding-bottom: 130px;padding-top: 15px;}
-.MainGuideBook .guide_swiper .swiper-slide img.slide-bk{transform: scale(0.8);box-shadow: 10px 10px 10px #0000001e;width: 66%;}
+.MainGuideBook .guide_swiper .swiper-slide img.slide-bk{transform: scale(0.8);box-shadow: 10px 10px 10px #0000001e;width: 66%;cursor: pointer;}
 .MainGuideBook .guide_swiper .swiper-slide-active img.slide-bk{transform: scale(1);}
+.MainGuideBook .guide_swiper .swiper-slide-active img.slide-bk:hover{box-shadow: 6px 6px 6px #00000048;}
+
 /* .MainGuideBook .guide_swiper .swiper{overflow: visible;} */
 .MainGuideBook .guide_swiper .swiper-slide .guide_title{display: none;}
 .MainGuideBook .guide_swiper .swiper-slide-active .guide_title{display: block;position: absolute;left: 50%;transform: translateX(-50%);bottom: 40px;font-size: 30px;width: 1416px;}
@@ -419,7 +423,7 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
 .courses .courses_i pre{font-family:'SCoreDream';white-space: pre-wrap;word-break: break-word;margin: 0;}
 
 
-.ol_li{width: 60%;}
+
 
 .contentBox .dep4_m_box{display: inline-block;width: 100%;}
 .contentBox .dep4_m_box .page_title{text-align: center;font-weight: 400;font-size: 40px;  margin-bottom: 50px;}

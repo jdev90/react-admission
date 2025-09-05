@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useRef } from 'react';
 import { Navigation, Pagination, Autoplay } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {Link} from 'react-router-dom';
@@ -25,7 +25,16 @@ const MainBannerComp = (props) => {
     const [mainBannerCount, setMainBannerCount] = useState(1);
     const [isPlaying, setIsPlaying] = useState(true);
     const [issueOpen, setIssueOpen] = useState(false);
-        
+     const videoRef = useRef(null);
+
+  const handleEnded = () => {
+    setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.currentTime = 0;
+        videoRef.current.play();
+      }
+    }, 2000); // 2초 딜레이 후 재생
+  };   
     
      //이슈
 
@@ -96,10 +105,15 @@ const MainBannerComp = (props) => {
                     nextEl: navigationNextRef.current,
                   }}>
                
-                <SwiperSlide tag="li">
-                    <div className='imgafter'><img src="/images/main/banner1.jpg" alt='메인페이지 배너1'/></div>
-                </SwiperSlide>    
-                    
+                {/* <SwiperSlide tag="li">
+                    <div className='imgafter'><img src="/images/main/banner2.jpg" alt='메인페이지 배너1'/></div>
+                </SwiperSlide>     */}
+                <SwiperSlide tag="li"><div className='imgafter'>
+                    <video controls width="100%" autoPlay muted loop >
+                        <source src="/images/main/banner1.mp4" type="video/mp4"/>
+                    </video></div>
+                </SwiperSlide> 
+                
             </Swiper>
                     
 
@@ -107,12 +121,12 @@ const MainBannerComp = (props) => {
             
             <div className="banner_board">
                 <div className='static'>
-                    <div className='line'><Link to="/board/569/view?boardId=320&menuId=569">
+                    <div className='line'><Link to="/board/569/view?boardId=328&menuId=569">
                         <p>2026학년도</p>
                         <p>대학입학전형 시행계획 주요사항</p>
                     </Link></div>
-                    <div><Link to="/board/569/view?boardId=288&menuId=569">
-                        <p>2025학년도</p>
+                    <div><Link to="/board/569/view?boardId=356&menuId=569">
+                        <p>2027학년도</p>
                         <p>대학입학전형 시행계획 주요사항</p>
                     </Link></div>
                 </div>

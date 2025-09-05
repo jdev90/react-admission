@@ -19,9 +19,9 @@ const MainImpsiComp = (props) => {
       {title: "면접고사",stdate: "2025.10.24 /창신인재면접",endate: ""},
       {title: "(최초)합격자발표",stdate: "2025.11.21(14:00)",endate: ""},
     ];
-    const ipsi2 = [
+    const ipsi2 = [//정시
       {title: "원서접수",stdate: "2025.12.29",endate: "2025.12.31"},
-      {title: "서류제출",stdate: "2025.08.29",endate: "2025.01.09"},
+      {title: "서류제출",stdate: "2025.12.29",endate: "2026.01.09"},
       {title: "합격자발표",stdate: "2026.01.22(10:00)",endate: ""},
       {title: "고지서출력",stdate: "2026.01.26",endate: "2026.02.05"},
       {title: "합격자등록",stdate: "2026.02.03",endate: "2026.02.05"},
