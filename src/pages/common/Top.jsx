@@ -120,7 +120,7 @@ const Top = (props) => {
                 <div className='loginTab'>
                     <div className='tab leftT'><Link to="https://www.cs.ac.kr/" target="_blank">창신대학교</Link></div>
                     <ul className='tab rightT'> 
-                        {roles.includes("ADMIN") && <li className='cms'><a onClick={openPostInNewWindow}>관리자</a></li> }               
+                        {roles.includes("ADMIN", "IPSI_MANEGER") && <li className='cms'><a onClick={openPostInNewWindow}>관리자</a></li> }               
                         <form id="adminFrm" method="POST" action={URL.ADMIN} style={{display:'none'}}>
                             <input type="hidden" name="accessToken" value={token}/>
                         </form>
