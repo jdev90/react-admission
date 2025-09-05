@@ -8,6 +8,7 @@ const SubBannerComp = (props) => {
     const menuCd = props.menuCd 
     const [menuList, setMenuList] = useState([]); 
     const menuInfo = getMenuInfoMenuCd(menuCd);
+    const menuP = menuInfo?.PARENT_MENU_CD
     useEffect(() => {
         Init()
     },[menuCd]);
@@ -56,7 +57,7 @@ const SubBannerComp = (props) => {
             </div> 
             <div className='subBannertxt'>
                 {menuCd != null && menuList?.map((data, index)=> {
-                    if(data.DEPTH == 1 && data.MENU_CD == menuInfo?.PARENT_MENU_CD){
+                    if(data.DEPTH == 1 && data.MENU_CD == menuP){
                         return(<>
                         <p className='dep1'>{data.MENU_NM}</p>
                         <p>ALL NEW CSU, 새로운 CSU! 시작은 NEW! 주인공은 YOU!</p>

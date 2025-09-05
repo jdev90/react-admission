@@ -25,27 +25,28 @@ const List= (props) => {
         else if(location.pathname.endsWith('/library')){return '571';}
     };
    // let allnoice_menucd = ; //전체공지 메뉴코드
-   const getInitialCate = () => {
-    switch (menuInfo?.MENU_CD) {
-        case '569':
-        case '570':
-        case '571': return '';
-        case '551':
-        case '552':
-        case '553': return '1';
-        case '556':
-        case '557':
-        case '558': return '2';
-        case '565':
-        case '566':
-        case '567': return '3';
-        case '561':
-        case '562':
-        case '563': return '4';
-        default: return null; 
-    }
-};
-    const [cate, setCate] = useState(1);
+    const getInitialCate = () => {
+
+        switch (menuqq) {
+            case '569':
+            case '570':
+            case '571': return '';
+            case '551':
+            case '552':
+            case '553': return '1';
+            case '556':
+            case '557':
+            case '558': return '2';
+            case '565':
+            case '566':
+            case '567': return '3';
+            case '561':
+            case '562':
+            case '563': return '4';
+            //default: return null; 
+        }
+    };
+    const [cate, setCate] = useState();
     const [menuCd, setMenuCd] = useState(getMenucd());
 
     const [menuList, setMenuList] = useState([]);
@@ -78,8 +79,14 @@ const List= (props) => {
     const listCate = ["공통","수시","정시","편입학","외국인"]; 
     if(token) {userData = getTokenData(token); userDataid = userData.user.id}
     
+<<<<<<< HEAD
 
 
+=======
+   
+
+    //**권한**//
+>>>>>>> 620ce94df23448189a5074859d80406da2885f56
     useEffect(() => {
         Init();
     },[location.pathname]);
@@ -94,7 +101,7 @@ const List= (props) => {
         //**권한**//
         setWritePermission(false);
         if (token) {
-            setWritePermission(writePermissionCheck(token, menuInfo.MENU_CD)); // 권한 확인
+            setWritePermission(writePermissionCheck(token, menuqq)); // 권한 확인
         }
         //**권한**//
        // allnoice_menucd = getMenucd(); //전체공지 메뉴코드
@@ -230,7 +237,6 @@ const List= (props) => {
         if (window.event.keyCode == 13){PWChk();}
     }
     
-
     return(
         <>
             <SubBannerComp menuCd={menuqq} />
