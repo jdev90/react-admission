@@ -274,7 +274,7 @@ const List= (props) => {
                                     <col width="7%"></col>
                                     {/* { menuInfo?.USER_WRITE == 1 &&<col width="15%"></col>} */}
                                     <col width="auto"></col>
-                                    <col width="6%"></col>
+                                    <col width="10%"></col>
                                     <col width="16%"></col>
                                     <col width="10%"></col>
                                 </colgroup>
@@ -283,7 +283,8 @@ const List= (props) => {
                                         <th>번호</th>
                                        {/* { menuInfo?.USER_WRITE == 1 &&<th>학과</th>} */}
                                         <th>제목</th>
-                                        <th>파일</th>
+                                        { menuInfo?.USER_WRITE != 1 && <th>파일</th> }
+                                        { menuInfo?.USER_WRITE == 1 && <th>답변상태</th> }
                                         <th>작성일</th>
                                         <th className='borR'>조회수</th>
                                     </tr>
@@ -298,13 +299,25 @@ const List= (props) => {
                                                 
                                                 <td className="txtleft" onClick={() => PWChkPopup(data.PRIVACY, data.BOARD_ID)}>
                                                     {data.CATE !="" && <div className={'cate cate'+data.CATE}>{listCate[data.CATE]}</div>}
-                                                    <Link className={data?.NOTICE == '1' && 'noti_a'} ><p dangerouslySetInnerHTML={{ __html:  data.REPLY_CNT > 0 ? data.TITLE+' ['+data.REPLY_CNT+']' : data.TITLE}} /></Link>                                                    
+                                                    <Link className={data?.NOTICE == '1' && 'noti_a'} ><p dangerouslySetInnerHTML={{ __html:   data.TITLE}} /> </Link>                                                    
                                                     {/* {data.FILE_NAME != "" ?<img src='/images/sub/down.png' alt='첨부파일 있음'/>:null } */}
                                                     {data?.PRIVACY == "1" ?<img src='/images/sub/lock.png' alt='비밀글'/>:null }
                                                     {isnew ? <div className='new'>N</div>:null}
                                                     
                                                 </td>  
-                                                {data.FILE_NAME != "" ?<td className='file_img'><img src='/images/sub/down.png' alt='첨부파일 있음'/></td>  : <td></td> }                                  
+                                                {data.FILE_NAME !== "" && menuInfo?.USER_WRITE !== 1 ? (
+                                                            <td className='file_img'>
+                                                            <img src='/images/sub/down.png' alt='첨부파일 있음' />
+                                                            </td>
+                                                        ) : (
+                                                            menuInfo?.USER_WRITE != 1 ? (
+                                                            <td></td>
+                                                            ) : null
+                                                        )
+                                                        }
+                                                
+
+                                               { menuInfo?.USER_WRITE == 1  ? (<td>{data.REPLY_CNT > 0 &&<span>답변완료</span>}  </td>):(menuInfo?.USER_WRITE== 1 ? (<td></td>) : null) }                              
                                                 <td>{data.CREATE_DT.slice(0,11)}</td>
                                                 <td className='borR'>{data.HIT}</td>
                                             </tr>
