@@ -113,8 +113,9 @@ const Sub = (props) => {
                     {[550, 555, 564, 560, 554, 559, 568,591].some(role => menuCd?.includes(role))  &&<>
                     <div className='cont-h mgB40'>{gubun>=0 && guide?.YEAR}{contitle}</div> 
                     <ul className='guideline_file'>
-                        <li className='filedown' ><a  onClick={() => handleFileDown(SERVER_URL+"/api/guide/download?YEAR="+guide?.YEAR+"&GUBUN="+gubun)} download>{gubun >= 0 ? '모집요강 다운로드' : '다운로드'}<img src='/images/sub/content/guideline_down.png'/></a></li>
+                        <li className='filedown' ><a  onClick={() => handleFileDown(SERVER_URL+"/api/guide/download?YEAR="+guide?.YEAR+"&GUBUN="+gubun)} download>{gubun >= 0 && location.pathname !== '/assistant/brochure'? '모집요강 다운로드' : '다운로드'}<img src='/images/sub/content/guideline_down.png'/></a></li>
                         <li className='filezoom' onClick={() => handleFileDown(SERVER_URL+"/api/guide/pdfview?GUBUN="+gubun)}>확대보기<img src='/images/sub/content/guideline_zoom.png'/></li>
+                        {location.pathname !== '/assistant/brochure' && <li className='brochure'><Link to='/assistant/brochure'>안내책자<img src='/images/sub/content/arrow-link-orange.png'/></Link></li>}
                     </ul>
                     <div className='guideline_pdfview'>
                         <div className={gubun >= 0 ? 'pdfview' : 'pdfview noIndex'}>
@@ -266,10 +267,11 @@ const Sub = (props) => {
                                         <tr>
                                             <th>정시(가군)</th>
                                             <th>진학어플라이</th>
+                                            {/*}
                                             <td><Link to='https://apply.jinhakapply.com/Notice/4143035/A' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_ap_mv4.gif' border='0'/></Link></td>
                                             <td><Link href='https://apply.jinhakapply.com/Common/ApplySearch/4143035' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_ac_mv4.gif' border='0'/></Link></td>
-                                            <td><Link href='https://sdoc.jinhakapply.com/Submit/frmSubmitStu.aspx?UnivServiceID=4143035' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_dc_mv4.gif' border='0'/></Link></td>
-                                            {/*<td colSpan={3}>현재는 원서접수 기간이 아닙니다</td>*/}
+                                            <td><Link href='https://sdoc.jinhakapply.com/Submit/frmSubmitStu.aspx?UnivServiceID=4143035' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_dc_mv4.gif' border='0'/></Link></td>*/}
+                                            <td colSpan={3}>현재는 원서접수 기간이 아닙니다</td>
                                         </tr>
                                     </tbody> 
                             </table></div>

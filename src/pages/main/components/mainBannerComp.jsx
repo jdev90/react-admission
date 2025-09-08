@@ -109,16 +109,65 @@ const MainBannerComp = (props) => {
                     <div className='imgafter'><img src="/images/main/banner2.jpg" alt='메인페이지 배너1'/></div>
                 </SwiperSlide>     */}
                 <SwiperSlide tag="li"><div className='imgafter'>
-                    <video controls width="100%" autoPlay muted loop >
+                    <video width="100%" autoPlay muted playsinline={true} webkit-playsinline={true} controls={false}>
                         <source src="/images/main/banner1.mp4" type="video/mp4"/>
                     </video></div>
                 </SwiperSlide> 
                 
             </Swiper>
                     
-
-                
-            
+            {/* 추가요구사항 by 김동성 팀장, 현혜원 선생 요청 20250905 */}
+            <div className="Maincontain main-quick-menu">
+                <div className="con-list">
+                    <div className="item">
+                        <div className="box">
+                            <h3><span>수시모집</span></h3>
+                            <span className="icon mot5-fptop"><em class="hid">모집요강 아이콘</em></span>
+                            <div className="box-button">
+                                <Link to="/early/guideline" class="cate1">모집요강</Link>
+                                <Link to="https://apply.jinhakapply.com/Notice/4143035/A" target='_blank' className="receipt">원서접수</Link>
+                                <Link to="https://ipsi.cs.ac.kr/ticket/index.do" target='_blank'>지원자 정보조회</Link>
+                                <Link to="https://ipsi.cs.ac.kr/ratio/2026/1.do" target='_blank'>경쟁률</Link>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="item">
+                        <div className="box">
+                            <h3><span>정시모집</span></h3>
+                            <span className="icon mot5-fptop"><em className="hid">모집요강 아이콘</em></span>
+                            <div className="box-button">
+                                <Link to="/regular/guideline" className="cate2">모집요강</Link>
+                                <Link to="/regular/talk" className="">입학상담</Link>
+                                <Link to="https://ipsi.cs.ac.kr/ticket/index.do" target='_blank'>지원자 정보조회</Link>
+                                <Link to="https://ipsi.cs.ac.kr/ratio/2025/2.do" target='_blank'>경쟁률</Link>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="item">
+                        <div className="box">
+                            <h3><span>편입학</span></h3>
+                            <span className="icon mot5-fptop"><em className="hid">모집요강 아이콘</em></span>
+                            <div className="box-button">
+                                <Link to="/transfer/notice" className="cate3">공지사항</Link>
+                                <Link to="/transfer/talk" className="">입학상담</Link>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="item">
+                        <div className="box">
+                            <h3><span>입학정보</span></h3>
+                            <span className="icon mot5-fptop"><em className="hid">모집요강 아이콘</em></span>
+                            <div className="box-button">
+                                <Link to="/assistant/notice" className="cate4">공지사항</Link>
+                                <Link to="/assistant/brochure" className="">안내책자</Link>
+                                <Link to="/early/result" className="">입시결과</Link>
+                                <Link to="/assistant/talk" className="">입학상담</Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/*
             <div className="banner_board">
                 <div className='static'>
                     <div className='line'><Link to="/board/569/view?boardId=328&menuId=569">
@@ -144,7 +193,7 @@ const MainBannerComp = (props) => {
                                             <Link to={"/board/"+data.MENU_CD+"/view?boardId="+data.BOARD_ID+"&menuId="+menucd}>
                                                 <div className='title'>
                                                     <span className={'cata cate'+data.CATE}>{listCate[data.CATE]}</span>
-                                                    {/* {data.NOTICE && <span className='noti'>공지</span>} */}
+
                                                     {data.TITLE}
                                                 </div>
                                             </Link>
@@ -156,6 +205,7 @@ const MainBannerComp = (props) => {
                     </div>
                 </div>
             </div>
+            */}
         </div>
     );
 };

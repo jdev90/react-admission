@@ -31,6 +31,86 @@
 .banner .banner_board .dynamic .area ul li .title{position: relative;line-height: 24px;font-size: 18px;margin: 20px;padding-left: 80px;height: 50px;text-align: left;word-break: keep-all;display: -webkit-box;text-overflow: ellipsis;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;}
 .banner .banner_board .dynamic .area ul li .title .cata{position: absolute;line-height: 20px;width: 60px;left: 0px; background-color: #034EA2;color: #fff;font-weight: 400;text-align: center;padding: 10px 0;font-size: 14px;border-radius: 10px 0 10px 0;}
 .banner .banner_board .dynamic .area ul li:hover{box-shadow: 2px 2px 14px #1111111e; }
+
+
+/* 퀵메뉴 */
+.hid{display: none;}
+.main-quick-menu{position: absolute; bottom: 0; left: 50%; transform: translate(-50%, 0); z-index: 9;}
+.banner .con-list {width:100%; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; margin-top:2.5rem;}
+.banner .con-list .item {position:relative; flex:1 1 20%; width:100%; overflow: hidden;}
+.banner .con-list .item .box {position:relative; display:block; background:rgba(255,255,255,0.92); border-radius:1.2rem; padding:2rem 1.1rem; transition: all 0.3s; border:2px solid rgba(255,255,255,0.92); height: 8rem;}
+.banner .con-list .item .box:hover {border-color:#014da1; background:rgba(255,255,255,1);}
+.banner .con-list .item h3 {display:block; margin-top: 0; text-align: left; padding-left: 0.8rem; margin-bottom: 0.5rem;}
+.banner .con-list .item h3 span {display:inline-block; position:relative; color:#000; font-weight:700; font-size:1.6rem;}
+.banner .con-list .item h3 span:before {content:''; position:absolute; width:0%; height:0.5rem; bottom:1px; left:0; background:rgba(1, 77, 161, 0.15); transition: all 0.3s;}
+.banner .con-list .item p {font-size:0.8rem; color:#666; font-weight:400; letter-spacing:-0.5px;}
+.banner .con-list .item .box .icon {position:absolute; width:6.5rem; height:6.5rem; z-index:0; display: none;}
+.banner .con-list .item .box:hover h3 span:before {width:100%;}
+.banner .con-list .item .box i.arrow-link {display:block; border-radius:0; padding:0; margin-top:1rem; width:2.05rem; height:0.7rem; background:url('../images/common/arrow-link.png') no-repeat 50% 50%; background-size:contain;}
+.banner .con-list .item .box:hover i.arrow-link {animation: move-arrow02 1s linear infinite;}
+.banner .con-list .item .box.link a {display:block; width:100%; height:100%;}
+.banner .con-list .item .box.link a em.p {font-size:0.8rem; color:#666; font-weight:400; letter-spacing:-0.5px; width: 50%; line-height: 1.4; display: block; word-break: keep-all; margin: 0.5rem 0;}
+.banner .con-list .item .box.link a strong {display:block;}
+.banner .con-list .item .box.link a strong span {display:inline-block; position:relative; color:#000; font-weight:700; font-size:1.2rem; letter-spacing: -0.05rem;}
+.banner .con-list .item .box.link a strong span:before {content:''; position:absolute; width:0%; height:0.5rem; bottom:1px; left:0; background:rgba(0, 158, 219, 0.15); transition: all 0.3s;}
+.banner .con-list .item .box.link:hover a strong span:before {width:100%;}
+.banner .con-list .item:nth-child(1) .box .icon {bottom:0.8rem; right:0rem; background:url('../images/character/character1.png') no-repeat 50% 50%; background-size:contain;}
+.banner .con-list .item:nth-child(2) .box .icon {bottom:0.3rem; right:0; background:url('../images/character/character2.png') no-repeat 50% 50%; background-size:contain;}
+.banner .con-list .item:nth-child(3) .box .icon {width:6rem; height:6rem; bottom:0.3rem; right:0.3rem; background:url('../images/character/character3.png') no-repeat 50% 50%; background-size:contain;}
+.banner .con-list .item:nth-child(4) .box .icon {width:6rem; height:6rem; bottom:0.3rem; right:0.3rem; background:url('../images/character/character4.png') no-repeat 50% 50%; background-size:contain;}
+
+.box-button {position:relative; display:flex; gap:0.25rem; margin-top:1rem; flex-wrap: wrap;}
+.box-button a {display:flex;  flex:1 0 30%; align-items:center; justify-content:center; transition: all 0.3s; background-color: #43525a; color:#fff; height:1.85rem; border-radius:0.925rem; padding:0.5rem 1rem 0.5rem 1rem; font-size:1rem; font-weight:300; letter-spacing:-1px;}
+.box-button a:hover {transform: translateY(-6px); box-shadow: 0 5px 5px -5px rgba(67, 82, 90, 0.15), 0 5px 5px -5px rgba(67, 82, 90, 0.15), 0 15px 15px -5px rgba(67, 82, 90, 0.15), 0 20px 20px -5px rgba(67, 82, 90, 0.15);}
+.box-button a:hover i {animation: move-arrow01 1s linear infinite;}
+.box-button a.cate1{ background-color: #63CDF5;}
+.box-button a.cate2{ background-color: #0073BC;}
+.box-button a.cate3{ background-color: #00ADEF;}
+.box-button a.cate4{ background-color: #2E3192;}
+.box-button a.receipt {background:#d01b06;}
+.w70{width: 70%; flex-wrap: wrap;}
+
+@media (max-width: 1420px) {
+    .box-button a{width: 36.9%;}
+}
+@media (max-width: 1370px) {
+
+
+}
+@media (max-width: 1280px) {
+    .banner .con-list .item {flex: 1 1 40%;}
+    .banner .con-list{gap:0.8rem;}
+    .box-button a{font-size: 0.8rem; width: 100%; gap: 1rem;}
+
+}
+@media (max-width: 768px) {
+
+    .banner .con-list .item h3 span{font-size: 1.6rem;}
+    .banner .con-list .item {flex:1 1 40%;}
+    .box-button{margin-top: 0.5rem;}
+    .box-button a{font-size: 1rem; letter-spacing: 0px;}
+
+
+}
+@media (max-width: 768px) {
+    .banner .con-list .item h3 span{font-size: 1.6rem;}
+    .banner .con-list .item {flex: 1 1 100% !important;}
+    .box-button a{font-size: 0.7rem;}
+    .banner .con-list .item .box{padding: 1rem;}
+
+}
+@media (max-width: 480px) {
+    .banner .con-list .item h3 span{font-size: 1rem;}
+    .banner .con-list{gap:0.5rem;}
+    .banner .con-list .item .box {height: 5.5rem;}
+    .box-button{margin-top: 0px; }
+    .box-button a{padding: 0rem 1rem 0rem 1rem;}
+    .banner .con-list .item .box .icon{display: none;}
+    .w70{width: 100%;}
+    .banner .imgafter{height:90vh}
+    .box-button a{text-align: center;}
+    .main-quick-menu{padding-bottom: 1rem !important;}
+}
 /* .banner .navgroup {position: absolute;right: 0;bottom: 0;left: 0;margin: auto;width: 228px;z-index: 1;background-color: #ffffff;border-radius: 60px 60px 0 0;}
 .banner .navgroup .btngroup{float: left;margin:6px 35px 2px 35px;}
 .banner .navgroup .btngroup a, div.pp{display: inline-block;width: 30px; height: 20px;}
@@ -93,7 +173,7 @@
 
 
 /*메인*/
-.Maincontain{width: 1416px;margin: auto;padding-top: 120px;padding-bottom: 50px}
+.Maincontain{width: 1416px;margin: auto;padding-top: 60px;padding-bottom: 50px}
 .MainTitle{position: relative;text-align: left;}
 .MainTitle h1{font-size: 50px;font-weight: 500;margin-top: 10px;}
 .MainTitle h1 span{font-weight: 300;margin-left: 6px;}
@@ -113,7 +193,7 @@
 .MainNotice .notiContent li{position: relative;text-align: left;}
 .MainNotice .notiContent li:not(.nopost):hover{cursor: pointer;background-color: #e6f4fd;}
 .MainNotice .notiContent li .title{overflow: hidden;display: inline-block;width: 88%;font-size: 22px;line-height: 60px;white-space: nowrap;text-overflow: ellipsis;}
-.MainNotice .notiContent li .cata{display: inline-block;color: #fff;width: 84px;height: 36px;line-height: 40px;font-size: 16px;text-align: center;margin-right:30px;margin-left:10px;border-radius: 30px;}
+.MainNotice .notiContent li .cata{display: inline-block;color: #fff;width: 84px;height: 36px;line-height: 40px;font-size: 16px;text-align: center;margin-right:10px;margin-left:10px;border-radius: 30px;}
 .MainNotice .notiContent li .cate0{ background-color: #9852A9;}
 .MainNotice .notiContent li .cate1{ background-color: #63CDF5;}
 .MainNotice .notiContent li .cate2{ background-color: #0073BC;}
@@ -184,7 +264,7 @@
 .MainGallery .gallTitle img:hover{transform: rotate(360deg);transition-property: all;transition-duration: 0.4s;}
 
 /*입학도우미*/
-.ipBgc{background-color: #D5E2F600;width: 100%; background: linear-gradient(180deg, #D8F0FF, #f6fcff);background-position: 50% 50%;background-repeat: no-repeat;background-size: cover;margin-top: 120px;padding-top: 80px;margin-bottom: 30px;border-bottom:1px solid #f5f5f5;}
+.ipBgc{background-color: #D5E2F600;width: 100%; background: linear-gradient(180deg, #D8F0FF, #f6fcff);background-position: 50% 50%;background-repeat: no-repeat;background-size: cover; padding-top: 80px;margin-bottom: 30px;border-bottom:1px solid #f5f5f5;}
 .ipBgc .Maincontain{padding: 0;}
 .MainIphakService .quickbtn{margin-top: 50px;}
 .MainIphakService .quickbtn li{position: relative;display: inline-block;width: 50%;}
@@ -548,9 +628,10 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     .profile_table li p:not(.career p) {position: static;margin-bottom: 8px;font-size: 18px;}
     .profile_table li:not(.career li) {margin-left: 14px;margin-bottom: 45px;}
     .table_area .comment textarea {width: 85%;}
-    
+
 }
 @media (max-width: 780px){
+
     .MainGallery .MainTitle::before{content: none;}
     .MainGallery .MainTitle .Tab {top:auto;transform: none;bottom: -64px;left: 42px;bottom: -85px;}
     .MainGallery .gallshow {margin-top: 110px;}
@@ -682,7 +763,7 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
   
 
  @media (max-width: 500px){
-    .banner .imgafter{height:50vh}
+
     .banner .banner_board {bottom: 65px;}
     .banner .banner_board .static {height: 35px;padding: 15px 0;bottom: -66px;}
     .banner .banner_board .static div p {padding: 0px; padding-left: 15px;font-size: 12px;}
@@ -696,7 +777,7 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     .banner .banner_board .dynamic .area ul li {margin-bottom: 10px;width: 85%;}
     .banner .banner_board .dynamic .area ul li .title {font-size: 14px;line-height: 18px; height: 32px;padding-left: 65px;}
     .banner .banner_board .dynamic .area ul li .title .cata{padding: 4px 0;width: 50px;font-size: 11px;}
-    .Maincontain {padding-top: 66px;}
+    .Maincontain {padding-top: 66px;  margin-bottom: 0px;}
     .MainGallery .MainTitle::before {bottom: -78px;font-size: 88px;}
     .MainGallery .MainTitle .Tab li div {height: 44px;}  
     .MainGallery .MainTitle .Tab li.btn div {width: 44px;background-size: 32px;margin-left:2px}
@@ -758,7 +839,8 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
 @media (max-width: 480px){
     /* .mainGallery .gallTitle .title p{font-size: 14px;} */
     .MainGallery .slideBtn div {width: 50px;height: 50px;}
-    
+    .MainNotice .notiContent li .title{width: 95%;}
+    .MainNotice .notiContent li .date {display: none;}
    
     /* 
 
@@ -813,7 +895,7 @@ table.reply td.authBtn div{cursor: pointer;padding: 10px 0; background-color: #0
     .MainNotice .Tab li:not(.more) {margin: 0 2px;padding: 0 6px;}
     .MainNotice .notiContent li .title {font-size: 16px;line-height: 42px;}
     .MainNotice .notiContent li .cata {font-size: 12px;margin-right: 6px;width: 43px;height: 24px;line-height: 28px;}
-    .MainNotice .notiContent li .date {font-size: 12px;}
+ 
 
     .mainQuickServ ul li .btn{padding: 12px 0;height: 55px;}  
     .mainQuickServ ul li .btn img{margin: 2px 0px;}
