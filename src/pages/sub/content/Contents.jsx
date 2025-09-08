@@ -164,8 +164,8 @@ const Sub = (props) => {
                                             <th>수시모집</th>
                                             <th>진학어플라이</th>
                                             <td><Link to='https://apply.jinhakapply.com/Notice/4143035/A' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_ap_mv4.gif' border='0'/></Link></td>
-                                            <td><Link href='https://apply.jinhakapply.com/Common/ApplySearch/4143035' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_ac_mv4.gif' border='0'/></Link></td>
-                                            <td><Link href='https://sdoc.jinhakapply.com/Submit/frmSubmitStu.aspx?UnivServiceID=4143035' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_dc_mv4.gif' border='0'/></Link></td>
+                                            <td><Link to='https://apply.jinhakapply.com/Common/ApplySearch/4143035' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_ac_mv4.gif' border='0'/></Link></td>
+                                            <td><Link to='https://sdoc.jinhakapply.com/Submit/frmSubmitStu.aspx?UnivServiceID=4143035' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_dc_mv4.gif' border='0'/></Link></td>
                                             {/*<td colSpan={3}>현재는 원서접수 기간이 아닙니다</td>*/}
                                         </tr>
                                     </tbody> 
