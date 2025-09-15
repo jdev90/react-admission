@@ -311,9 +311,9 @@ const List= (props) => {
                                                     {/* {data.FILE_NAME != "" ?<img src='/images/sub/down.png' alt='첨부파일 있음'/>:null } */}
                                                     {data?.PRIVACY == "1" ?<img src='/images/sub/lock.png' alt='비밀글'/>:null }
                                                     {isnew ? <div className='new'>N</div>:null}
-                                                    
                                                 </td>  
-                                                {data.FILE_NAME !== "" && menuInfo?.USER_WRITE !== 1 ? (
+                               
+                                                {data.FILE_NAME !== "" && menuInfo?.USER_WRITE != 1 ? (
                                                             <td className='file_img'>
                                                             <img src='/images/sub/down.png' alt='첨부파일 있음' />
                                                             </td>
