@@ -18,7 +18,7 @@ const List= (props) => {
     const location = useLocation();
     const navigate = useNavigate(); 
     let menuInfo = getMenuInfo(location.pathname + location.search);
-    const menuqq = menuInfo?.MENU_CD;
+    let menuqq = menuInfo?.MENU_CD;
     const getMenucd = () => {
         if(location.pathname.endsWith('/notice')){return '569';}
         else if(location.pathname.endsWith('/talk')){return '570';}

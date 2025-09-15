@@ -89,20 +89,19 @@ const MainImpsiComp = (props) => {
     let latestDate = new Date(0); // 과거 날짜로 초기화
     for (let i = 0; i < ipsiList.length; i++) {
       const itemDate = parseDate(ipsiList[i].stdate);
-      if (today >= itemDate && itemDate > latestDate) {
+      //if (today >= itemDate && itemDate > latestDate) {
+      if (itemDate && today >= itemDate && itemDate >= latestDate) {
         latestDate = itemDate;
         latestIndex = i;
       }
     }
-
     for (var i = 0; i < li.length; i++) {
         li[i].classList.remove('active');
     }
+    li[latestIndex].classList.add('active');
     for (var i = 0; i <= latestIndex; i++) {
         li[i].classList.add('active');
     }
-    
-    // li[latestIndex].classList.add('active');
     return latestIndex+1 ; 
   }
     
@@ -122,7 +121,7 @@ const MainImpsiComp = (props) => {
               <ul className={'date'}>
                   {ipsiList?.map((data, index) => {
                     return(
-                      <li className='date_item active' key={index}>
+                      <li className={ipsiIndex -1 >= index ? 'date_item active':'date_item'} key={index}>
                         <p className='nm'>{data.title}</p>
                         <p>{data.stdate} {data.endate != '' ? `~${data.endate}` :''}</p>
                       </li>

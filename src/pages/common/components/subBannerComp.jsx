@@ -1,17 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import {  Link, useParams } from 'react-router-dom';
+import {  Link, useParams,useLocation } from 'react-router-dom';
 import SubBannerMenuComp from 'pages/common/components/subBannerMenuComp';
 import {SERVER_URL} from '../../../context/config';
-import {getMenuInfoMenuCd} from "assets/js/utils";
+import {getMenuInfoMenuCd, getMenuInfo} from "assets/js/utils";
 
 const SubBannerComp = (props) => {
-    const menuCd = props.menuCd 
+    let menuCd = props.menuCd 
     const [menuList, setMenuList] = useState([]); 
     const menuInfo = getMenuInfoMenuCd(menuCd);
-    const menuP = menuInfo?.PARENT_MENU_CD
+    //let menuP = menuInfo?.PARENT_MENU_CD
+    const location = useLocation();
+    const [menuP, setMenuP] = useState(() => {
+        if(menuCd == 550 || menuCd == 554){return "545"}
+        else if(menuCd == 555 || menuCd == 559){return '546';}
+        else if(menuCd == 564 || menuCd == 568){return '548';}
+        else if(menuCd == 560){return '547';}
+        else if(menuCd == 591){return '549';}
+        else{console.log(props.menuCd); return menuInfo?.PARENT_MENU_CD}
+    });
+    const getMenuP = () => {
+        if(menuCd == 550 || menuCd == 554){return "545"}
+        else if(menuCd == 555 || menuCd == 559){return '546';}
+        else if(menuCd == 564 || menuCd == 568){return '548';}
+        else if(menuCd == 560){return '547';}
+        else if(menuCd == 591){return '549';}
+        else{return menuInfo?.PARENT_MENU_CD}
+    };
+    
+    useEffect(() => {
+        setMenuP(getMenuP())
+    },[menuCd]);
     useEffect(() => {
         Init()
-    },[menuCd]);
+    },[menuP]);
+
+    useEffect(() => {
+        menuCd = props.menuCd 
+    },[location.pathname]);
     
     const Init = async () =>{
         try{

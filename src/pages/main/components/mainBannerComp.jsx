@@ -76,6 +76,11 @@ const MainBannerComp = (props) => {
         setSwiper(swiperInstance);
     }, [] );
 
+    const handleSubmit = (e) => {
+        alert("원서접수 기간이 아닙니다.");
+        return;
+    };
+
     return (
         <div className='banner wrap'>        
             <Swiper
@@ -125,7 +130,8 @@ const MainBannerComp = (props) => {
                             <span className="icon mot5-fptop"><em class="hid">모집요강 아이콘</em></span>
                             <div className="box-button">
                                 <Link to="/early/guideline" class="cate1">모집요강</Link>
-                                <Link to="https://apply.jinhakapply.com/Notice/4143035/A" target='_blank' className="receipt">원서접수</Link>
+                                {/*<Link to="https://apply.jinhakapply.com/Notice/4143035/A" target='_blank' className="receipt">원서접수</Link>*/}
+                                <Link onClick={()=>handleSubmit()}  className="receipt">원서접수</Link>
                                 <Link to="https://ipsi.cs.ac.kr/ticket/index.do" target='_blank'>지원자 정보조회</Link>
                                 <Link to="https://ipsi.cs.ac.kr/ratio/2026/1.do" target='_blank'>경쟁률</Link>
                             </div>

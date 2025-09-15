@@ -12,10 +12,7 @@ import {getMenuInfo} from "assets/js/utils";
 const Sub = (props) => {
     const location = useLocation();
     let menuInfo = getMenuInfo(location.pathname + location.search);
-    
-    //const query = qs.parse(location.search, {ignoreQueryPrefix: true});
-    //const params = useParams();
-	//const menuCd = menuInfo?.MENU_CD;
+
     const [page, setPage] = useState(1);
 
     const [guide, setGuide] = useState([]); //달별로 분리된 학사일정 리스트
@@ -31,9 +28,19 @@ const Sub = (props) => {
         else if(location.pathname == '/transfer/guideline'){return '564';}
         else if(location.pathname == '/transfer/result'){return '568';}
         else if(location.pathname == '/international/guideline'){return '560';}
+        else if(location.pathname == '/assistant/brochure'){return '591';}
     };
-
-    const [menuCd, setMenuCd] = useState(getMenucd());
+    //const [menuCd, setMenuCd] = useState(getMenucd());
+    const [menuCd, setMenuCd] = useState(() => {
+        if(location.pathname == '/early/guideline'){setGubun(1); return '550';}
+        else if(location.pathname == '/early/result'){setGubun(-1);return '554';}
+        else if(location.pathname == '/regular/guideline'){setGubun(2);return '555';}
+        else if(location.pathname == '/regular/result'){setGubun(-2);return '559';}
+        else if(location.pathname == '/transfer/guideline'){setGubun(3);return '564';}
+        else if(location.pathname == '/transfer/result'){setGubun(-3);return '568';}
+        else if(location.pathname == '/international/guideline'){setGubun(4);return '560';}
+        else if(location.pathname == '/assistant/brochure'){setGubun(0);return '591';}
+    });
     function setting(menuCd){
         switch (menuCd) {
         case '550' :  setGubun(1);setContitle("학년도 수시모집요강"); return
@@ -47,19 +54,12 @@ const Sub = (props) => {
         }
      }
     
-
      useEffect(() => {
-        if(menuInfo?.MENU_CD != null){
-            setMenuCd(menuInfo?.MENU_CD);
-        }
-
+        if(menuInfo?.MENU_CD != null){setMenuCd(menuInfo?.MENU_CD);}
     },[menuInfo]);
 
     useEffect(() => {
-       if(menuCd != null){
-        setting(menuCd);
-       }
-
+       if(menuCd != null){setting(menuCd);}
     },[menuCd]);
 
     useEffect(() => {
@@ -70,6 +70,10 @@ const Sub = (props) => {
         window.scrollTo(0, 0);}
     },[gubun]);
 
+    useEffect(() => {
+       setMenuCd(getMenucd())
+    },[location.pathname]);
+
     const handlePageChange = (pageNumber) => {
         setPage(pageNumber);
     };
@@ -78,10 +82,9 @@ const Sub = (props) => {
         if(gubun != ''){
             Init();
         }
-
     },[page]);
 
-   
+      
       
     const Init = async () =>{
         try{
@@ -94,6 +97,7 @@ const Sub = (props) => {
 
             setGuide(data.getGuideView[0]);
             setGuideBookMark(data.getGuideBookMarkList);
+            console.log(menuCd);
         }catch(e){
             console.log(e);
         }
@@ -104,10 +108,10 @@ const Sub = (props) => {
     const handleFileDown = (src) => window.open(src, "self");
 
     return(
-        <>
+        <> 
             <SubBannerComp menuCd={menuCd}/>
             <div className='Subcontain'>
-                <ContentMenuComp menuCd={menuCd}/>                          
+                <ContentMenuComp menuCd={menuCd}/>                  
                 <div className='contentBox'>
 
                     {[550, 555, 564, 560, 554, 559, 568,591].some(role => menuCd?.includes(role))  &&<>
@@ -115,7 +119,7 @@ const Sub = (props) => {
                     <ul className='guideline_file'>
                         <li className='filedown' ><a  onClick={() => handleFileDown(SERVER_URL+"/api/guide/download?YEAR="+guide?.YEAR+"&GUBUN="+gubun)} download>{gubun >= 0 && location.pathname !== '/assistant/brochure'? '모집요강 다운로드' : '다운로드'}<img src='/images/sub/content/guideline_down.png'/></a></li>
                         <li className='filezoom' onClick={() => handleFileDown(SERVER_URL+"/api/guide/pdfview?GUBUN="+gubun)}>확대보기<img src='/images/sub/content/guideline_zoom.png'/></li>
-                        {location.pathname !== '/assistant/brochure' && <li className='brochure'><Link to='/assistant/brochure'>안내책자<img src='/images/sub/content/arrow-link-orange.png'/></Link></li>}
+                        {location.pathname !== '/assistant/brochure' && <li className='brochure'><Link to='/assistant/brochure' onClick={()=>setGubun(0)}>안내책자<img src='/images/sub/content/arrow-link-orange.png'/></Link></li>}
                     </ul>
                     <div className='guideline_pdfview'>
                         <div className={gubun >= 0 ? 'pdfview' : 'pdfview noIndex'}>
@@ -132,14 +136,6 @@ const Sub = (props) => {
                     </>}
                     
 
-
-                    {/*원서접수 카테고리
-                    <ul className='cont-cate'>
-                        <li className='cate active' onClick={() => showTab(0)}>수시</li>
-                        <li className='cate' onClick={() => showTab(1)}>정시</li>
-                        <li className='cate' onClick={() => showTab(2)}>편입학</li>
-                    </ul>*/}
-                    {/* ---수시원서접수  */}
                     {menuInfo?.MENU_CD == 587 &&<>
                     <div className='cont-catebox'>
                         <div className='cont-area'>     

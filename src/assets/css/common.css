@@ -61,7 +61,7 @@ header.active .Top .logoTab .topmenu li.dep1 .dep2:hover{background-color: #f3fa
 #top{font-size: 16px;height: 55px;width: 55px;background-color: #014DA1 ;color:#ffffff;border: 0px;border-radius: 50%;/* outline: none; */cursor: pointer;box-shadow: 0px 0px 1px 8px #014ca171;font-weight: 700;}
 #top:hover{box-shadow: 0px 0px 1px 10px #014ca171;transition: 0.3s;/* transition-duration: 0.05s; */}
 #top span{position: relative;}
-#top span:before{position: absolute;left: -7px;top: -5px;content: '';width: 13px;height: 13px;border-top: 3px solid #fff;border-right: 3px solid #fff;transform: rotate(-45deg);}
+#top span:before{position: absolute;left: 50%;top: 50%;content: '';width: 25px;height: 25px;background-image: url("../images/up.png");background-repeat: no-repeat;background-position: center;background-size: contain; transform:  translateX(-50%) translateY(-50%);}
   
 /*테이블*/
 .table_area{width:100%;margin: auto;} 
@@ -201,7 +201,7 @@ footer .info ul li p:not(.titl){margin-bottom: 2px;}
 #popup-slide-box .slider a { display: block; }
 #popup-slide-box .slider img { width: 100%; height: auto; cursor: pointer;}
 #popup-slide-box .slider img:hover{transition: all 0.3s;  transform: scale(1.03);}
-#popup-slide-box .swiper-pagination { position: static; width: auto; display: flex; align-items: center; gap: 8px; margin-right: 10px; }
+#popup-slide-box .swiper-pagination { position: static; width: auto; display: flex; align-items: center; gap: 8px; margin-right: 10px;font-size: 0; }
 #popup-slide-box .swiper-pagination .line { width: 30px; height: 1px; background-color: #fff; }
 #popup-slide-box .swiper-pagination-current { font-weight: 600; }
 #popup-slide-box .ctrl-box { display: flex; align-items: center; justify-content: flex-end; gap: 5px; margin-bottom: 30px; }

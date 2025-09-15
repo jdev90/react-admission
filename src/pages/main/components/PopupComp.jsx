@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper';
 import { useLocation } from 'react-router-dom';
 import { setCookie, getCookie } from 'context/cookieUtils';  // 쿠키 관련 함수는 별도로 분리해서 처리할 수 있습니다.
 import { SERVER_URL } from 'context/config';
@@ -11,17 +12,13 @@ import 'swiper/css/controller';
 
 const PopupComp = () => {
     const [popupVisible, setPopupVisible] = useState(false);
-    const [swiperInstance, setSwiperInstance] = useState(null);
+    const [swiperInstance1, setSwiperInstance1] = useState(null);
     const location = useLocation();
-    const [swiper, setSwiper] = useState(null);
+
     const [popupList, setPopupList] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [mainBannerCount, setMainBannerCount] = useState(1);
-
     useEffect(() => {
         Init();
-        const swiperInstance = document.querySelector('.swiper-container').swiper;
-        setSwiper(swiperInstance);
     }, []);
 
     const Init = async () => {
@@ -39,12 +36,18 @@ const PopupComp = () => {
             console.log(e);
         }
     }
-
+    useEffect(() => {
+        if (popupVisible && swiperInstance1) {
+          swiperInstance1.update();
+          swiperInstance1.autoplay.start();
+        }
+      }, [popupVisible, swiperInstance1]);
     useEffect(() => {
 
         if(loading){
             // 페이지 로드 시, 팝업 슬라이드 수 업데이트
             //const slideCount = document.querySelectorAll('#popup-slide-box .swiper-slide').length;
+            //console.log("swiperInstance :: ", swiperInstance);
             // document.querySelector(".btn_popup .cnt").innerHTML = slideCount || "0";
             // 페이지 로드 후 팝업 표시 여부 결정
             
@@ -53,7 +56,10 @@ const PopupComp = () => {
                 if (resultCount > 0) {
                     setPopupVisible(true);
                 }
+
             }
+
+
         }
             
     }, [loading]);
@@ -63,8 +69,8 @@ const PopupComp = () => {
         const resultCount = document.querySelectorAll('#popup-slide-box .swiper-slide').length;
         if (resultCount > 0) {
             setPopupVisible(true);
-            if (swiperInstance) {
-                swiperInstance.update();
+            if (swiperInstance1) {
+                swiperInstance1.update();
             }
         } else {
             alert("현재 게시된 팝업이 없습니다.");
@@ -88,17 +94,15 @@ const PopupComp = () => {
         setPopupVisible(false);
     };
 
-    function handlePlay(){
-        if(mainBannerCount > 3 ){ return true} else{ return false}
-    }
     // swiper 슬라이더 설정
     const swiperSettings = {
-        loop: handlePlay(),
+        modules: [Navigation, Pagination, Autoplay],
         slidesPerView: 1,
         spaceBetween: 25,
         pagination: {
             type: 'fraction',
             renderFraction: (currentClass, totalClass) => (
+                
                 <span className={currentClass}>0</span> + 
                 <div className="line"></div> + 
                 <span className={totalClass}>0</span>
@@ -108,26 +112,32 @@ const PopupComp = () => {
             nextEl: '#popup-slide-box .swiper-button-next',
             prevEl: '#popup-slide-box .swiper-button-prev',
         },
+        loop: true,
         speed: 800,
         autoplay: {
             delay: 3000,
             disableOnInteraction: false,
         },
         breakpoints: {
-           480: {
-               slidesPerView: 1,
-               spaceBetween: 15,
-           },
-           768: {
-               slidesPerView: 2,
-               spaceBetween: 15,
-           },
-           1280: {
-               slidesPerView: 3,
-               spaceBetween: 15,
-           },
-        }
+            480: {
+                slidesPerView: 1,
+                spaceBetween: 15,
+            },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 15,
+            },
+            1280: {
+                slidesPerView: 3,
+                spaceBetween: 15,
+            },
+        },
+        onSwiper: (swiper) => {
+            setSwiperInstance1(swiper);
+            swiper.autoplay?.start?.();
+        },
     };
+    
 
     return (
         <div id="popup-slide-box" style={{ display: popupVisible ? 'block' : 'none' }}>
@@ -148,17 +158,18 @@ const PopupComp = () => {
                             <i className="xi-angle-right"></i>
                         </button>
                     </div>
-                    <Swiper {...swiperSettings} onSwiper={(swiper)=>{setMainBannerCount(swiper.slides.length);}} 
-                    >
-                    {loading && popupList && Array.isArray(popupList) && popupList.map((data, index)=> { 
+                    
+                    <Swiper {...swiperSettings}>
+                    {popupList.map((data, index)=> { 
                         let imgContents = data.CONTENT;  
                         return(
-                            <SwiperSlide key={index}>                                                                
-                                <div className="img"  dangerouslySetInnerHTML={{ __html:  imgContents }}/>
+                            <SwiperSlide key={data.CONTENT} tag="li">                                                                
+                                <div className="img" dangerouslySetInnerHTML={{ __html:  imgContents }}/>
                             </SwiperSlide>  
                         )})
                     }
                     </Swiper>
+
                     <div className="btn-box">
                         <button type="button" className="btn-week" onClick={handleWeekClose}>7일간 그만 보기</button>
                         <button type="button" className="btn-oneday" onClick={handleOneDayClose}>오늘 하루 그만 보기</button>
