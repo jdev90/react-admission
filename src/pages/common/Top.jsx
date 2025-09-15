@@ -144,8 +144,9 @@ const Top = (props) => {
                                         <ul className='dep2'>
                                             {menuList?.map((data2, index)=> {
                                                 if(data2.DEPTH == 2 && data2.PARENT_MENU_CD == data1.MENU_CD){
+                                         
                                                     return(
-                                                        <li key={index}><Link to={data2.LINK} target={data2.BLANK == "1" ? "_blank":''}>{data2.MENU_NM}</Link></li>
+                                                        <li key={index}><Link to={data2.LINK } target={data2.BLANK == "1" ? "_blank":''}>{data2.MENU_NM}</Link></li>
                                                 )}
                                             })}
                                         </ul>
