@@ -111,7 +111,7 @@ const MainImpsiComp = (props) => {
         <>
             {/*__입시일정*/} 
             <div className='schedule'>
-              <div className='title'>입시일정</div>
+              {/*<div className='title'>입시일정</div>*/}
               <ul className='tab'>
                   <li><div className='tab_btn active' onClick={() => showTab(0)}>수시모집</div></li>
                   <li><div className='tab_btn' onClick={() => showTab(1)}>정시모집</div></li>

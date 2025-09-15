@@ -79,7 +79,7 @@ const MainNoticeComp = (props) => {
                                 <Link to={"/board/"+data.MENU_CD+"/view?boardId="+data.BOARD_ID+"&menuId="+menucd}>
                                     <div className='title'>
                                         <span className={'cata cate'+data.CATE}>{listCate[data.CATE]}</span>
-                                        {/* {data.NOTICE && <span className='noti'>공지</span>} */}
+                                        {data.NOTICE && <span className='noti'>공지</span>}
                                         {data.TITLE}
                                         {isnew && <div className='new'>N</div>}
                                     </div>

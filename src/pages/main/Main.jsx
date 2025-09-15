@@ -158,10 +158,19 @@ const Main = (props) => {
             <div className='ipBgc'>
                 <div className='Maincontain MainIphakService'>                        
                     <div className='MainTitle'>
+                        <p>창신대학교의 입시 일정입니다.</p>
+                        <h1>CSU<span>입시일정</span></h1>
+                    </div> 
+                    <MainImpsiComp/>
+                </div> 
+            </div>
+            {/*
+            <div className='ipBgc'>
+                <div className='Maincontain MainIphakService'>                        
+                    <div className='MainTitle'>
                         <p>창신대학교의 입시 관련 주요 서비스입니다.</p>
                         <h1>CSU<span>입학도우미</span></h1>
                     </div> 
-                    {/*__퀵메뉴*/} 
                     <ul className='quickbtn'>{quickmenulist.map((data, index) => (
                         <li>
                             <div className={'index index'+index}>
@@ -174,7 +183,6 @@ const Main = (props) => {
                             </div>
                         </li>
                     ))}</ul> 
-                    {/*__연락처*/} 
                     <ul className='call'>{callList.map((data, index) => (
                         <li>
                             <div className="col col1">
@@ -189,7 +197,7 @@ const Main = (props) => {
                     <MainImpsiComp/>
                 </div> 
             </div>
-            
+            */}
             {/*3. 홍보영상*/}
             <MainGalleryComp/>
             {/*2. 안내책자*/}

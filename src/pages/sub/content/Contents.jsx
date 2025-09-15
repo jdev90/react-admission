@@ -12,16 +12,28 @@ import {getMenuInfo} from "assets/js/utils";
 const Sub = (props) => {
     const location = useLocation();
     let menuInfo = getMenuInfo(location.pathname + location.search);
-    const qq =menuInfo?.MENU_CD
+    
     //const query = qs.parse(location.search, {ignoreQueryPrefix: true});
     //const params = useParams();
 	//const menuCd = menuInfo?.MENU_CD;
     const [page, setPage] = useState(1);
+
     const [guide, setGuide] = useState([]); //달별로 분리된 학사일정 리스트
     const [guideBookMark, setGuideBookMark] = useState([]); //달별로 분리된 학사일정 리스트
     const [gubun, setGubun] = useState(""); //달별로 분리된 학사일정 리스트
     const [contitle, setContitle] = useState(""); //달별로 분리된 학사일정 리스트
     const [loaded, setLoaded] = useState(false);
+    const getMenucd = () => {
+        if(location.pathname == '/early/guideline'){return '550';}
+        else if(location.pathname == '/early/result'){return '554';}
+        else if(location.pathname == '/regular/guideline'){return '555';}
+        else if(location.pathname == '/regular/result'){return '559';}
+        else if(location.pathname == '/transfer/guideline'){return '564';}
+        else if(location.pathname == '/transfer/result'){return '568';}
+        else if(location.pathname == '/international/guideline'){return '560';}
+    };
+
+    const [menuCd, setMenuCd] = useState(getMenucd());
     function setting(menuCd){
         switch (menuCd) {
         case '550' :  setGubun(1);setContitle("학년도 수시모집요강"); return
@@ -35,26 +47,38 @@ const Sub = (props) => {
         }
      }
     
-    
-    //const token = window.sessionStorage.getItem('accessToken');
+
+     useEffect(() => {
+        if(menuInfo?.MENU_CD != null){
+            setMenuCd(menuInfo?.MENU_CD);
+        }
+
+    },[menuInfo]);
+
     useEffect(() => {
-        setting(qq);
-    },[qq]);
+       if(menuCd != null){
+        setting(menuCd);
+       }
+
+    },[menuCd]);
 
     useEffect(() => {
         {gubun != "" &&
-        setting(qq);
+        setting(menuCd);
         Init();
         setPage(1)
         window.scrollTo(0, 0);}
     },[gubun]);
 
-  const handlePageChange = (pageNumber) => {
-    setPage(pageNumber);
-  };
+    const handlePageChange = (pageNumber) => {
+        setPage(pageNumber);
+    };
 
-  useEffect(() => {
-        Init()
+    useEffect(() => {
+        if(gubun != ''){
+            Init();
+        }
+
     },[page]);
 
    
@@ -67,6 +91,7 @@ const Sub = (props) => {
             JsonArray.push(JsonObject);  
             let res = await fetch(SERVER_URL+'/api/guide/view',{method:"POST", headers:{'content-type':'application/json'}, body : JSON.stringify(JsonArray)});
             const data = await res.json();
+
             setGuide(data.getGuideView[0]);
             setGuideBookMark(data.getGuideBookMarkList);
         }catch(e){
@@ -77,20 +102,20 @@ const Sub = (props) => {
         setLoaded(true);
     };
     const handleFileDown = (src) => window.open(src, "self");
-   
-    
+
     return(
         <>
-            <SubBannerComp menuCd={qq}/>
+            <SubBannerComp menuCd={menuCd}/>
             <div className='Subcontain'>
-                <ContentMenuComp menuCd={qq}/>                          
+                <ContentMenuComp menuCd={menuCd}/>                          
                 <div className='contentBox'>
 
-                    {[550, 555, 564, 560, 554, 559, 568,591].some(role => qq?.includes(role))  &&<>
+                    {[550, 555, 564, 560, 554, 559, 568,591].some(role => menuCd?.includes(role))  &&<>
                     <div className='cont-h mgB40'>{gubun>=0 && guide?.YEAR}{contitle}</div> 
                     <ul className='guideline_file'>
-                        <li className='filedown' ><a  onClick={() => handleFileDown(SERVER_URL+"/api/guide/download?YEAR="+guide?.YEAR+"&GUBUN="+gubun)} download>모집요강 다운로드<img src='/images/sub/content/guideline_down.png'/></a></li>
+                        <li className='filedown' ><a  onClick={() => handleFileDown(SERVER_URL+"/api/guide/download?YEAR="+guide?.YEAR+"&GUBUN="+gubun)} download>{gubun >= 0 && location.pathname !== '/assistant/brochure'? '모집요강 다운로드' : '다운로드'}<img src='/images/sub/content/guideline_down.png'/></a></li>
                         <li className='filezoom' onClick={() => handleFileDown(SERVER_URL+"/api/guide/pdfview?GUBUN="+gubun)}>확대보기<img src='/images/sub/content/guideline_zoom.png'/></li>
+                        {location.pathname !== '/assistant/brochure' && <li className='brochure'><Link to='/assistant/brochure'>안내책자<img src='/images/sub/content/arrow-link-orange.png'/></Link></li>}
                     </ul>
                     <div className='guideline_pdfview'>
                         <div className={gubun >= 0 ? 'pdfview' : 'pdfview noIndex'}>
@@ -140,8 +165,8 @@ const Sub = (props) => {
                                             <th>수시모집</th>
                                             <th>진학어플라이</th>
                                             <td><Link to='https://apply.jinhakapply.com/Notice/4143035/A' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_ap_mv4.gif' border='0'/></Link></td>
-                                            <td><Link href='https://apply.jinhakapply.com/Common/ApplySearch/4143035' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_ac_mv4.gif' border='0'/></Link></td>
-                                            <td><Link href='https://sdoc.jinhakapply.com/Submit/frmSubmitStu.aspx?UnivServiceID=4143035' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_dc_mv4.gif' border='0'/></Link></td>
+                                            <td><Link to='https://apply.jinhakapply.com/Common/ApplySearch/4143035' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_ac_mv4.gif' border='0'/></Link></td>
+                                            <td><Link to='https://sdoc.jinhakapply.com/Submit/frmSubmitStu.aspx?UnivServiceID=4143035' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_dc_mv4.gif' border='0'/></Link></td>
                                             {/*<td colSpan={3}>현재는 원서접수 기간이 아닙니다</td>*/}
                                         </tr>
                                     </tbody> 
@@ -242,10 +267,11 @@ const Sub = (props) => {
                                         <tr>
                                             <th>정시(가군)</th>
                                             <th>진학어플라이</th>
+                                            {/*}
                                             <td><Link to='https://apply.jinhakapply.com/Notice/4143035/A' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_ap_mv4.gif' border='0'/></Link></td>
                                             <td><Link href='https://apply.jinhakapply.com/Common/ApplySearch/4143035' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_ac_mv4.gif' border='0'/></Link></td>
-                                            <td><Link href='https://sdoc.jinhakapply.com/Submit/frmSubmitStu.aspx?UnivServiceID=4143035' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_dc_mv4.gif' border='0'/></Link></td>
-                                            {/*<td colSpan={3}>현재는 원서접수 기간이 아닙니다</td>*/}
+                                            <td><Link href='https://sdoc.jinhakapply.com/Submit/frmSubmitStu.aspx?UnivServiceID=4143035' target='_blank'><img src='https://nadmin.jinhakapply.com/Banner/Images/s0_dc_mv4.gif' border='0'/></Link></td>*/}
+                                            <td colSpan={3}>현재는 원서접수 기간이 아닙니다</td>
                                         </tr>
                                     </tbody> 
                             </table></div>
