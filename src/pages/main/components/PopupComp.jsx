@@ -14,6 +14,7 @@ const PopupComp = () => {
     const [popupVisible, setPopupVisible] = useState(false);
     const [swiperInstance1, setSwiperInstance1] = useState(null);
     const location = useLocation();
+    const [mainPopCount, setMainPopCount] = useState([]);
 
     const [popupList, setPopupList] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -93,7 +94,10 @@ const PopupComp = () => {
         setCookie("popupShown", "true", 7);
         setPopupVisible(false);
     };
-
+    function handlePlay(){
+        if(mainPopCount > 3 ){ return true} else{ return false}
+    }
+   
     // swiper 슬라이더 설정
     const swiperSettings = {
         modules: [Navigation, Pagination, Autoplay],
@@ -102,7 +106,6 @@ const PopupComp = () => {
         pagination: {
             type: 'fraction',
             renderFraction: (currentClass, totalClass) => (
-                
                 <span className={currentClass}>0</span> + 
                 <div className="line"></div> + 
                 <span className={totalClass}>0</span>
@@ -112,7 +115,7 @@ const PopupComp = () => {
             nextEl: '#popup-slide-box .swiper-button-next',
             prevEl: '#popup-slide-box .swiper-button-prev',
         },
-        loop: true,
+        loop: handlePlay(),
         speed: 800,
         autoplay: {
             delay: 3000,
@@ -159,7 +162,7 @@ const PopupComp = () => {
                         </button>
                     </div>
                     
-                    <Swiper {...swiperSettings}>
+                    <Swiper {...swiperSettings}  onSwiper={(swiper)=>{setMainPopCount(swiper.slides.length);}}>
                     {popupList.map((data, index)=> { 
                         let imgContents = data.CONTENT;  
                         return(
